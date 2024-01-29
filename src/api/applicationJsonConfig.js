@@ -27,7 +27,7 @@ import axios from 'axios';
      (error) => {
        return Promise.reject(error);
      }
-   );
+   )
 
 
 
