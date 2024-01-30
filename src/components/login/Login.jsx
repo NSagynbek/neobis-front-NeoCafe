@@ -10,7 +10,7 @@ function Login() {
   const handleOpenModal = () => {
     dispatch(
       openModal({
-        name: "example",
+        name: "notification",
         props: {
           onchange: () => {},
           onSubmit: () => {},
