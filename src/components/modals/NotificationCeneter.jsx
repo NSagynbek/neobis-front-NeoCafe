@@ -1,5 +1,5 @@
 import  { useState, useEffect } from 'react';
-import WebSocket from 'react-websocket'
+import WebSocket from 'react-websocket';
 import "./notificationCenter.css"
 
 const NotificationCenter = () => {
