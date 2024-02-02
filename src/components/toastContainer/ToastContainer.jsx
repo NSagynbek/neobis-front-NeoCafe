@@ -13,6 +13,8 @@ const Toast = () => (
     pauseOnFocusLoss
     draggable
     pauseOnHover
+    theme="colored"
+    transition: Bounce
   />
 );
 

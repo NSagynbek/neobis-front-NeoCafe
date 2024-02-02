@@ -1,3 +1,145 @@
+
 .login{
-    color: green;
+    width: 1440px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
+
+.logo-text{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.neo{
+    font-size: 32px;
+    font-weight: 400;
+    font-family: 'Yaro', sans-serif;
+    color: #2A3440;
+}
+
+.cafe{
+    font-size: 32px;
+    font-weight: 400;
+    font-family: 'Yaro', sans-serif;
+    color: #F47356;
+}
+.login-inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;   
+    height: 98%;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.login-inputs__title{
+    font-size: 72px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: #2A3440;
+}
+
+.login-inputs__form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.error{
+    text-align: center;
+    width: 534px;
+    height: 66px;
+    border-radius: 20px;
+    padding: 24px 16px 24px 16px;
+    background: #EBEFF2;
+    color:#F45656 ;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    border: 1px solid #F45656;
+}
+
+.password-input,.email-input{
+    text-align: center;
+    width: 534px;
+    height: 66px;
+    border-radius: 20px;
+    padding: 24px 16px 24px 16px;
+    background: #EBEFF2;
+    color: #5F6366;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    border: none;
+}
+
+.loginBtn{
+    text-align: center;
+    width: 534px;
+    height: 70px;
+    border-radius: 20px;
+    padding: 19px 158px 19px 158px;
+    background: #35536BBF;
+    color: #FEFEFE;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.loginBtn-valid{
+    text-align: center;
+    width: 534px;
+    height: 70px;
+    border-radius: 20px;
+    padding: 19px 158px 19px 158px;
+    background: #35536B;
+    color: #FEFEFE;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.password-input-container{
+    position: relative;
+}
+
+.password-icons{
+    position: absolute;
+    top: 35px;
+    right: 25px;
+}
+
+.login-image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 98%;
+    overflow: hidden;
+}
+
+.login-image{
+    width: 100%;
+    height: 100%;
+    object-fit:fill;
+    border-radius: 12px;
+}
+
