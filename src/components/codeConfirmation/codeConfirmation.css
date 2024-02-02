@@ -16,3 +16,34 @@
     width: 500px;
 }
 
+.resend-code{
+    font-size: 14px;
+    font-weight:400;
+    font-family: 'Poppins', sans-serif;
+    color: #5F6366;
+    cursor: pointer;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+    background: white;
+}
+
+.codePage-logo-text{
+    position: absolute;
+    top: 10px;
+    right:30px;
+}
+
+.code-neo{
+    font-size: 32px;
+    font-weight: 400;
+    color: #2A3440;
+    font-family: 'Yaro', sans-serif;
+}
+
+.code-cafe{
+    font-size: 32px;
+    font-weight: 400;
+    color: #35536B;
+    font-family: 'Yaro', sans-serif;
+}

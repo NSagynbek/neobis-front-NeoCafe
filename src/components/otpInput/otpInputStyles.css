@@ -2,20 +2,46 @@
     width: 66px;
     height: 66px;
     border-radius: 10px;
-    padding: 20px;
+    padding-left: 20px;
     font-size: 32px;
     font-family: 'Poppins', sans-serif;
     color: #2A3440;
     background: #EBEFF2;
     outline: none;
     border: none;
-   }
-   
+}
+
+.otp-input-error{
+    width: 66px;
+    height: 66px;
+    border-radius: 10px;
+    padding-left: 20px;
+    font-size: 32px;
+    font-family: 'Poppins', sans-serif;
+    color: #F45656;
+    background: #EBEFF2;
+    outline: none;
+    border: none;
+}
+
 .otp-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+   
+.otp-input-container{
     display: flex;
     justify-content: center;
     justify-content: space-evenly;
     align-items: center;
     width: 400px;
     height: 100px;
+}
+
+.otp-notification{
+    font-size:14px;
+    font-weight:400;
+    font-family: 'Poppins', sans-serif;
+    color: #F45656;
 }

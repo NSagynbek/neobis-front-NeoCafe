@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
 import './otpInputStyles.css';
 
-function OTPInput() {
+function OTPInput({error}) {
+  const [isError,setIsError] = useState(false);
   const [otp, setOtp] = useState(['', '', '', '']);
   const inputRefs = useRef([]);
-
   const handleChange = (index, value) => {
     const newOtp = [...otp];
     newOtp[index] = value;
@@ -24,23 +24,33 @@ function OTPInput() {
   };
 
   return (
-    <div className="otp-container">
-      {otp.map((digit, index) => (
-        <input
-          key={index}
-          type="tel"
-          pattern="[0-9]*"
-          inputMode="numeric"
-          value={digit}
-          onChange={(e) => handleChange(index, e.target.value)}
-          onKeyDown={(e) => handleKeyDown(index, e)}
-          maxLength={1}
-          ref={(el) => (inputRefs.current[index] = el)}
-          placeholder='_'
-          className='otp-input'
-        />
-      ))}
-    </div>
+    <main className='otp-container'>
+      {isError?(
+        <p className="otp-notification">
+          Код неверный, попробуйте ещё раз
+        </p>
+      ):(
+        null
+      )}
+     
+      <div className="otp-input-container">
+        {otp.map((digit, index) => (
+          <input
+            key={index}
+            type="tel"
+            pattern="[0-9]*"
+            inputMode="numeric"
+            value={digit}
+            onChange={(e) => handleChange(index, e.target.value)}
+            onKeyDown={(e) => handleKeyDown(index, e)}
+            maxLength={1}
+            ref={(el) => (inputRefs.current[index] = el)}
+            placeholder='_'
+            className={isError?"otp-input-error":"otp-input"}
+          />
+        ))}
+      </div>
+    </main>
   );
 }
 

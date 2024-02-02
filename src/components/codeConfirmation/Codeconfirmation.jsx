@@ -17,12 +17,11 @@ function CodeConfirmation (){
     
     return (
         <main className="login">
-            <header className="logo-text">
-                <span className="neo">neo</span>
-                <span className="cafe">cafe</span>
-            </header>
-
             <section className="login-inputs">
+            <header className="codePage-logo-text">
+                <span className="code-neo">neo</span>
+                <span className="code-cafe">cafe</span>
+            </header>
               <div className="code-container">
                 <p 
                   className="code-content__title"
@@ -36,8 +35,7 @@ function CodeConfirmation (){
                 >
                   Войти
                 </button>
-
-                <p>Отправить повторно</p>
+                <button className="resend-code">Отправить повторно</button>
               </div>
             </section>
             <section className="login-image-container">
