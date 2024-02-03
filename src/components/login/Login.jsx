@@ -75,6 +75,7 @@ function Login() {
             <Form 
               className="login-inputs__form"
             >
+              <div>
               <Field
                 type="text"
                 id="email"
@@ -82,9 +83,9 @@ function Login() {
                 placeholder="Электронная почта"
                 className={isError?"error":"email-input"}
               />
-              <ErrorMessage name="email" component={TextError}/>
-            <div 
-              className="password-input-container">
+              {/* <ErrorMessage name="email" component={TextError}/> */}
+              </div>
+            <div className="password-input-container">
               <Field
                 type={isPassword?"text":"password"}
                 id="password"
@@ -92,7 +93,7 @@ function Login() {
                 placeholder = "Пароль"
                 className={isError?"error":"password-input"}
               />
-              <ErrorMessage name="password" component={TextError}/>
+              {/* <ErrorMessage name="password" component={TextError}/> */}
 
               <InputAdornment position="end" className="password-icons">
                 <IconButton 
