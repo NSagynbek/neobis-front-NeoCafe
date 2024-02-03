@@ -18,7 +18,10 @@ function Header (){
                     className="header-options__input_search"
                     placeholder="Поиск"
                   />
-                  <InputAdornment className='header-options__icon_search'>
+                  <InputAdornment 
+                    className='header-options__icon_search' 
+                    position="start"
+                  >
                     <IconButton>
                       <SearchIcon/>
                     </IconButton>
@@ -31,7 +34,10 @@ function Header (){
                     <span>Создать</span>
                   </button>
 
-                  <InputAdornment className='header-options__icon_add'>
+                  <InputAdornment 
+                    className='header-options__icon_add' 
+                    position="start"
+                  >
                       <IconButton>
                         <AddIcon
                           style={{ 
@@ -43,7 +49,10 @@ function Header (){
                       </IconButton>
                   </InputAdornment>
                 </div>             
-                <InputAdornment className='header-options__icon_notify' >
+                <InputAdornment 
+                  className='header-options__icon_notify' 
+                  position="start" 
+                >
                   <IconButton>
                     <NotificationsIcon 
                       style={{ 

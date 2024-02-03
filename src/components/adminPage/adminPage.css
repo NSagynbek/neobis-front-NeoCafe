@@ -1,4 +1,7 @@
 .admin-page{
+    width: 1440px;
+    height: 100vh;
+    margin: 0 auto;
     display: flex;
 }
 
