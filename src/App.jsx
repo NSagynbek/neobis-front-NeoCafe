@@ -9,6 +9,7 @@ import RootLayout from "./layouts/RootLayout";
 import Login from "./components/login/Login"
 import DynamicModal from "@components/modals/DynamicModal";
 import CodeConfirmation from "./components/codeConfirmation/Codeconfirmation";
+import AdminPage from "./components/adminPage/AdminPage";
 
 function App() {
   const isOpen = useSelector((state) => state.isOpen);
@@ -22,7 +23,7 @@ function App() {
         <Route path="/" element={<RootLayout/>}>
           
       <Route element={<PrivateRoute/>}>       
-        {/* Private Routes here */}
+        <Route path="/admin-page" element={<AdminPage/>}/>
       </Route>
 
        <Route path="/" element={<Login/>}/>

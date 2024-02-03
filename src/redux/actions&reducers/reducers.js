@@ -6,7 +6,7 @@ import {
   } from "./actionTypes";
   
   const initialState = {
-    isAuthenticated: false,
+    isAuthenticated: true,
     isOpen: false,
     modalData: {},
   };
