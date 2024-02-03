@@ -17,7 +17,7 @@ function AdminPage (){
             <SideBar/>
         </aside>
 
-        <section>
+        <section className="admin-page__content">
             <Header/>
             <Content/>
         </section>

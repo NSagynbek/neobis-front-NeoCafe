@@ -1,0 +1,35 @@
+.sideBar{
+    display: flex;
+    flex-direction: column;
+    width: 221px;
+    height: 100vh;
+    border: 1px solid black;
+    background: #35536B;
+}
+
+.sideBar-neo{
+    font-size: 32px;
+    font-weight: 400;
+    font-family: 'Yaro', sans-serif;
+    color: #FFFFFF;
+}
+
+.sideBar__logo-text{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    position: absolute;
+    top: 28px;
+    left: 40px;
+}
+.admin-sections{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 99px;
+    width: 100%;
+    height: 30%;
+    border: 1px solid black;
+    align-items: center;
+}
