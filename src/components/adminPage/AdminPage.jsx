@@ -7,21 +7,21 @@ import NotificationCenter from "../notificationCenter/NotificationCenter"
 
 function AdminPage (){
     
-    const [selectMenuItem,setSelectMenuItem]=useState("menu");
+    const [selectedMenuItem,setSelectedMenuItem]=useState("menu");
 
     const handleMenuClick = (menuItem)=>{
-        setSelectMenuItem(menuItem);
+        setSelectedMenuItem(menuItem);
     };
 
     return (
         <main className="admin-page">
         <aside>
-            <SideBar onSeelct= {handleMenuClick}/>
+            <SideBar onSelct={handleMenuClick}/>
         </aside>
 
         <section className="admin-page__content">
             <Header/>
-            <Content onSeelct= {handleMenuClick}/>
+            <Content selectedMenuItem={selectedMenuItem}/>
         </section>
 
         </main>

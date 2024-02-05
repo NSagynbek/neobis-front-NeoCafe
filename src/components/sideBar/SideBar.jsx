@@ -7,13 +7,13 @@ import PolylineIcon from "@mui/icons-material/Polyline";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-function SideBar({onSelect}) {
+function SideBar({onSelct}) {
 
 
   const [activeSection, setActiveSection] = useState(null);
 
   const handleButtonClick = (section) => {
-    onSelect(section);
+    onSelct(section);
     setActiveSection(section === activeSection ? null : section);
   };
 
