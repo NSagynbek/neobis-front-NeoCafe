@@ -3,9 +3,12 @@
     height: 100vh;
     margin: 0 auto;
     display: flex;
+    background: #EBEFF2;
 }
 
 .admin-page__content{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
