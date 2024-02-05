@@ -5,7 +5,7 @@ const NotificationCenter = () => {
   // Implement notification logic here
   return (
     <div className="notification-center">
-      {/* Display notifications */}
+     
     </div>
   );
 };
