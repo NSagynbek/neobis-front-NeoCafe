@@ -20,7 +20,7 @@
     height: 40px;
     position: absolute;
     top: 28px;
-    left: 95px;
+    left: 90px;
 }
 .admin-sections{
     display: flex;
@@ -40,7 +40,6 @@
     width: 157px;
     height: 48px;
     border-radius: 12px;
-    /* padding: 12px 10px 12px 0px; */
     border: none;
     outline: none;
     cursor: pointer;
