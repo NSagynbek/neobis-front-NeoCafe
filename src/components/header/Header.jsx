@@ -60,8 +60,8 @@ function Header ({selectedMenuItem}){
                       style={{ 
                         background:"#35536B", 
                         color:"white", 
-                        width:"50px", 
-                        height:"50px", 
+                        width:"30px", 
+                        height:"30px", 
                         padding:"5px", 
                         borderRadius:"30px" 
                       }}/>

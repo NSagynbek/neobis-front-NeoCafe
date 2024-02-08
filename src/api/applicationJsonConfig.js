@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
   const instance = axios.create({
-    baseURL: 'https://mobi-market-production.up.railway.app/',
+    baseURL: 'https://tokyo-backender.org.kg/',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -15,7 +15,7 @@ import axios from 'axios';
 
    instance.interceptors.request.use(
      async (config) => {
-       const excludedEndpoints = ["api/v1/auth/login", "api/v1/users/refreshToken"];
+       const excludedEndpoints = ["cafe/admin/login/"];
        if(!excludedEndpoints.some(endpoint=>config.url.endsWith(endpoint))){
         const token = JSON.parse(getCookie("tokenData")); 
          if (token) {

@@ -4,27 +4,28 @@ import {openModal} from "../../redux/index";
 import { toast } from 'react-toastify';
 import {Formik,Form,Field,ErrorMessage} from "formik"
 import * as yup from "yup"
-import TextError from "../textError/TextError";
 import {InputAdornment,IconButton} from "@mui/material"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {useState} from "react";
 import { loginImage } from "../../assets";
-import { login } from "../../api";
+// import { login } from "../../api";
+import axios from "axios";
 
 const initialValues={
-  email:"",
+  username:"",
   password:"",
 } 
 
 const validationSchema = yup.object({
-  email: yup.string().required("пожалуйста, введите имя пользователя"),
+  username: yup.string().required("пожалуйста, введите ваш логин"),
   password: yup.string().required("пожалуйста, введите ваш пароль")
 })
 
 function Login() {
   const [isPassword,setIsPassword] = useState(false);
   const [isError,setIsError] = useState(false);
+
   // const dispatch = useDispatch();
 
   // const handleOpenModal = () => {
@@ -40,12 +41,19 @@ function Login() {
   //   );
   // };
 
-  const onSubmit = async ()=>{
+  const onSubmit = async (values)=>{
+    console.log(values)
     try{
-      // const response = await login(data);
+        // const response = await login(values);
+        const response = await axios.post("https://tokyo-backender.org.kg/cafe/admin/login/",values,{
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+        console.log(response)
     }catch(error){
       setIsError(!isError);
-      showToast();
+      showToast(error.response.data.error);
     }
 
   }
@@ -54,8 +62,8 @@ function Login() {
     setIsPassword(!isPassword);
   }
 
-  const showToast = () => {
-    toast.error('Данные введены неверно, попробуйте еще раз');
+  const showToast = (msg) => {
+    toast.error(msg);
   };
 
   return (
@@ -78,12 +86,12 @@ function Login() {
               <div>
               <Field
                 type="text"
-                id="email"
-                name="email"
+                id="username"
+                name="username"
                 placeholder="Электронная почта"
                 className={isError?"error":"email-input"}
               />
-              {/* <ErrorMessage name="email" component={TextError}/> */}
+              
               </div>
             <div className="password-input-container">
               <Field
@@ -93,7 +101,7 @@ function Login() {
                 placeholder = "Пароль"
                 className={isError?"error":"password-input"}
               />
-              {/* <ErrorMessage name="password" component={TextError}/> */}
+              
 
               <InputAdornment position="end" className="password-icons">
                 <IconButton 
