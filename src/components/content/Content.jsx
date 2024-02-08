@@ -1,10 +1,11 @@
-import "./content.css";
+  import "./content.css";
 import MenuContent from '../menuContent/MenuContent';
 import WarehouseContent from '../wareHousecontent/WarehouseContent';
 import BranchesContent from '../branchesContent/BranchesContent';
 import EmployeesContent from '../employeesContent/EmployeesContent';
 
 const Content = ({selectedMenuItem}) => {
+  
   switch (selectedMenuItem) {
     case 'menu':
       return <MenuContent />;

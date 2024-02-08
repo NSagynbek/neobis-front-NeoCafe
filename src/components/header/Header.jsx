@@ -3,12 +3,14 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import "./header.css";
+import { capitalizeFirstLetter } from '../utils';
 
-function Header (){
+function Header ({selectedMenuItem}){
+
     return(
         <header className="header">
             <section className='page-title'>
-                <p className='page-title__text'>Меню</p>
+                <p className='page-title__text'>{capitalizeFirstLetter(selectedMenuItem)}</p>
             </section>
 
             <section className='header-options'>

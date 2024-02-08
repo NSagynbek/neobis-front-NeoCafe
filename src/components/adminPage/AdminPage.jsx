@@ -20,7 +20,7 @@ function AdminPage (){
         </aside>
 
         <section className="admin-page__content">
-            <Header/>
+            <Header selectedMenuItem={selectedMenuItem}/>
             <Content selectedMenuItem={selectedMenuItem}/>
         </section>
 
