@@ -3,8 +3,25 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { InputAdornment,IconButton } from "@mui/material";
+import { useDispatch } from "react-redux";
+import {openModal} from "../../redux/index";
 
 function ContentLayout (){
+
+  const dispatch = useDispatch();
+
+  const handleOpenModal = () => {
+    dispatch(
+      openModal({
+        name: "menuEditDelete",
+        props: {
+          onchange: () => {},
+          onSubmit: () => {},
+          title: "Change phone number",
+        },
+      })
+    );
+  };
     return (
         <main className="menu-mainContainer" >
           <section className="menu-gridContainer">
@@ -27,7 +44,10 @@ function ContentLayout (){
             <div className="item price">140 сом</div>
             <div className="item more">
               NeoCafe Ala-Too Square
-              <InputAdornment className="menu-more-icon">
+              <InputAdornment 
+                className="menu-more-icon"
+                onClick={handleOpenModal}
+              >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
@@ -42,7 +62,11 @@ function ContentLayout (){
             <div className="item price">140 сом</div>
             <div className="item more">
               NeoCafe Ala-Too Square
-              <InputAdornment className="menu-more-icon">
+              <InputAdornment 
+                position="end"
+                className="menu-more-icon"
+                onClick={handleOpenModal}
+              >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
@@ -57,7 +81,11 @@ function ContentLayout (){
             <div className="item price">140 сом</div>
             <div className="item more">
               NeoCafe Ala-Too Square
-              <InputAdornment className="menu-more-icon" position="end">
+              <InputAdornment 
+                className="menu-more-icon" 
+                position="end"
+                onClick={handleOpenModal}
+              >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
@@ -72,7 +100,11 @@ function ContentLayout (){
             <div className="item price">140 сом</div>
             <div className="item more">
               NeoCafe Ala-Too Square
-              <InputAdornment className="menu-more-icon" position="end">
+              <InputAdornment 
+                className="menu-more-icon" 
+                position="end"
+                onClick={handleOpenModal}
+              >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
@@ -87,7 +119,11 @@ function ContentLayout (){
             <div className="item price">140 сом</div>
             <div className="item more">
               NeoCafe Ala-Too Square
-              <InputAdornment className="menu-more-icon" position="end">
+              <InputAdornment 
+                className="menu-more-icon" 
+                position="end"
+                onClick={handleOpenModal}
+              >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
@@ -102,7 +138,11 @@ function ContentLayout (){
             <div className="item price">140 сом</div>
             <div className="item more">
               NeoCafe Ala-Too Square
-              <InputAdornment className="menu-more-icon" position="end">
+              <InputAdornment 
+                className="menu-more-icon" 
+                position="end"
+                onClick={handleOpenModal}
+              >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
@@ -117,7 +157,11 @@ function ContentLayout (){
             <div className="item price">140 сом</div>
             <div className="item more">
               NeoCafe Ala-Too Square
-              <InputAdornment className="menu-more-icon" position="end">
+              <InputAdornment 
+                className="menu-more-icon" 
+                position="end"
+                onClick={handleOpenModal}
+              >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>

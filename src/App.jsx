@@ -11,6 +11,7 @@ import DynamicModal from "@components/modals/DynamicModal";
 import CodeConfirmation from "./components/codeConfirmation/Codeconfirmation";
 import AdminPage from "./components/adminPage/AdminPage";
 
+
 function App() {
   const isOpen = useSelector((state) => state.isOpen);
   const modalData = useSelector((state) => state.modalData);

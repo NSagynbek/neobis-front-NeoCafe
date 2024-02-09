@@ -3,7 +3,7 @@ import muliPartinstance from "./multipartFormdataconfig"
 
 export const login = async (data)=>{
     const res = await instance.post("cafe/admin/login/",data)
-    return res.data
+    return res
 }
 
 export const authorize = async (data)=>{

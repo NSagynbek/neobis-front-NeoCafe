@@ -1,4 +1,3 @@
-// DynamicModal.js
 import { connect, useDispatch } from "react-redux";
 import modalMap from "./modalMap";
 import { closeModal } from "../../redux/index";

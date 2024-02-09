@@ -1,6 +1,4 @@
 import "./login.css";
-import { useDispatch } from "react-redux";
-import {openModal} from "../../redux/index";
 import { toast } from 'react-toastify';
 import {Formik,Form,Field,ErrorMessage} from "formik"
 import * as yup from "yup"
@@ -9,8 +7,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {useState} from "react";
 import { loginImage } from "../../assets";
-// import { login } from "../../api";
-import axios from "axios";
+import { login } from "../../api";
+
 
 const initialValues={
   username:"",
@@ -26,30 +24,12 @@ function Login() {
   const [isPassword,setIsPassword] = useState(false);
   const [isError,setIsError] = useState(false);
 
-  // const dispatch = useDispatch();
 
-  // const handleOpenModal = () => {
-  //   dispatch(
-  //     openModal({
-  //       name: "notification",
-  //       props: {
-  //         onchange: () => {},
-  //         onSubmit: () => {},
-  //         title: "Change phone number",
-  //       },
-  //     })
-  //   );
-  // };
 
   const onSubmit = async (values)=>{
     console.log(values)
     try{
-        // const response = await login(values);
-        const response = await axios.post("https://tokyo-backender.org.kg/cafe/admin/login/",values,{
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        })
+        const response = await login(values);
         console.log(response)
     }catch(error){
       setIsError(!isError);
@@ -137,10 +117,6 @@ function Login() {
           className="login-image"
         />
       </div>
-
-      {/* <h1 className="login">Login Page</h1>
-      <button onClick={handleOpenModal}>Button</button>
-      <button onClick={showToast}>Toast</button> */}
     </div>
   );
 }
