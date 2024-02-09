@@ -1,7 +1,7 @@
-import { connect, useDispatch } from "react-redux";
+import {useDispatch } from "react-redux";
 import modalMap from "./modalMap";
 import { closeModal } from "../../redux/index";
-
+import "./modals.css";
 
 const DynamicModal = ({ isOpen, modalData}) => {
   const dispatch = useDispatch();
@@ -14,22 +14,13 @@ const DynamicModal = ({ isOpen, modalData}) => {
   const CurrentModalComponent = modalMap[name];
 
   return (
-    <div>
+    <div className="dynamic-modal-container">
       <CurrentModalComponent {...props} />
-      <button onClick={dispatchCloseModal}>Close Modal</button>
+      {/* <button onClick={dispatchCloseModal}>Close Modal</button> */}
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  isOpen: state.isOpen,
-  modalData: state.modalData,
-});
 
 
-const mapDispatchToProps = {
-  closeModal,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DynamicModal);
-
+export default DynamicModal

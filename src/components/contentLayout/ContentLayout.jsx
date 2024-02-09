@@ -3,27 +3,67 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { InputAdornment,IconButton } from "@mui/material";
-import { useDispatch } from "react-redux";
-import {openModal} from "../../redux/index";
+import { MenuEditDelete } from "../modals";
+import { useState } from "react";
+
 
 function ContentLayout (){
 
-  const dispatch = useDispatch();
+  const [isOpen,setIsOpen] = useState(false);
+  const [isOpen1,setIsOpen1] = useState(false);
+  const [isOpen2,setIsOpen2] = useState(false);
+  const [isOpen3,setIsOpen3] = useState(false);
+  const [isOpen4,setIsOpen4] = useState(false);
+  const [isOpen5,setIsOpen5] = useState(false);
+  const [isOpen6,setIsOpen6] = useState(false);
 
-  const handleOpenModal = () => {
-    dispatch(
-      openModal({
-        name: "menuEditDelete",
-        props: {
-          onchange: () => {},
-          onSubmit: () => {},
-          title: "Change phone number",
-        },
-      })
-    );
-  };
+
+  const handleModal = (event)=>{
+    event.stopPropagation();
+    setIsOpen(!isOpen);
+  }
+  const handleModal1 = (event)=>{
+    event.stopPropagation();
+    setIsOpen1(!isOpen1);
+  }
+  const handleModal2 = (event)=>{
+    event.stopPropagation();
+    setIsOpen2(!isOpen2);
+  }
+  const handleModal3 = (event)=>{
+    event.stopPropagation();
+    setIsOpen3(!isOpen3);
+  }
+  const handleModal4 = (event)=>{
+    event.stopPropagation();
+    setIsOpen4(!isOpen4);
+  }
+  const handleModal5 = (event)=>{
+    event.stopPropagation();
+    setIsOpen5(!isOpen5);
+  }
+  const handleModal6 = (event)=>{
+    event.stopPropagation();
+    setIsOpen6(!isOpen6);
+  }
+
+  const closeAllModals = ()=>{
+    setIsOpen(false);
+    setIsOpen1(false);
+    setIsOpen2(false);
+    setIsOpen3(false);
+    setIsOpen4(false);
+    setIsOpen5(false);
+    setIsOpen6(false);
+  }
+
+
+
     return (
-        <main className="menu-mainContainer" >
+        <main 
+          className="menu-mainContainer"
+          onClick={closeAllModals}
+        >
           <section className="menu-gridContainer">
             <div 
               className="item first-row number-title"
@@ -46,12 +86,13 @@ function ContentLayout (){
               NeoCafe Ala-Too Square
               <InputAdornment 
                 className="menu-more-icon"
-                onClick={handleOpenModal}
+                onClick={handleModal}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
+              {isOpen?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -65,12 +106,13 @@ function ContentLayout (){
               <InputAdornment 
                 position="end"
                 className="menu-more-icon"
-                onClick={handleOpenModal}
+                onClick={handleModal1}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
+              {isOpen1?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -84,12 +126,13 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleOpenModal}
+                onClick={handleModal2}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
+              {isOpen2?<MenuEditDelete/>:null}
               </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -103,12 +146,13 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleOpenModal}
+                onClick={handleModal3}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
+              {isOpen3?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -122,12 +166,13 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleOpenModal}
+                onClick={handleModal4}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
+              {isOpen4?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -141,12 +186,13 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleOpenModal}
+                onClick={handleModal5}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
+              {isOpen5?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -160,12 +206,13 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleOpenModal}
+                onClick={handleModal6}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
+              {isOpen6?<MenuEditDelete/>:null}
             </div>
           </section>
 

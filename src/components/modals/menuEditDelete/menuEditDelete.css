@@ -5,7 +5,11 @@
     height: 88px;
     border-radius: 8px;
     border: 1px solid #5B7E9A;
+   background-color: white;
     position: absolute;
+    bottom: -68px;
+    right: 60px;
+    z-index: 2;
 }
 
 .menu-edit__container{

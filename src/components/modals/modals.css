@@ -1,0 +1,9 @@
+.dynamic-modal-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    max-width: 300px;
+    position: absolute;
+    right: 0;
+}

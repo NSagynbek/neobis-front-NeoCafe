@@ -34,6 +34,7 @@ import {
         } 
       case CLOSE_MODAL:
         return {
+          ...state,
           isOpen: false,
           modalData: {},
         }

@@ -13,8 +13,8 @@ import AdminPage from "./components/adminPage/AdminPage";
 
 
 function App() {
-  const isOpen = useSelector((state) => state.isOpen);
-  const modalData = useSelector((state) => state.modalData);
+  // const isOpen = useSelector((state) => state.isOpen);
+  // const modalData = useSelector((state) => state.modalData);
   
   return (
     <Provider store={store}>
@@ -36,7 +36,7 @@ function App() {
         
 
       </Routes>
-      <DynamicModal isOpen={isOpen} modalData={modalData} />
+      {/* <DynamicModal isOpen={isOpen} modalData={modalData} /> */}
     </Router>
     </Provider>
   );
