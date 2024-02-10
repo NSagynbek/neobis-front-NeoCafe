@@ -1,0 +1,48 @@
+.notification-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-evenly;
+    padding-left: 20px;
+    width: 400px;
+    height: 120px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.notification-content__icon_close{
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+
+.notification-content__title_text{
+    font-size: 16px;
+    font-weight: 400px;
+    font-family: "Poppins",sans-serif;
+    color: #2A3440;
+}
+
+.notification-contenton__time_text{
+    font-size: 16px;
+    font-weight: 400px;
+    font-family: "Poppins",sans-serif;
+    color: #2A3440; 
+}
+
+.notification-content__branch_text{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Poppins",sans-serif;
+    color: #2A3440;
+}
+
+.notification-content span{
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Poppins",sans-serif;
+    color: #5B7E9A; 
+}

@@ -4,7 +4,7 @@ import store from './redux/store';
 import App from './App'
 import './index.css'
 import ToastContainer from "./components/toastContainer/ToastContainer"
-import DynamicModal from './components/modals/DynamicModal';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

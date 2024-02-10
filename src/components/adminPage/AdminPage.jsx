@@ -3,7 +3,7 @@ import { useState } from "react";
 import Content from "../content/Content";
 import SideBar from "../sideBar/SideBar";
 import Header from "../header/Header";
-import NotificationCenter from "../notificationCenter/NotificationCenter"
+
 
 function AdminPage (){
     

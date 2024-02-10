@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import "./header.css";
 import { capitalizeFirstLetter } from '../utils';
+import NotificationCenter from "../modals/notificationCenter/NotificationCenter"
 
 function Header ({selectedMenuItem}){
 

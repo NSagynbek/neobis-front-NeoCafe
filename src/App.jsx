@@ -1,4 +1,4 @@
-import { Provider,useSelector } from "react-redux";
+import { Provider,useSelector} from "react-redux";
 import store from './redux/store';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -10,8 +10,7 @@ import Login from "./components/login/Login"
 import DynamicModal from "@components/modals/DynamicModal";
 import CodeConfirmation from "./components/codeConfirmation/Codeconfirmation";
 import AdminPage from "./components/adminPage/AdminPage";
-
-
+  
 function App() {
   // const isOpen = useSelector((state) => state.isOpen);
   // const modalData = useSelector((state) => state.modalData);
@@ -28,8 +27,7 @@ function App() {
       </Route>
 
        <Route path="/" element={<Login/>}/>
-       <Route path="/code" element={<CodeConfirmation/>}/>
-      
+       <Route path="/code" element={<CodeConfirmation/>}/>    
        
         </Route>
 
