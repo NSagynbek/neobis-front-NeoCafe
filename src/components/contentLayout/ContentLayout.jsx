@@ -5,57 +5,45 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { InputAdornment,IconButton } from "@mui/material";
 import { MenuEditDelete } from "../modals";
 import { useState } from "react";
-
+import { stateMap } from "../utils";
 
 function ContentLayout (){
 
-  const [isOpen,setIsOpen] = useState(false);
-  const [isOpen1,setIsOpen1] = useState(false);
-  const [isOpen2,setIsOpen2] = useState(false);
-  const [isOpen3,setIsOpen3] = useState(false);
-  const [isOpen4,setIsOpen4] = useState(false);
-  const [isOpen5,setIsOpen5] = useState(false);
-  const [isOpen6,setIsOpen6] = useState(false);
 
+  const [modalStates,setModalStates]=useState({
+    isOpen:false,
+    isOpen1:false,
+    isOpen2:false,
+    isOpen3:false,
+    isOpen4:false,
+    isOpen5:false,
+    isOpen6:false, 
+  })
 
-  const handleModal = (event)=>{
+  
+  const handleModal = (event, modalName) => {
     event.stopPropagation();
-    setIsOpen(!isOpen);
-  }
-  const handleModal1 = (event)=>{
-    event.stopPropagation();
-    setIsOpen1(!isOpen1);
-  }
-  const handleModal2 = (event)=>{
-    event.stopPropagation();
-    setIsOpen2(!isOpen2);
-  }
-  const handleModal3 = (event)=>{
-    event.stopPropagation();
-    setIsOpen3(!isOpen3);
-  }
-  const handleModal4 = (event)=>{
-    event.stopPropagation();
-    setIsOpen4(!isOpen4);
-  }
-  const handleModal5 = (event)=>{
-    event.stopPropagation();
-    setIsOpen5(!isOpen5);
-  }
-  const handleModal6 = (event)=>{
-    event.stopPropagation();
-    setIsOpen6(!isOpen6);
-  }
+    setModalStates(prev => ({
+      ...prev,
+      [modalName]: !prev[modalName]
+    }));
+  };
+  
+
 
   const closeAllModals = ()=>{
-    setIsOpen(false);
-    setIsOpen1(false);
-    setIsOpen2(false);
-    setIsOpen3(false);
-    setIsOpen4(false);
-    setIsOpen5(false);
-    setIsOpen6(false);
+    setModalStates({
+    isOpen:false,
+    isOpen1:false,
+    isOpen2:false,
+    isOpen3:false,
+    isOpen4:false,
+    isOpen5:false,
+    isOpen6:false,
+    })
   }
+
+  
 
 
 
@@ -86,13 +74,14 @@ function ContentLayout (){
               NeoCafe Ala-Too Square
               <InputAdornment 
                 className="menu-more-icon"
-                onClick={handleModal}
+                onClick={(event)=>handleModal(event,stateMap.isOpen)}
+                position="end"
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
-              {isOpen?<MenuEditDelete/>:null}
+              {modalStates.isOpen?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -106,13 +95,13 @@ function ContentLayout (){
               <InputAdornment 
                 position="end"
                 className="menu-more-icon"
-                onClick={handleModal1}
+                onClick={(event)=>handleModal(event,stateMap.isOpen1)}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
-              {isOpen1?<MenuEditDelete/>:null}
+              {modalStates.isOpen1?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -126,13 +115,13 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleModal2}
+                onClick={(event)=>handleModal(event,stateMap.isOpen2)}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
-              {isOpen2?<MenuEditDelete/>:null}
+              {modalStates.isOpen2?<MenuEditDelete/>:null}
               </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -146,13 +135,13 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleModal3}
+                onClick={(event)=>handleModal(event,stateMap.isOpen3)}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
-              {isOpen3?<MenuEditDelete/>:null}
+              {modalStates.isOpen3?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -166,13 +155,13 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleModal4}
+                onClick={(event)=>handleModal(event,stateMap.isOpen4)}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
-              {isOpen4?<MenuEditDelete/>:null}
+              {modalStates.isOpen4?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -186,13 +175,13 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleModal5}
+                onClick={(event)=>handleModal(event,stateMap.isOpen5)}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
-              {isOpen5?<MenuEditDelete/>:null}
+              {modalStates.isOpen5?<MenuEditDelete/>:null}
             </div>
             <div className="item number-title">
               <p className="number">№</p> 
@@ -206,21 +195,21 @@ function ContentLayout (){
               <InputAdornment 
                 className="menu-more-icon" 
                 position="end"
-                onClick={handleModal6}
+                onClick={(event)=>handleModal(event,stateMap.isOpen6)}
               >
                 <IconButton>
                   <MoreVertIcon/>
                 </IconButton>
               </InputAdornment>
-              {isOpen6?<MenuEditDelete/>:null}
+              {modalStates.isOpen6?<MenuEditDelete/>:null}
             </div>
           </section>
 
-          <fotter className="menu-footer">
+          <div className="menu-footer">
             <Stack spacing={2}>
               <Pagination count={10} variant="outlined" shape="rounded" />
             </Stack>
-          </fotter>
+          </div>
     
         </main>
     )

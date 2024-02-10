@@ -10,6 +10,18 @@ function capitalizeFirstLetter(string) {
 }
 
 
+const stateMap = {
+    isOpen:"isOpen",
+    isOpen1:"isOpen1",
+    isOpen2:"isOpen2",
+    isOpen3:"isOpen3",
+    isOpen4:"isOpen4",
+    isOpen5:"isOpen5",
+    isOpen6:"isOpen6", 
+}
+
+
+
 // import {openModal} from "../../redux/index";
 // import DynamicModal from "../modals/DynamicModal";
 // import { Provider,useSelector,useDispatch } from "react-redux";
@@ -32,4 +44,4 @@ function capitalizeFirstLetter(string) {
 
 
 
-export{capitalizeFirstLetter}
+export{capitalizeFirstLetter,stateMap}
