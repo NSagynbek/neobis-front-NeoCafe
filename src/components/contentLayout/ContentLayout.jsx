@@ -30,7 +30,6 @@ function ContentLayout (){
   };
   
 
-
   const closeAllModals = ()=>{
     setModalStates({
     isOpen:false,

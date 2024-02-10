@@ -6,6 +6,7 @@
     height: 100px;
     background: #FFFFFF;
     margin: 0 auto;
+    position: relative;
 }
 
 .page-title{

@@ -6,6 +6,10 @@
     height: 528px;
     border-radius: 8px;
     background: #F47356;
+    z-index: 3;
+    position: absolute;
+    right: 0;
+    bottom: -529px;
 }
 
 .notification-main__header{

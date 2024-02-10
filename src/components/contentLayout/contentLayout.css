@@ -3,19 +3,19 @@
     flex-direction: column;
     align-items: center;
     width: 1171px;
-    height:500px;
+    height:560px;
     border-radius: 20px;
     overflow: hidden;
     gap: 50px;
     background: white;
-    margin-top: 20px;
+    margin-top: 10px;
     position: relative;
 }
 
 .menu-gridContainer {
    display: grid;
    grid-template-columns: 16% 15% 24% 16% 30%;
-   grid-template-rows: repeat(8, 1fr);
+   grid-template-rows:repeat(8,1fr);
    width: 1171px;
    margin: 0;
 }
@@ -34,9 +34,6 @@
    columns: #2A3440;
 }
 
-.first-row {
-   border-bottom: 1px solid #35536B;
-}
 
 .number-title{
    padding-left: 20px;
@@ -73,6 +70,8 @@
    font-weight: 600;
    font-family: "Poppins", sans-serif;
    color: #2A3440;
+   border-bottom: 1px solid #35536B;
+   height: 60px;
 }
 
 .more{

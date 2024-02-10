@@ -5,11 +5,18 @@ import AddIcon from '@mui/icons-material/Add';
 import "./header.css";
 import { capitalizeFirstLetter } from '../utils';
 import NotificationCenter from "../modals/notificationCenter/NotificationCenter"
+import { useState } from 'react';
 
 function Header ({selectedMenuItem}){
+  const[isOpen,setIsOpen]=useState(false);
+
+  const handleNtfnMdl=()=>{
+    setIsOpen(!isOpen)
+  }
 
     return(
         <header className="header">
+          {isOpen?<NotificationCenter handleNtfnMdl={handleNtfnMdl} />:null}
             <section className='page-title'>
                 <p className='page-title__text'>{capitalizeFirstLetter(selectedMenuItem)}</p>
             </section>
@@ -55,6 +62,7 @@ function Header ({selectedMenuItem}){
                 <InputAdornment 
                   className='header-options__icon_notify' 
                   position="start" 
+                  onClick={handleNtfnMdl}
                 >
                   <IconButton>
                     <NotificationsIcon 

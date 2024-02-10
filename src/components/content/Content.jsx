@@ -1,4 +1,3 @@
-  import "./content.css";
 import MenuContent from '../menuContent/MenuContent';
 import WarehouseContent from '../wareHousecontent/WarehouseContent';
 import BranchesContent from '../branchesContent/BranchesContent';
@@ -8,7 +7,7 @@ const Content = ({selectedMenuItem}) => {
   
   switch (selectedMenuItem) {
     case 'menu':
-      return <MenuContent />;
+      return <MenuContent/>;
     case 'warehouse':
       return <WarehouseContent />;
     case 'branches':
