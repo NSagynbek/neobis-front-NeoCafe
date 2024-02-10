@@ -29,6 +29,7 @@
     justify-content: space-evenly;
     width: 65%;
     height: 100%;
+    position: relative;
 }
 
 .header-options__input_container{
@@ -77,10 +78,16 @@
 
 .header-options__btn_container{
     position: relative;
+    margin-right: 25px;
 }
 
 .header-options__icon_add{
     position: absolute;
     right: 5px;
     top: 25px;
+}
+
+.header-options__icon_notify{
+    position: absolute;
+    right: -10px;
 }
