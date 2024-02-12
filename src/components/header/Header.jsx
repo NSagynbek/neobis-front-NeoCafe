@@ -3,13 +3,19 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import "./header.css";
-import { capitalizeFirstLetter } from '../utils';
 import NotificationCenter from "../modals/notificationCenter/NotificationCenter"
 import { useState } from 'react';
+import { 
+  capitalizeFirstLetter,
+  addIconStyles,
+  notificationIconStyles, 
+} from '../utils';
+
 
 function Header ({selectedMenuItem}){
   const[isOpen,setIsOpen]=useState(false);
 
+ 
   const handleNtfnMdl=()=>{
     setIsOpen(!isOpen)
   }
@@ -50,11 +56,7 @@ function Header ({selectedMenuItem}){
                   >
                       <IconButton>
                         <AddIcon
-                          style={{ 
-                            color:"white", 
-                            width:"40px", 
-                            height:"40px", 
-                          }}
+                          style={addIconStyles}
                         />
                       </IconButton>
                   </InputAdornment>
@@ -66,14 +68,7 @@ function Header ({selectedMenuItem}){
                 >
                   <IconButton>
                     <NotificationsIcon 
-                      style={{ 
-                        background:"#35536B", 
-                        color:"white", 
-                        width:"40px", 
-                        height:"40px", 
-                        padding:"5px", 
-                        borderRadius:"30px" 
-                      }}/>
+                      style={notificationIconStyles}/>
                   </IconButton>
                 </InputAdornment>               
             </section>

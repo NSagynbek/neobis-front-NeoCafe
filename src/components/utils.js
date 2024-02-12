@@ -20,7 +20,23 @@ const stateMap = {
     isOpen6:"isOpen6", 
 }
 
+const addIconStyles = { 
+    color:"white", 
+    width:"40px", 
+    height:"40px", 
+  }
 
+  const notificationIconStyles = { 
+    background:"#35536B", 
+    color:"white", 
+    width:"40px", 
+    height:"40px", 
+    padding:"5px", 
+    borderRadius:"30px" 
+  }
+
+  const editDeleteIconsStyles = {color: "#2A3440"}
+  const sideBarIconsStyles = { color: "white" }
 
 // import {openModal} from "../../redux/index";
 // import DynamicModal from "../modals/DynamicModal";
@@ -44,4 +60,11 @@ const stateMap = {
 
 
 
-export{capitalizeFirstLetter,stateMap}
+export{
+    capitalizeFirstLetter,
+    stateMap,
+    addIconStyles,
+    notificationIconStyles,
+    editDeleteIconsStyles,
+    sideBarIconsStyles,
+}

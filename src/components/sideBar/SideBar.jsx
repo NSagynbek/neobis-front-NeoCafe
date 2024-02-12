@@ -6,7 +6,7 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import PolylineIcon from "@mui/icons-material/Polyline";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-
+import { sideBarIconsStyles } from "../utils";
 function SideBar({onSelct}) {
 
 
@@ -46,7 +46,7 @@ function SideBar({onSelct}) {
             position="start"
           >
             <IconButton onClick={() => handleButtonClick("menu")}>
-              <MenuIcon style={{ color: "white" }} />
+              <MenuIcon style={sideBarIconsStyles} />
             </IconButton>
           </InputAdornment>         
         </div>
@@ -66,7 +66,7 @@ function SideBar({onSelct}) {
             position="start"
           >
             <IconButton onClick={() => handleButtonClick("warehouse")}>
-              <InventoryIcon style={{ color: "white" }} />
+              <InventoryIcon style={sideBarIconsStyles} />
             </IconButton>
           </InputAdornment>
         </div>
@@ -85,7 +85,7 @@ function SideBar({onSelct}) {
             position="start"
           >
             <IconButton onClick={() => handleButtonClick("branches")} >
-              <PolylineIcon style={{ color: "white" }} />
+              <PolylineIcon style={sideBarIconsStyles} />
             </IconButton>
           </InputAdornment>
         </div>
@@ -104,7 +104,7 @@ function SideBar({onSelct}) {
             position="start"
           >
             <IconButton onClick={() => handleButtonClick("employees")}>
-              <GroupsIcon style={{ color: "white" }} />
+              <GroupsIcon style={sideBarIconsStyles} />
             </IconButton>
           </InputAdornment>
         </div>
@@ -119,7 +119,7 @@ function SideBar({onSelct}) {
                position="start"
              >
                <IconButton>
-                 <ExitToAppIcon style={{ color: "white" }}/>
+                 <ExitToAppIcon style={sideBarIconsStyles}/>
                </IconButton>
              </InputAdornment>
            </div>

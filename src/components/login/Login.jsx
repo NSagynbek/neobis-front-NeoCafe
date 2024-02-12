@@ -10,16 +10,14 @@ import { useNavigate } from 'react-router';
 import { loginImage } from "../../assets";
 import { login } from "../../api";
 import { setCookie } from "../../api/tokenService";
+import { loginSchema } from "../../schemas";
 
 const initialValues={
   username:"",
   password:"",
 } 
 
-const validationSchema = yup.object({
-  username: yup.string().required("пожалуйста, введите ваш логин"),
-  password: yup.string().required("пожалуйста, введите ваш пароль")
-})
+const validationSchema = yup.object(loginSchema);
 
 function Login() {
   const navigate = useNavigate();

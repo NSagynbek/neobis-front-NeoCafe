@@ -2,8 +2,6 @@ import { Provider,useSelector} from "react-redux";
 import store from './redux/store';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-
-
 import PrivateRoute from "./components/privateRoute/PrivateRoute"
 import RootLayout from "./layouts/RootLayout";
 import Login from "./components/login/Login"

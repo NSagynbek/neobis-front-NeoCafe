@@ -1,6 +1,6 @@
 import {useDispatch } from "react-redux";
 import modalMap from "./modalMap";
-import { closeModal } from "../../redux/index";
+import {closeModal} from "../../redux/index";
 import "./modals.css";
 
 const DynamicModal = ({ isOpen, modalData}) => {
