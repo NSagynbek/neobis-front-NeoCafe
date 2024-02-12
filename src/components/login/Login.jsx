@@ -6,9 +6,10 @@ import {InputAdornment,IconButton} from "@mui/material"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {useState} from "react";
+import { useNavigate } from 'react-router';
 import { loginImage } from "../../assets";
 import { login } from "../../api";
-
+import { setCookie } from "../../api/tokenService";
 
 const initialValues={
   username:"",
@@ -21,16 +22,17 @@ const validationSchema = yup.object({
 })
 
 function Login() {
+  const navigate = useNavigate();
   const [isPassword,setIsPassword] = useState(false);
   const [isError,setIsError] = useState(false);
-
-
-
+  
   const onSubmit = async (values)=>{
     console.log(values)
     try{
         const response = await login(values);
-        console.log(response)
+        console.log(response.data)
+        setCookie('tokenData', JSON.stringify(response.data), 7);
+        navigate('/admin-page');
     }catch(error){
       setIsError(!isError);
       showToast(error.response.data.error);
@@ -68,7 +70,7 @@ function Login() {
                 type="text"
                 id="username"
                 name="username"
-                placeholder="Электронная почта"
+                placeholder="Логин"
                 className={isError?"error":"email-input"}
               />
               

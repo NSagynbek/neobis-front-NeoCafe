@@ -19,7 +19,7 @@ import axios from 'axios';
        if(!excludedEndpoints.some(endpoint=>config.url.endsWith(endpoint))){
         const token = JSON.parse(getCookie("tokenData")); 
          if (token) {
-           config.headers.Authorization = `Bearer ${token.accessToken}`;
+           config.headers.Authorization = `Bearer ${token.access_token}`;
          }
        }
          return config;
@@ -46,13 +46,13 @@ import axios from 'axios';
        const token = JSON.parse(getCookie("tokenData"));  
 
        const formData = {
-         token: token.refreshToken,
+         token: token.refresh_token,
        };
 
        try {
-         const response = await instance.post("api/v1/users/refreshToken",formData);
-         setCookie('tokenData', JSON.stringify(response.data), 7); //very important here to receive as a response object containing access and refresh tokens.
-         originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
+         const response = await instance.post("token/refresh/",formData);
+         setCookie('tokenData', JSON.stringify(response.data), 7); 
+         originalRequest.headers.Authorization = `Bearer ${response.data.access}`;
          retryCounter = 0; 
          return instance(originalRequest);
        } catch (refreshError) {

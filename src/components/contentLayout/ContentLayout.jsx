@@ -6,7 +6,7 @@ import { InputAdornment,IconButton } from "@mui/material";
 import { MenuEditDelete } from "../modals";
 import { useState } from "react";
 import { stateMap } from "../utils";
-
+import MenuCategories from "../menuCategories/MenuCategories";
 function ContentLayout (){
 
 
@@ -58,7 +58,7 @@ function ContentLayout (){
               <p className="number">№</p>
               <p>Наименование</p>
             </div>
-            <div className="item first-row category">Категория</div>
+            <div className="item first-row category"><MenuCategories/></div>
             <div className="item first-row" >Состав блюда и граммовка</div>
             <div className="item first-row price" >Стоимость</div>
             <div className="item first-row" >Филиал</div>

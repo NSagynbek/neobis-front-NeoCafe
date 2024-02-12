@@ -28,7 +28,6 @@ function App() {
 
        <Route path="/" element={<Login/>}/>
        <Route path="/code" element={<CodeConfirmation/>}/>    
-       
         </Route>
 
         
