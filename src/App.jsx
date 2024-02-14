@@ -8,6 +8,7 @@ import Login from "./components/login/Login"
 import DynamicModal from "@components/modals/DynamicModal";
 import CodeConfirmation from "./components/codeConfirmation/Codeconfirmation";
 import AdminPage from "./components/adminPage/AdminPage";
+
   
 function App() {
   // const isOpen = useSelector((state) => state.isOpen);
@@ -25,8 +26,9 @@ function App() {
       </Route>
 
        <Route path="/" element={<Login/>}/>
-       <Route path="/code" element={<CodeConfirmation/>}/>    
-        </Route>
+       <Route path="/code" element={<CodeConfirmation/>}/>
+         
+      </Route>
 
         
 

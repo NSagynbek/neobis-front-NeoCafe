@@ -12,12 +12,22 @@ function capitalizeFirstLetter(string) {
 
 const stateMap = {
     isOpen:"isOpen",
-    isOpen1:"isOpen1",
-    isOpen2:"isOpen2",
-    isOpen3:"isOpen3",
-    isOpen4:"isOpen4",
-    isOpen5:"isOpen5",
-    isOpen6:"isOpen6", 
+    isOpenFirst:"isOpenFirst",
+    isOpenSecond:"isOpenSecond",
+    isOpenThird:"isOpenThird",
+    isOpenFourth:"isOpenFourth",
+    isOpenFifth:"isOpenFifth",
+    isOpenSixth:"isOpenSixth", 
+}
+
+const setState = {
+  isOpen:false,
+  isOpenFirst:false,
+  isOpenSecond:false,
+  isOpenThird:false,
+  isOpenFourth:false,
+  isOpenFifth:false,
+  isOpenSixth:false, 
 }
 
 const addIconStyles = { 
@@ -37,6 +47,7 @@ const addIconStyles = {
 
   const editDeleteIconsStyles = {color: "#2A3440"}
   const sideBarIconsStyles = { color: "white" }
+  const menuCategoryArrowIconStyles = {color:"#5B7E9A"}
 
 // import {openModal} from "../../redux/index";
 // import DynamicModal from "../modals/DynamicModal";
@@ -59,6 +70,8 @@ const addIconStyles = {
 // const dispatch = useDispatch();
 
 
+  
+
 
 export{
     capitalizeFirstLetter,
@@ -67,4 +80,7 @@ export{
     notificationIconStyles,
     editDeleteIconsStyles,
     sideBarIconsStyles,
+    fakeData,
+    menuCategoryArrowIconStyles,
+    setState,
 }
