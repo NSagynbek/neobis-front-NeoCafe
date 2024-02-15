@@ -11,7 +11,23 @@ import { MenuEditDelete } from "../modals";
 import {stateMap,setState,menuItemDeleteIconStyle} from "../utils";
 import { useState } from "react";
 
+
+
+import {openModal} from "../../redux/index";
+import {useDispatch } from "react-redux";
+
 function ContentLayout (){
+
+
+ const dispatch = useDispatch();
+
+  const handleOpenModal = (modalName) => {
+    dispatch(
+      openModal({
+        name: modalName,
+      })
+    );
+  };
 
    const [isActive,setIsActive] = useState(false);
    const [modalStates,setModalStates]=useState({
@@ -146,8 +162,17 @@ function ContentLayout (){
                     </InputAdornment>
                    </li>
                    <li className="menu-category-add-container">
-                     <button className="menu-category-add-btn">Добавить</button>
-                     <InputAdornment position="end" className="menu-category-add-icon">
+                     <button 
+                       className="menu-category-add-btn"
+                       onClick={()=>handleOpenModal("newMenuCategory")}
+                      >
+                        Добавить
+                      </button>
+                     <InputAdornment 
+                       position="end" 
+                       className="menu-category-add-icon"
+                       onClick={()=>handleOpenModal("newMenuCategory")}
+                      >
                        <IconButton>
                          <AddIcon style={{color:"#5B7E9A"}}/>
                        </IconButton>

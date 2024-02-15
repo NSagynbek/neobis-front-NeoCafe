@@ -1,0 +1,86 @@
+.new-menu-category-modal{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 600px;
+  min-height: 334px;
+  border-radius: 20px;
+  background: white;
+  position: absolute;
+  z-index:3;
+}
+
+.new-menu-category-modal__category-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.new-menu-category-modal__category-title{
+    font-size:24px;
+    font-family:"Poppins",sans-serif;
+    font-weight:600;
+    color: #2a3440;
+    padding-left: 10px;
+}
+
+.new-menu-category-modal__input-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.new-menu-category-modal__input-label{
+    font-size:20px;
+    font-family:"Poppins",sans-serif;
+    font-weight:400;
+    color: #2a3440;
+    padding-left: 30px;
+}
+
+.new-menu-category-modal__input-field{
+    width: 536px;
+    height: 64px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background:#EBEFF2;
+    font-size:18px;
+    font-family:"Poppins",sans-serif;
+    font-weight:600;
+    color: #5F6366; 
+    padding-left: 10px;
+    margin: 0 auto;
+}
+
+.new-menu-category-modal__button-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.new-menu-category-modal__cancel-button,
+.new-menu-category-modal__add-button {
+    width: 260px;
+    height: 56px;
+    border-radius: 10px;
+    border: 2px solid #35536B;
+    font-size:16px;
+    font-family:"Poppins",sans-serif;
+    font-weight:600;
+    color: #35536B; 
+    cursor: pointer;
+}
+
+.menu-category-btn-active{
+    background: #35536B;
+    color: white;
+}
