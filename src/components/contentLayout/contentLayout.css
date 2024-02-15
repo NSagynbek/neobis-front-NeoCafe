@@ -139,12 +139,32 @@
 
 
 .menu-category-item{
+   display: flex;
+   align-items: center;
    font-size:16PX;
    font-weight:600;
    font-family: "Poppins", sans-serif;
    color: #2A3440;
    cursor: pointer;
+   position: relative;
+   transition: ease-in-out 0.12s;
 }
+
+.menu-category-item-icon{
+   position: absolute;
+   right: 10px;
+   opacity: 0;
+   transition: ease-in-out 0.12s;
+}
+
+.menu-category-item:hover .menu-category-item-icon {
+   opacity: 1;
+}
+
+.menu-category-item:hover, .menu-category-item-icon .MuiSvgIcon-root {
+   color: #F45656;
+}
+
 
 .menu-category-add-container{
    display: flex;

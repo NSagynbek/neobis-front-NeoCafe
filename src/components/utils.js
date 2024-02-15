@@ -45,6 +45,10 @@ const addIconStyles = {
     borderRadius:"30px" 
   }
 
+  const menuItemDeleteIconStyle = {
+    color:"#F45656"
+  }
+
   const editDeleteIconsStyles = {color: "#2A3440"}
   const sideBarIconsStyles = { color: "white" }
   const menuCategoryArrowIconStyles = {color:"#5B7E9A"}
@@ -80,7 +84,7 @@ export{
     notificationIconStyles,
     editDeleteIconsStyles,
     sideBarIconsStyles,
-    fakeData,
     menuCategoryArrowIconStyles,
     setState,
+    menuItemDeleteIconStyle,
 }

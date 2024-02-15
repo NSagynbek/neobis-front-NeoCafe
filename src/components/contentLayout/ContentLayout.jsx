@@ -5,9 +5,10 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { InputAdornment,IconButton } from "@mui/material";
 import { MenuEditDelete } from "../modals";
-import {stateMap,setState} from "../utils";
+import {stateMap,setState,menuItemDeleteIconStyle} from "../utils";
 import { useState } from "react";
 
 function ContentLayout (){
@@ -79,11 +80,71 @@ function ContentLayout (){
                  </InputAdornment>
                </div>               
                  <ul className={`menu-category-content ${isActive?"":"hide"}`}>
-                   <li className="menu-category-item">Кофе</li>
-                   <li className="menu-category-item">Десерты</li>
-                   <li className="menu-category-item">Коктейли</li>
-                   <li className="menu-category-item">Выпечка</li>
-                   <li className="menu-category-item">Чай</li>
+                   <li 
+                     className="menu-category-item"
+                   >
+                    Кофе
+                    <InputAdornment 
+                      position="end" 
+                      className="menu-category-item-icon"
+                    >
+                      <IconButton>
+                        <DeleteOutlineIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  </li>
+                   <li 
+                     className="menu-category-item"
+                   >
+                    Десерты
+                    <InputAdornment 
+                      position="end"
+                      className="menu-category-item-icon"
+                    >
+                      <IconButton>
+                        <DeleteOutlineIcon/>
+                      </IconButton>
+                    </InputAdornment>
+                   </li>
+                   <li 
+                     className="menu-category-item"
+                   >
+                    Коктейли
+                    <InputAdornment 
+                      position="end"
+                      className="menu-category-item-icon"
+                    >
+                      <IconButton>
+                        <DeleteOutlineIcon/>
+                      </IconButton>
+                    </InputAdornment>
+                   </li>
+                   <li 
+                     className="menu-category-item"
+                   >
+                    Выпечка
+                    <InputAdornment 
+                      position="end"
+                      className="menu-category-item-icon"
+                    >
+                      <IconButton>
+                        <DeleteOutlineIcon/>
+                      </IconButton>
+                    </InputAdornment>
+                   </li>
+                   <li 
+                     className="menu-category-item"
+                   >
+                    Чай
+                    <InputAdornment 
+                      position="end"
+                      className="menu-category-item-icon"
+                    >
+                      <IconButton>
+                        <DeleteOutlineIcon/>
+                      </IconButton>
+                    </InputAdornment>
+                   </li>
                    <li className="menu-category-add-container">
                      <button className="menu-category-add-btn">Добавить</button>
                      <InputAdornment position="end" className="menu-category-add-icon">
