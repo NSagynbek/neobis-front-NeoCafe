@@ -15,7 +15,8 @@ import {useDispatch } from "react-redux";
 
 function ContentLayout(){
 
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
   const handleOpenModal = (modalName) => {
     dispatch(
       openModal({
@@ -89,6 +90,7 @@ function ContentLayout(){
                  <ul className={`menu-category-content ${isActive?"":"hide"}`}>
                    <li 
                      className="menu-category-item"
+                     onClick={()=>handleOpenModal("deleteMenuCategory")}
                    >
                     Кофе
                     <InputAdornment 
@@ -102,6 +104,7 @@ function ContentLayout(){
                   </li>
                    <li 
                      className="menu-category-item"
+                     onClick={()=>handleOpenModal("deleteMenuCategory")}
                    >
                     Десерты
                     <InputAdornment 
@@ -115,6 +118,7 @@ function ContentLayout(){
                    </li>
                    <li 
                      className="menu-category-item"
+                     onClick={()=>handleOpenModal("deleteMenuCategory")}
                    >
                     Коктейли
                     <InputAdornment 
@@ -128,6 +132,7 @@ function ContentLayout(){
                    </li>
                    <li 
                      className="menu-category-item"
+                     onClick={()=>handleOpenModal("deleteMenuCategory")}
                    >
                     Выпечка
                     <InputAdornment 
@@ -141,6 +146,7 @@ function ContentLayout(){
                    </li>
                    <li 
                      className="menu-category-item"
+                     onClick={()=>handleOpenModal("deleteMenuCategory")}
                    >
                     Чай
                     <InputAdornment 
