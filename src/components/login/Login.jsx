@@ -30,7 +30,7 @@ function Login() {
         const response = await login(values);
         console.log(response.data)
         setCookie('tokenData', JSON.stringify(response.data), 7);
-        // navigate('/admin-page');
+        navigate('/admin-page');
     }catch(error){
       setIsError(!isError);
       showToast(error.response.data.error);

@@ -8,19 +8,14 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { InputAdornment,IconButton } from "@mui/material";
 import { MenuEditDelete } from "../modals";
-import {stateMap,setState,menuItemDeleteIconStyle} from "../utils";
+import {stateMap,setState} from "../utils";
 import { useState } from "react";
-
-
-
 import {openModal} from "../../redux/index";
 import {useDispatch } from "react-redux";
 
-function ContentLayout (){
-
+function ContentLayout(){
 
  const dispatch = useDispatch();
-
   const handleOpenModal = (modalName) => {
     dispatch(
       openModal({
@@ -40,7 +35,6 @@ function ContentLayout (){
      isOpenSixth:false, 
    });
 
-  
    const handleModal = (event, modalName) => {
      event.stopPropagation();
      setModalStates(prev => ({
@@ -48,7 +42,6 @@ function ContentLayout (){
        [modalName]: !prev[modalName]
      }));
    };
-  
 
    const closeAllModals = ()=>{
      setModalStates({
@@ -62,11 +55,9 @@ function ContentLayout (){
      })
    }
 
-  
   const handleIsActive = () => {
     setIsActive(!isActive);
   };
-
 
      return (
          <main 
@@ -180,7 +171,11 @@ function ContentLayout (){
                    </li>
                  </ul>
              </div>
-             <div className="item first-row" >Состав блюда и граммовка</div>
+             <div 
+               className="item first-row meal-ingredients" 
+              >
+                Состав блюда и граммовка
+              </div>
              <div className="item first-row price" >Стоимость</div>
              <div className="item first-row" >Филиал</div>
              <div className="item number-title">
@@ -188,7 +183,7 @@ function ContentLayout (){
                <p>Наименование</p>
              </div>
              <div className="item category">Кофе</div>
-             <div className="item">Молоко (70мл), Эспрессо (50мл)</div>
+             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
              <div className="item price">140 сом</div>
              <div className="item more">
                NeoCafe Ala-Too Square
@@ -208,7 +203,7 @@ function ContentLayout (){
                <p>Наименование</p>
              </div>
              <div className="item category">Кофе</div>
-             <div className="item">Молоко (70мл), Эспрессо (50мл)</div>
+             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
              <div className="item price">140 сом</div>
              <div className="item more">
                NeoCafe Ala-Too Square
@@ -228,7 +223,7 @@ function ContentLayout (){
                <p>Наименование</p>
              </div>
              <div className="item category">Кофе</div>
-             <div className="item">Молоко (70мл), Эспрессо (50мл)</div>
+             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
              <div className="item price">140 сом</div>
              <div className="item more">
                NeoCafe Ala-Too Square
@@ -248,7 +243,7 @@ function ContentLayout (){
                <p>Наименование</p>
              </div>
              <div className="item category">Кофе</div>
-             <div className="item">Молоко (70мл), Эспрессо (50мл)</div>
+             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
              <div className="item price">140 сом</div>
              <div className="item more">
                NeoCafe Ala-Too Square
@@ -268,7 +263,7 @@ function ContentLayout (){
                <p>Наименование</p>
              </div>
              <div className="item category">Кофе</div>
-             <div className="item">Молоко (70мл), Эспрессо (50мл)</div>
+             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
              <div className="item price">140 сом</div>
              <div className="item more">
                NeoCafe Ala-Too Square
@@ -288,7 +283,7 @@ function ContentLayout (){
                <p>Наименование</p>
              </div>
              <div className="item category">Кофе</div>
-             <div className="item">Молоко (70мл), Эспрессо (50мл)</div>
+             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
              <div className="item price">140 сом</div>
              <div className="item more">
                NeoCafe Ala-Too Square
@@ -308,7 +303,7 @@ function ContentLayout (){
                <p>Наименование</p>
              </div>
              <div className="item category">Кофе</div>
-             <div className="item">Молоко (70мл), Эспрессо (50мл)</div>
+             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
              <div className="item price">140 сом</div>
              <div className="item more">
                NeoCafe Ala-Too Square
