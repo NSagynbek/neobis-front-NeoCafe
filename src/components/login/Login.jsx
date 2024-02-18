@@ -11,11 +11,14 @@ import { loginImage } from "../../assets";
 import { login } from "../../api";
 import { setCookie } from "../../api/tokenService";
 import { loginSchema } from "../../schemas";
+import { Bars } from 'react-loader-spinner'
 
 const initialValues={
   username:"",
   password:"",
 } 
+
+
 
 const validationSchema = yup.object(loginSchema);
 
@@ -23,15 +26,19 @@ function Login() {
   const navigate = useNavigate();
   const [isPassword,setIsPassword] = useState(false);
   const [isError,setIsError] = useState(false);
+  let [loading, setLoading] = useState(false);
+ 
   
   const onSubmit = async (values)=>{
     console.log(values)
     try{
         const response = await login(values);
         console.log(response.data)
+        setLoading(false)
         setCookie('tokenData', JSON.stringify(response.data), 7);
         navigate('/admin-page');
     }catch(error){
+      setLoading(false)
       setIsError(!isError);
       showToast(error.response.data.error);
     }
@@ -46,6 +53,9 @@ function Login() {
     toast.error(msg);
   };
 
+  const handleLoading =()=>{
+    setLoading(true)
+  }
   return (
     <div className="login">
       <div className="logo-text">
@@ -101,9 +111,23 @@ function Login() {
               <button
                 type="submit" 
                 className={`loginBtn ${formikProps.dirty&&formikProps.isValid?"loginBtn-valid":""}`}
-                disabled={!formikProps.dirty&&!formikProps.isValid}             
+                disabled={!formikProps.dirty&&!formikProps.isValid}   
+                onClick={handleLoading}        
               >
-                Войти
+                {
+                  loading?(
+                  <Bars
+                    height="30"
+                    width="30"
+                    color="white"
+                  />
+                  ):(
+                    <p>Войти</p>
+                  )
+                } 
+                <div>
+                
+                </div>               
               </button>
 
             </Form>

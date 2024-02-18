@@ -269,11 +269,11 @@
     font-family: "Poppins",sans-serif;
     font-weight:400;
     color:#2A3440;
-    align-self: flex-end;
+    margin-top: 22px;
 }
 
 #measurement{
-    width:73px;
+    width: 100%;
     border: none;
     outline: none;
     background:#EBEFF2;
@@ -283,20 +283,9 @@
     color:#2A3440;
 }
 
-#measurement option{
-    border: none;
-    outline: none;
-    width:73px;
-    background:#EBEFF2;
-    font-size:18px;
-    font-family: "Poppins",sans-serif;
-    font-weight:400;
-    color:#2A3440;
-}
 
-#measurement option:hover {
-    background: lightgray;
-}
+
+
 
 .add-more-menu-items-btn{
     width:252px;

@@ -87,6 +87,9 @@
 }
 
 .loginBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     width: 534px;
     height: 70px;
