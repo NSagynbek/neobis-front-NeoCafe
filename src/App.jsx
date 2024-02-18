@@ -8,7 +8,7 @@ import Login from "./components/login/Login"
 import DynamicModal from "@components/modals/DynamicModal";
 import CodeConfirmation from "./components/codeConfirmation/Codeconfirmation";
 import AdminPage from "./components/adminPage/AdminPage";
-
+import AddNewMEnuItem from "./components/modals/addNewMenuItem/AddNewMenuItem"
 
   
 function App() {
@@ -28,7 +28,7 @@ function App() {
 
        <Route path="/" element={<Login/>}/>
        <Route path="/code" element={<CodeConfirmation/>}/>
-         
+       <Route path="/add" element={<AddNewMEnuItem/>}/> 
       </Route>
 
         

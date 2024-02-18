@@ -11,14 +11,24 @@ import {
   notificationIconStyles, 
 } from '../utils';
 
+import {openModal} from "../../redux/index";
+import {useDispatch } from "react-redux";
 
 function Header ({selectedMenuItem}){
   const[isOpen,setIsOpen]=useState(false);
-
+  const dispatch = useDispatch();
  
   const handleNtfnMdl=()=>{
     setIsOpen(!isOpen)
   }
+
+  const handleOpenModal = (modalName) => {
+    dispatch(
+      openModal({
+        name: modalName,
+      })
+    );
+  };
 
     return(
         <header className="header">
@@ -46,6 +56,7 @@ function Header ({selectedMenuItem}){
                 <div className='header-options__btn_container'>
                   <button
                   className="header-options__btn_create"
+                  onClick={()=>handleOpenModal("addNewMenuItem")}
                   >
                     <span>Создать</span>
                   </button>
@@ -53,6 +64,7 @@ function Header ({selectedMenuItem}){
                   <InputAdornment 
                     className='header-options__icon_add' 
                     position="start"
+                    onClick={()=>handleOpenModal("addNewMenuItem")}
                   >
                       <IconButton>
                         <AddIcon
