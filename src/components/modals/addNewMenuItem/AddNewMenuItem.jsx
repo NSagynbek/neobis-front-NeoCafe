@@ -8,9 +8,12 @@ import { cloudUpload } from "../../../assets/index";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
+
 function AddNewMenuItem() {
 
     const [activeSection, setActiveSection] = useState(null);
+    const[files,setFiles] = useState(null);
+    const [isImageIntered,setIsImageIntered]=useState(false);
     const dispatch = useDispatch();
 
     const handleButtonClick = (section) => {
@@ -22,6 +25,24 @@ function AddNewMenuItem() {
     const handleCloseModal = () => {
         dispatch(closeModal());
     }
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+      };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        setFiles(e.dataTransfer.files[0]);
+      
+      };
+
+    const handleFileInputChange = async (e) => {
+        setFiles(e.target.files[0])
+      };
+
+    const handleFiles = () => {
+        
+      };
 
     return (
         <div className="add-menu-new-item-container">
@@ -38,27 +59,48 @@ function AddNewMenuItem() {
                 </InputAdornment>
             </div>
 
-            <div className="menu-add-new-item-image-container">
+            <div className="menu-add-new-item-image-container"
+              onDragOver={(e)=>handleDragOver(e)}
+              onDrop={(e)=>handleDrop(e)}
+            >
+               
+              <div className="menu-add-new-item-image-test">
+
+             
+            
                 <p
                     className="menu-add-new-item-image-title"
                 >
                     Добавьте фото к позиции
                 </p>
                 <label htmlFor="menu-add-new-item-image">
-                    <div className="menu-add-new-item-image-subContainer">
-                        <img src={cloudUpload} alt="cloud upload image" />
+                    <div 
+                      className="menu-add-new-item-image-subContainer"
+                      
+                    >
+                        {files?(
+                          <img src={files ? URL.createObjectURL(files): cloudUpload} alt="cloud upload image"/>
+                        ):(
+                            <img src={cloudUpload} alt="cloud upload image"/>  
+                        )}
+                        
                     </div>
                     <p
                         className="menu-add-new-item-image-text"
                     >
                         Перетащите изображение для изменения или
-                        <span>обзор</span>
+                        <span> обзора</span>
                     </p>
                 </label>
                 <input
                     id="menu-add-new-item-image"
                     type="file"
+                    onChange={handleFileInputChange}
                 />
+
+
+</div>
+               
             </div>
 
             <div className="add-menu-new-item__name_price-container">
