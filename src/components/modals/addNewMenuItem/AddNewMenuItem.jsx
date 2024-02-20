@@ -13,7 +13,11 @@ function AddNewMenuItem() {
 
     const [activeSection, setActiveSection] = useState(null);
     const[files,setFiles] = useState(null);
-    const [isImageIntered,setIsImageIntered]=useState(false);
+    const [isClicked,setIsClicked] = useState(false);
+    const [category,setCategory] = useState(null);
+    const [measurement,setMeasurement]=useState(["ml","мл"]);
+    const [isMeasure,setIsMeasure]=useState(false);
+    const [isImageDrag,setIsImageDrag]=useState(false);
     const dispatch = useDispatch();
 
     const handleButtonClick = (section) => {
@@ -28,22 +32,33 @@ function AddNewMenuItem() {
 
     const handleDragOver = (e) => {
         e.preventDefault();
-      };
+        setIsImageDrag(true);
+    };
 
     const handleDrop = (e) => {
         e.preventDefault();
         setFiles(e.dataTransfer.files[0]);
+        setIsImageDrag(false);
       
-      };
+    };
 
     const handleFileInputChange = async (e) => {
         setFiles(e.target.files[0])
-      };
+    };
 
-    const handleFiles = () => {
-        
-      };
+    const handleToggle = () => {
+        setIsClicked(!isClicked);
+    };
+    
+    const handleCategory = (category)=>{      
+        setCategory(category)
+        setIsClicked(!isClicked);
+    }
 
+    const handleMeasurement = (measure)=>{      
+        setMeasurement(measure)
+        setIsMeasure(!isMeasure);
+    }
     return (
         <div className="add-menu-new-item-container">
             <div className="menu-add-new-item-header">
@@ -64,10 +79,8 @@ function AddNewMenuItem() {
               onDrop={(e)=>handleDrop(e)}
             >
                
-              <div className="menu-add-new-item-image-test">
-
-             
-            
+              <div className={`menu-add-new-item-image-dashed 
+                ${isImageDrag ? "image-upload-active" : ""}`}>          
                 <p
                     className="menu-add-new-item-image-title"
                 >
@@ -77,13 +90,9 @@ function AddNewMenuItem() {
                     <div 
                       className="menu-add-new-item-image-subContainer"
                       
-                    >
-                        {files?(
-                          <img src={files ? URL.createObjectURL(files): cloudUpload} alt="cloud upload image"/>
-                        ):(
-                            <img src={cloudUpload} alt="cloud upload image"/>  
-                        )}
-                        
+                    >        
+                      <img src={files ? URL.createObjectURL(files):
+                         (cloudUpload) } alt="cloud upload image"/>           
                     </div>
                     <p
                         className="menu-add-new-item-image-text"
@@ -97,11 +106,8 @@ function AddNewMenuItem() {
                     type="file"
                     onChange={handleFileInputChange}
                 />
-
-
-</div>
-               
-            </div>
+            </div>             
+          </div>
 
             <div className="add-menu-new-item__name_price-container">
                 <p
@@ -122,29 +128,60 @@ function AddNewMenuItem() {
                         <div className="add-menu-new-item-category-subContainer-container">
                             <p className="item-name__label">Категория</p>
                             <div className="add-menu-new-item-dropdown-container">
-                                <div className="add-menu-new-item-dropdown-subContainer">
+                                <div 
+                                  className={`add-menu-new-item-dropdown-subContainer 
+                                  ${isClicked?("transform") : 
+                                  ("")}`}  
+                                >
                                     <p
                                         className="add-menu-new-item-dropdown-title">
-                                        Выберите категорию
+                                        {category?category[1]:"Выберите категорию"}
                                     </p>
                                     <InputAdornment
                                         position="end"
                                         className="add-menu-new-item-dropdown-icons"
+                                        onClick={handleToggle} 
                                     >
                                         <IconButton>
-                                            {isActive ?
-                                                (<KeyboardArrowUpIcon style={{ color: "#5B7E9A" }} />) :
-                                                (<KeyboardArrowDownIcon style={{ color: "#5B7E9A" }} />)
+                                            {isClicked ?
+                                              (<KeyboardArrowUpIcon style={{ color: "#5B7E9A" }} />):                          
+                                              (<KeyboardArrowDownIcon style={{ color: "#5B7E9A" }} />)
                                             }
                                         </IconButton>
                                     </InputAdornment>
                                 </div>
-                                <ul className="add-menu-new-item-dropdown-categries">
-                                    <li className="add-menu-new-item-dropdown-item">Кофе</li>
-                                    <li className="add-menu-new-item-dropdown-item">Десерты</li>
-                                    <li className="add-menu-new-item-dropdown-item">Выпечка</li>
-                                    <li className="add-menu-new-item-dropdown-item">Коктейли</li>
-                                    <li className="add-menu-new-item-dropdown-item">Чай</li>
+                                <ul className={`add-menu-new-item-dropdown-categries 
+                                             ${isClicked?"add-menu-new-item-dropdown-toggle":""}`}>
+                                    <li 
+                                      className="add-menu-new-item-dropdown-item"
+                                      onClick={()=>handleCategory(["coffee","Кофе"])}
+                                    >
+                                      Кофе
+                                    </li>
+                                    <li 
+                                      className="add-menu-new-item-dropdown-item"
+                                      onClick={()=>handleCategory(["desserts","Десерты"])}
+                                    >
+                                      Десерты
+                                    </li>
+                                    <li 
+                                      className="add-menu-new-item-dropdown-item"
+                                      onClick={()=>handleCategory(["bakery","Выпечка"])}
+                                    >
+                                      Выпечка
+                                    </li>
+                                    <li 
+                                      className="add-menu-new-item-dropdown-item"
+                                      onClick={()=>handleCategory(["coktail","Коктейли"])}
+                                    >
+                                      Коктейли
+                                    </li>
+                                    <li 
+                                      className="add-menu-new-item-dropdown-item"
+                                      onClick={()=>handleCategory(["tea","Чай"])}
+                                    >
+                                      Чай
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -159,30 +196,77 @@ function AddNewMenuItem() {
                         </div>
                     </div>
                     <div className="add-menu-new-ingredients-container">
-                        <p className="add-menu-new-item__name_price-text">Состав блюда и граммовка</p>
+                        <p className="add-menu-new-item__name_price-text">
+                          Состав блюда и граммовка
+                        </p>
                         <div className="add-menu-new-ingredients-subContainer">
                             <div className="add-menu-new-title-container">
                                 <label
                                     htmlFor="menu-ingredient-name"
                                     className="item-name__label"
-                                >Наименование</label>
-                                <input id="menu-ingredient-name" type="text" />
+                                >  Наименование
+                                </label>
+                                <input id="menu-ingredient-name" type="text"/>
                             </div>
 
                             <div className="menu-new-ingredients-container">
                                 <label htmlFor="menu-ingredient-amount"
                                     className="item-name__label"
-                                >Кол-во (в гр, мл, л, кг)</label>
+                                >   
+                                  Кол-во (в гр, мл, л, кг)
+                                </label>
                                 <input id="menu-ingredient-amount" type="text" />
                             </div>
 
-                            <div className="menu-new-ingredients-subContainer">
-                                <select id="measurement" name="ingredients">
-                                    <option value="gram">гр</option>
-                                    <option value="ml">мл</option>
-                                    <option value="liter">л</option>
-                                    <option value="kg">кг</option>
-                                </select>
+                            <div className={`menu-new-ingredients-subContainer 
+                            ${isMeasure ? "menu-new-ingredients-subContainer-transform" : ""}`}
+                            >
+                                <div>
+                                    <p className="measurement-text">
+                                        {measurement[1]||measurement[1]}
+                                    </p>
+                                </div>
+
+                                <InputAdornment
+                                        position="end"
+                                        className="menu-new-ingredients-dropdown-icons"
+                                        onClick={handleMeasurement} 
+                                    >
+                                        <IconButton>
+                                            {isMeasure ?
+                                               (<KeyboardArrowUpIcon style={{ color: "#5B7E9A" }} />):                 
+                                               (<KeyboardArrowDownIcon style={{ color: "#5B7E9A" }} />)
+                                            }
+                                        </IconButton>
+                                    </InputAdornment>
+                                <ul className={`menu-new-ingredients-list 
+                                  ${isMeasure ? "" : "toggleMeasurement"}`}
+                                >
+                                    <li  
+                                      className="menu-new-ingredients-item"
+                                      onClick={()=>handleMeasurement(["gr","гр"])}
+                                    >
+                                      гр
+                                    </li>
+                                    <li 
+                                      className="menu-new-ingredients-item" 
+                                      onClick={()=>handleMeasurement(["ml","мл"])}
+                                    >
+                                      мл
+                                    </li>
+                                    <li 
+                                      className="menu-new-ingredients-item" 
+                                      onClick={()=>handleMeasurement(["l","л"])}
+                                    >
+                                      л
+                                    </li >
+                                    <li 
+                                      className="menu-new-ingredients-item"
+                                      onClick={()=>handleMeasurement(["kg","кг"])}
+                                    >
+                                      кг
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <button className="add-more-menu-items-btn">Добавить еще +</button>
