@@ -3,11 +3,12 @@ import { InputAdornment,IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
 import {useDispatch } from "react-redux";
-import { closeModal } from "../../../redux";
-
+import { closeModal } from "../../redux";
+import { useSelector } from "react-redux";
 function DeleteMenuCategory(){
-    const dispatch = useDispatch();
 
+    const dispatch = useDispatch();
+    const modalData = useSelector((state) => state.modalData);
     const [activeSection, setActiveSection] = useState(null);
     
     const handleButtonClick = (section) => {
@@ -34,12 +35,19 @@ function DeleteMenuCategory(){
               </IconButton>
             </InputAdornment>
         </div>
-        <p 
-          className="menu-category-delete-question"
-        >
+        
+        {modalData.type === "deleteMenu"&& 
+        <p className="menu-category-delete-question">
+          Вы действительно хотите удалить позицию
+          <span> "Кофе"</span>?      
+        </p>}
+
+        {modalData.type === "deleteCategory"&& 
+        <p className="menu-category-delete-question">
           Вы действительно хотите удалить категорию
-          <span>"Чай"</span>?
-        </p>
+          <span> "Чай"</span>?      
+        </p>}
+        
         <div className="new-menu-category-modal__button-container">
           <button 
             className={`new-menu-category-modal__cancel-button 

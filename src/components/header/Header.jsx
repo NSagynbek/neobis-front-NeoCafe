@@ -3,13 +3,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import "./header.css";
-import NotificationCenter from "../modals/notificationCenter/NotificationCenter"
+import NotificationCenter from "../../modalwindows/notificationCenter/NotificationCenter"
 import { useState } from 'react';
 import { 
   capitalizeFirstLetter,
   addIconStyles,
   notificationIconStyles, 
-} from '../utils';
+} from '../../utils';
 
 import {openModal} from "../../redux/index";
 import {useDispatch } from "react-redux";
@@ -22,10 +22,11 @@ function Header ({selectedMenuItem}){
     setIsOpen(!isOpen)
   }
 
-  const handleOpenModal = (modalName) => {
+  const handleOpenModal = (modalName,type) => {
     dispatch(
       openModal({
         name: modalName,
+        type:type
       })
     );
   };
@@ -56,7 +57,7 @@ function Header ({selectedMenuItem}){
                 <div className='header-options__btn_container'>
                   <button
                   className="header-options__btn_create"
-                  onClick={()=>handleOpenModal("addNewMenuItem")}
+                  onClick={()=>handleOpenModal("addNewMenuItem","createMenu")}
                   >
                     <span>Создать</span>
                   </button>
@@ -64,7 +65,7 @@ function Header ({selectedMenuItem}){
                   <InputAdornment 
                     className='header-options__icon_add' 
                     position="start"
-                    onClick={()=>handleOpenModal("addNewMenuItem")}
+                    onClick={()=>handleOpenModal("addNewMenuItem","createMenu")}
                   >
                       <IconButton>
                         <AddIcon
@@ -82,7 +83,15 @@ function Header ({selectedMenuItem}){
                     <NotificationsIcon 
                       style={notificationIconStyles}/>
                   </IconButton>
-                </InputAdornment>               
+                </InputAdornment>       
+                <div 
+                  className='notification-count-container'
+                  onClick={handleNtfnMdl}
+                >
+                  <p className='notification-count-text'> 
+                    <span>10</span> <span>+</span>
+                  </p>
+                </div>        
             </section>
         </header>
     )

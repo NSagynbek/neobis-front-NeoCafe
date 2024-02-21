@@ -2,7 +2,7 @@ import "./newMenuCategory.css";
 import { InputAdornment,IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
-import { closeModal } from "../../../redux";
+import { closeModal } from "../../redux";
 import {useDispatch } from "react-redux";
 
 function NewMenuCategory (){

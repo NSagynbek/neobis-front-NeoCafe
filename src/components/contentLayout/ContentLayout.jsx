@@ -7,25 +7,27 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { InputAdornment,IconButton } from "@mui/material";
-import { MenuEditDelete } from "../modals";
-import {stateMap,setState} from "../utils";
+import MenuEditDelete  from "../../modalwindows/menuEditDelete/MenuEditDelete";
+import {stateMap,setState} from "../../utils";
 import { useState } from "react";
 import {openModal} from "../../redux/index";
 import {useDispatch } from "react-redux";
-
+ 
 function ContentLayout(){
 
   const dispatch = useDispatch();
 
-  const handleOpenModal = (modalName) => {
+  const handleOpenModal = (modalName,type) => {
     dispatch(
       openModal({
         name: modalName,
+        type:type
       })
     );
   };
 
    const [isActive,setIsActive] = useState(false);
+
    const [modalStates,setModalStates]=useState({
      isOpen:false,
      isOpenFirst:false,
@@ -74,7 +76,9 @@ function ContentLayout(){
              </div>
              <div className="item first-row category arrow-down">
                <div 
-                 className={`category-arrow ${isActive?"category-arrow__active":""}`} 
+                 className={`category-arrow 
+                 ${isActive?("category-arrow__active"):
+                 ("")}`} 
                  onClick={handleIsActive}
                >
                  <p>Категория</p>
@@ -90,7 +94,7 @@ function ContentLayout(){
                  <ul className={`menu-category-content ${isActive?"":"hide"}`}>
                    <li 
                      className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory")}
+                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
                    >
                     Кофе
                     <InputAdornment 
@@ -104,7 +108,7 @@ function ContentLayout(){
                   </li>
                    <li 
                      className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory")}
+                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
                    >
                     Десерты
                     <InputAdornment 
@@ -118,7 +122,7 @@ function ContentLayout(){
                    </li>
                    <li 
                      className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory")}
+                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
                    >
                     Коктейли
                     <InputAdornment 
@@ -132,7 +136,7 @@ function ContentLayout(){
                    </li>
                    <li 
                      className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory")}
+                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
                    >
                     Выпечка
                     <InputAdornment 
@@ -146,7 +150,7 @@ function ContentLayout(){
                    </li>
                    <li 
                      className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory")}
+                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
                    >
                     Чай
                     <InputAdornment 
@@ -161,7 +165,7 @@ function ContentLayout(){
                    <li className="menu-category-add-container">
                      <button 
                        className="menu-category-add-btn"
-                       onClick={()=>handleOpenModal("newMenuCategory")}
+                       onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
                       >
                         Добавить
                       </button>
@@ -183,7 +187,7 @@ function ContentLayout(){
                 Состав блюда и граммовка
               </div>
              <div className="item first-row price" >Стоимость</div>
-             <div className="item first-row" >Филиал</div>
+             <div className="item first-row branch" >Филиал</div>
              <div className="item number-title">
                <p className="number">№</p> 
                <p>Наименование</p>

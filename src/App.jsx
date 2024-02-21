@@ -4,11 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import PrivateRoute from "./components/privateRoute/PrivateRoute"
 import RootLayout from "./layouts/RootLayout";
-import Login from "./components/login/Login"
-import DynamicModal from "@components/modals/DynamicModal";
-import CodeConfirmation from "./components/codeConfirmation/Codeconfirmation";
-import AdminPage from "./components/adminPage/AdminPage";
-
+import DynamicModal from "./modalwindows/DynamicModal";
+import AdminPage from "./pages/adminPage/AdminPage";
+import Login from "./pages/login/Login"
 
   
 function App() {
@@ -27,7 +25,7 @@ function App() {
       </Route>
 
        <Route path="/" element={<Login/>}/>
-       <Route path="/code" element={<CodeConfirmation/>}/>
+      
       </Route>
 
         

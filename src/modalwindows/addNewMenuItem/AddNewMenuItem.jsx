@@ -3,13 +3,15 @@ import { InputAdornment, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../../redux";
-import { cloudUpload } from "../../../assets/index";
+import { closeModal } from "../../redux";
+import { cloudUpload } from "../../assets/index";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useSelector } from "react-redux";
 
 
 function AddNewMenuItem() {
+    const modalData = useSelector((state)=>state.modalData);
 
     const [activeSection, setActiveSection] = useState(null);
     const[files,setFiles] = useState(null);
@@ -62,7 +64,9 @@ function AddNewMenuItem() {
     return (
         <div className="add-menu-new-item-container">
             <div className="menu-add-new-item-header">
-                <p className="menu-add-new-item-title">Новая позиция</p>
+              {modalData.type==="createMenu"&&<p className="menu-add-new-item-title">Новая позиция</p>}
+              {modalData.type==="editMenu"&&<p className="menu-add-new-item-title">Редактирование</p>}
+                
                 <InputAdornment
                     position="end"
                     className="menu-category-add-close-icon"

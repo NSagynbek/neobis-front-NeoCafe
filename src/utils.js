@@ -32,8 +32,8 @@ const setState = {
 
 const addIconStyles = { 
     color:"white", 
-    width:"40px", 
-    height:"40px", 
+    width:"25px", 
+    height:"25px", 
   }
 
   const notificationIconStyles = { 

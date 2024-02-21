@@ -2,7 +2,7 @@ import "./codeconfirmation.css";
 import { loginImage } from "../../assets";
 import { useState } from "react";
 import { authorize } from "../../api";
-import OTPInput from "../otpInput/OtpInput";
+import OTPInput from "../../components/otpInput/OtpInput";
 import { useNavigate } from "react-router-dom";
 
 function CodeConfirmation (){
