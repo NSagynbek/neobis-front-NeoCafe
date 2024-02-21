@@ -122,7 +122,20 @@ function AddNewMenuItem() {
                     Наименование
                 </label>
                 <input id="item-name" type="text" />
-
+                <div className="text-text">
+                <label
+                    htmlFor="item-description"
+                    className="item-name__label"
+                >
+                    Описание
+                </label>
+                <textarea 
+                  id="item-description" 
+                  name="myTextArea" 
+                  rows="1" cols="50">
+                </textarea>
+                </div>
+                
                 <div className="add-menu-new-item-content-container">
                     <div className="add-menu-new-item-category-container">
                         <div className="add-menu-new-item-category-subContainer-container">
@@ -268,31 +281,35 @@ function AddNewMenuItem() {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                        <button className="add-more-menu-items-btn">Добавить еще +</button>
+                        </div>                      
                     </div>
-                </div>
-            </div>
-
-            <div className="new-menu-category-modal__button-container">
-                <button
-                    className={`new-menu-category-modal__cancel-button 
-                   ${isActive("cancel") ? "menu-category-btn-active" : ""}`}
-                    onClick={() => handleButtonClick("cancel")}
-                >
-                    Сохранить
-                </button>
-                <button
-                    className={`new-menu-category-modal__add-button 
-                   ${isActive("add") ? "menu-category-btn-active" : ""}`}
-                    onClick={() => {
+                 
+                    <div className="test-btn">
+                      <button className="add-more-menu-items-btn">
+                        Добавить еще +
+                      </button>
+                    </div>
+                    <div className="menu-add-new-item-btns-container">
+                      <button
+                        className={`new-menu-category-modal__cancel-button 
+                        ${isActive("cancel") ? "menu-category-btn-active" : ""}`}
+                        onClick={() => handleButtonClick("cancel")}
+                      >
+                        Сохранить
+                      </button>
+                      <button
+                        className={`new-menu-category-modal__add-button 
+                        ${isActive("add") ? "menu-category-btn-active" : ""}`}
+                        onClick={() => {
                         handleButtonClick("add")
                         handleCloseModal()
-                    }}
-                >
-                    Отмена
-                </button>
-            </div>
+                        }}
+                      >
+                        Отмена
+                      </button>
+                    </div>
+                </div>
+            </div>          
         </div>
     )
 }
