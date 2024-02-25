@@ -7,8 +7,9 @@ import PolylineIcon from "@mui/icons-material/Polyline";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { sideBarIconsStyles } from "../../utils";
-function SideBar({onSelct}) {
 
+
+function SideBar({onSelct}) {
 
   const [activeSection, setActiveSection] = useState(null);
 

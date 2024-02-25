@@ -1,19 +1,34 @@
 import "./contentLayout.css"
 import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import AddIcon from '@mui/icons-material/Add';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { InputAdornment,IconButton } from "@mui/material";
 import MenuEditDelete  from "../../modalwindows/menuEditDelete/MenuEditDelete";
 import {stateMap,setState} from "../../utils";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {openModal} from "../../redux/index";
 import {useDispatch } from "react-redux";
+import { getMenuItems } from "../../api";
+import axios, { Axios } from "axios";
+import Category from "../category/Category";
+
  
 function ContentLayout(){
+  const [menuItems,setMunuItems] = useState([])
+  const [activeRowIndex, setActiveRowIndex] = useState(null);
+  console.log(menuItems)
+
+ useEffect(()=>{
+  const getMenuData = async ()=>{
+    try{
+      const response = await axios.get("https://tokyo-backender.org.kg/menu/item/all/")
+      setMunuItems(response.data)
+    }catch(error){
+      console.log(error)
+    }
+  }
+  getMenuData()
+ },[])
 
   const dispatch = useDispatch();
 
@@ -26,18 +41,7 @@ function ContentLayout(){
     );
   };
 
-   const [isActive,setIsActive] = useState(false);
-
-   const [modalStates,setModalStates]=useState({
-     isOpen:false,
-     isOpenFirst:false,
-     isOpenSecond:false,
-     isOpenThird:false,
-     isOpenFourth:false,
-     isOpenFifth:false,
-     isOpenSixth:false, 
-   });
-
+   
    const handleModal = (event, modalName) => {
      event.stopPropagation();
      setModalStates(prev => ({
@@ -46,298 +50,67 @@ function ContentLayout(){
      }));
    };
 
-   const closeAllModals = ()=>{
-     setModalStates({
-      isOpen:false,
-      isOpenFirst:false,
-      isOpenSecond:false,
-      isOpenThird:false,
-      isOpenFourth:false,
-      isOpenFifth:false,
-      isOpenSixth:false, 
-     })
-   }
 
-  const handleIsActive = () => {
-    setIsActive(!isActive);
+
+   const handleClick = (index) => {
+    setActiveRowIndex(activeRowIndex === index ? null : index);
   };
 
-     return (
-         <main 
-           className="menu-mainContainer"
-           onClick={closeAllModals}
-         >
-           <section className="menu-gridContainer">
-             <div 
-               className="item first-row number-title"
-             >
-               <p className="number">№</p>
-               <p>Наименование</p>
-             </div>
-             <div className="item first-row category arrow-down">
-               <div 
-                 className={`category-arrow 
-                 ${isActive?("category-arrow__active"):
-                 ("")}`} 
-                 onClick={handleIsActive}
-               >
-                 <p>Категория</p>
-                 <InputAdornment position="end">
-                   <IconButton>
-                    {isActive ?
-                      (<KeyboardArrowUpIcon style={{color:"#5B7E9A"}} />) :
-                      (<KeyboardArrowDownIcon style={{color:"#5B7E9A"}} />)
-                    }
-                   </IconButton>
-                 </InputAdornment>
-               </div>               
-                 <ul className={`menu-category-content ${isActive?"":"hide"}`}>
-                   <li 
-                     className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
-                   >
-                    Кофе
-                    <InputAdornment 
-                      position="end" 
-                      className="menu-category-item-icon"
-                    >
-                      <IconButton>
-                        <DeleteOutlineIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  </li>
-                   <li 
-                     className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
-                   >
-                    Десерты
-                    <InputAdornment 
-                      position="end"
-                      className="menu-category-item-icon"
-                    >
-                      <IconButton>
-                        <DeleteOutlineIcon/>
-                      </IconButton>
-                    </InputAdornment>
-                   </li>
-                   <li 
-                     className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
-                   >
-                    Коктейли
-                    <InputAdornment 
-                      position="end"
-                      className="menu-category-item-icon"
-                    >
-                      <IconButton>
-                        <DeleteOutlineIcon/>
-                      </IconButton>
-                    </InputAdornment>
-                   </li>
-                   <li 
-                     className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
-                   >
-                    Выпечка
-                    <InputAdornment 
-                      position="end"
-                      className="menu-category-item-icon"
-                    >
-                      <IconButton>
-                        <DeleteOutlineIcon/>
-                      </IconButton>
-                    </InputAdornment>
-                   </li>
-                   <li 
-                     className="menu-category-item"
-                     onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
-                   >
-                    Чай
-                    <InputAdornment 
-                      position="end"
-                      className="menu-category-item-icon"
-                    >
-                      <IconButton>
-                        <DeleteOutlineIcon/>
-                      </IconButton>
-                    </InputAdornment>
-                   </li>
-                   <li className="menu-category-add-container">
-                     <button 
-                       className="menu-category-add-btn"
-                       onClick={()=>handleOpenModal("deleteMenuCategory","deleteCategory")}
-                      >
-                        Добавить
-                      </button>
-                     <InputAdornment 
-                       position="end" 
-                       className="menu-category-add-icon"
-                       onClick={()=>handleOpenModal("newMenuCategory")}
-                      >
-                       <IconButton>
-                         <AddIcon style={{color:"#5B7E9A"}}/>
-                       </IconButton>
-                     </InputAdornment>
-                   </li>
-                 </ul>
-             </div>
-             <div 
-               className="item first-row meal-ingredients" 
-              >
-                Состав блюда и граммовка
-              </div>
-             <div className="item first-row price" >Стоимость</div>
-             <div className="item first-row branch" >Филиал</div>
-             <div className="item number-title">
-               <p className="number">№</p> 
-               <p>Наименование</p>
-             </div>
-             <div className="item category">Кофе</div>
-             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
-             <div className="item price">140 сом</div>
-             <div className="item more">
-               NeoCafe Ala-Too Square
-               <InputAdornment 
-                 className="menu-more-icon"
-                 onClick={(event)=>handleModal(event,stateMap.isOpen)}
-                 position="end"
-               >
-                 <IconButton>
-                   <MoreVertIcon/>
-                 </IconButton>
-               </InputAdornment>
-               {modalStates.isOpen?<MenuEditDelete/>:null}
-             </div>
-             <div className="item number-title">
-               <p className="number">№</p> 
-               <p>Наименование</p>
-             </div>
-             <div className="item category">Кофе</div>
-             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
-             <div className="item price">140 сом</div>
-             <div className="item more">
-               NeoCafe Ala-Too Square
-               <InputAdornment 
-                 position="end"
-                 className="menu-more-icon"
-                 onClick={(event)=>handleModal(event,stateMap.isOpenFirst)}
-               >
-                 <IconButton>
-                   <MoreVertIcon/>
-                 </IconButton>
-               </InputAdornment>
-               {modalStates.isOpenFirst?<MenuEditDelete/>:null}
-             </div>
-             <div className="item number-title">
-               <p className="number">№</p> 
-               <p>Наименование</p>
-             </div>
-             <div className="item category">Кофе</div>
-             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
-             <div className="item price">140 сом</div>
-             <div className="item more">
-               NeoCafe Ala-Too Square
-               <InputAdornment 
-                 className="menu-more-icon" 
-                 position="end"
-                 onClick={(event)=>handleModal(event,stateMap.isOpenSecond)}
-               >
-                 <IconButton>
-                   <MoreVertIcon/>
-                 </IconButton>
-               </InputAdornment>
-               {modalStates.isOpenSecond?<MenuEditDelete/>:null}
-               </div>
-             <div className="item number-title">
-               <p className="number">№</p> 
-               <p>Наименование</p>
-             </div>
-             <div className="item category">Кофе</div>
-             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
-             <div className="item price">140 сом</div>
-             <div className="item more">
-               NeoCafe Ala-Too Square
-               <InputAdornment 
-                 className="menu-more-icon" 
-                 position="end"
-                 onClick={(event)=>handleModal(event,stateMap.isOpenThird)}
-               >
-                 <IconButton>
-                   <MoreVertIcon/>
-                 </IconButton>
-               </InputAdornment>
-               {modalStates.isOpenThird?<MenuEditDelete/>:null}
-             </div>
-             <div className="item number-title">
-               <p className="number">№</p> 
-               <p>Наименование</p>
-             </div>
-             <div className="item category">Кофе</div>
-             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
-             <div className="item price">140 сом</div>
-             <div className="item more">
-               NeoCafe Ala-Too Square
-               <InputAdornment 
-                 className="menu-more-icon" 
-                 position="end"
-                 onClick={(event)=>handleModal(event,stateMap.isOpenFourth)}
-               >
-                 <IconButton>
-                   <MoreVertIcon/>
-                 </IconButton>
-               </InputAdornment>
-               {modalStates.isOpenFourth?<MenuEditDelete/>:null}
-             </div>
-             <div className="item number-title">
-               <p className="number">№</p> 
-               <p>Наименование</p>
-             </div>
-             <div className="item category">Кофе</div>
-             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
-             <div className="item price">140 сом</div>
-             <div className="item more">
-               NeoCafe Ala-Too Square
-               <InputAdornment 
-                 className="menu-more-icon" 
-                 position="end"
-                 onClick={(event)=>handleModal(event,stateMap.isOpenFifth)}
-               >
-                 <IconButton>
-                   <MoreVertIcon/>
-                 </IconButton>
-               </InputAdornment>
-               {modalStates.isOpenFifth?<MenuEditDelete/>:null}
-             </div>
-             <div className="item number-title">
-               <p className="number">№</p> 
-               <p>Наименование</p>
-             </div>
-             <div className="item category">Кофе</div>
-             <div className="item meal-ingredients">Молоко (70мл), Эспрессо (50мл)</div>
-             <div className="item price">140 сом</div>
-             <div className="item more">
-               NeoCafe Ala-Too Square
-               <InputAdornment 
-                 className="menu-more-icon" 
-                 position="end"
-                 onClick={(event)=>handleModal(event,stateMap.isOpenSixth)}
-               >
-                 <IconButton>
-                   <MoreVertIcon/>
-                 </IconButton>
-               </InputAdornment>
-               {modalStates.isOpenSixth?<MenuEditDelete/>:null}
-             </div>
-           </section>
+ 
 
-           <div className="menu-footer">
-             <Stack spacing={2}>
-               <Pagination count={10} variant="outlined" shape="rounded" />
-             </Stack>
-           </div>
-    
-         </main>
-     )
+     return (
+
+
+
+    <table 
+      className="menu-table"
+    >
+      <thead>
+        <tr>
+          <th className="menu-table-id">№</th> 
+          <th className="menu-table-title">Наименование</th>
+          <th className="menu-table-category"><Category/></th>
+          <th className="menu-table-ingredients">
+            Состав блюда и граммовка
+          </th>
+          <th>Стоимость</th>
+        </tr>
+      </thead>
+      <tbody>
+        {menuItems.map((item, index) => (
+         <tr key={index}>
+         <td className="menu-table-id">{item.id}</td>
+         <td>{item.name}</td>
+         <td>{item.category}</td>
+         <td>
+             {item.ingredients.map((ingredient, idx) => (
+               <span key={idx}>
+                 {ingredient.name}&nbsp; 
+                 {ingredient.quantity}&nbsp;
+                 {ingredient.measurement_unit}&nbsp;
+               </span>
+             ))}
+         </td>
+         <td className="menu-table-price">{item.price_per_unit}
+           <InputAdornment 
+             position="end" 
+             className="menu-more-icon"
+             onClick={() => handleClick(index)}
+             >
+             <IconButton>
+              <MoreVertIcon/>
+             </IconButton>
+           </InputAdornment>
+           {activeRowIndex === index && <MenuEditDelete />}
+         </td>
+       </tr>
+       
+        ))}
+      </tbody>
+    </table>
+  );
 }
+
+
 
 export default ContentLayout;

@@ -54,13 +54,6 @@ const addIconStyles = {
   const menuCategoryArrowIconStyles = {color:"#5B7E9A"}
 
 
- 
-
- 
-
-
-  
-
 
 export{
     capitalizeFirstLetter,

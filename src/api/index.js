@@ -7,7 +7,13 @@ export const login = async (data)=>{
 }
 
 export const authorize = async (data)=>{
-    const res = await instance.post("api/v1/auth/login",data)
+    const res = await instance.post("api/v1/auth/login/",data)
     return res.data
 }
+
+export const getMenuItems = async ()=>{
+    const res = await instance.get("menu/item/all/")
+    return res.data
+}
+
 

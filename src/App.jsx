@@ -3,10 +3,12 @@ import store from './redux/store';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import PrivateRoute from "./components/privateRoute/PrivateRoute"
-import RootLayout from "./layouts/RootLayout";
+import RootLayout from "./layouts/rootLayout/RootLayout";
 import DynamicModal from "./modalwindows/DynamicModal";
 import AdminPage from "./pages/adminPage/AdminPage";
 import Login from "./pages/login/Login"
+import Content from "./components/content/Content";
+import ContentLayout from "./components/contentLayout/ContentLayout";
 
   
 function App() {

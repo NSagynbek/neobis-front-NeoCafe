@@ -12,193 +12,66 @@
     position: relative;
 }
 
-.menu-gridContainer {
-   display: grid;
-   grid-template-columns: 16% 15% 24% 16% 30%;
-   grid-template-rows:repeat(8,1fr);
+
+/* Menu Table */
+
+.menu-table{
    width: 1171px;
-   margin: 0;
+   border-radius:20px;
+   background: white;
 }
 
+.menu-table{
+   border-collapse: collapse;
+}
 
+thead tr th{
+   font-size: 16px;
+   font-weight: 600;
+   font-family: "Poppins", sans-serif;
+   color: #2A3440;
+   border-bottom: 1px solid #35536B;
+   text-align: left;
+   height:60px;
+}
 
-.item{
-   display:flex;
-   align-items: center;
-   width: 100%;
-   height: 50px;
-   border-bottom: 1px solid #EBEFF2;
+tbody tr td{
    font-size: 16px;
    font-weight: 500;
    font-family: "Poppins", sans-serif;
-   columns: #2A3440;
+   color: #2A3440;
+   height:60px;
+   border-bottom: 1px solid #EBEFF2;
 }
 
-
-.number-title{
-   padding-left: 20px;
-   gap: 20px;
-}
-
-.price{
-   padding-left: 60px;
-}
-
-.category{
-   position: relative;
-   display: flex;
-   padding-left: 20px;
-}
-
-.arrow-down{
-   display: flex;
-   flex-direction: column;
-   padding-left: 0;
-}
-
-.number{
+.menu-table-id{
+   width:50px;
+   text-align: center;
    font-size: 16px;
    font-family: "Poppins", sans-serif;
    font-weight: 600;
    color: #5B7E9A;
 }
 
-.menu-footer{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 100%;
-   height: 50px;
-   position: absolute;
-   bottom: 0;
-}
-
-.first-row{
-   font-size: 16px;
-   font-weight: 600;
-   font-family: "Poppins", sans-serif;
-   color: #2A3440;
-   border-bottom: 1px solid #35536B;
-   height: 60px;
-}
-
-.more{
+.menu-table-category{
+   width:200px;
    position: relative;
-   padding-left: 20px;
 }
 
-.branch{
-   padding-left: 20px;
+.menu-table-ingredients{
+   width:500px;
 }
 
+.menu-table-title{
+   width:260px;
+}
+
+.menu-table-price{
+   position: relative;
+}
 .menu-more-icon{
    position: absolute;
+   top:30px;
    right: 30px;
    z-index: 2;
 } 
-
-/* styles for category  */
-
-
-
-.category-arrow{
-   display: flex;
-   align-items: center;
-   padding-left: 20px;
-   padding-top: 3px;
-   width: 176.5px;
-   height: 58px;
-   position: absolute;
-   left: 0;
-   z-index: 2;
-   margin-bottom:1px;
-}
-
-.category-arrow-active{
-  background:white;
-}
-
-.category-arrow__active{
-   background:#EBEFF2 ; 
-   border-top-left-radius: 10px;
-   border-top-right-radius: 10px;
-}
-
-
-.menu-category-content {
-   display: flex;
-   flex-direction: column;
-   justify-content: space-evenly;
-   width: 177px;
-   min-height: 294px;
-   list-style: none;
-   padding-left:20px;
-   transition: ease-out 0.25s;
-   background: #EBEFF2;
-   border-bottom-left-radius: 10px;
-   border-bottom-right-radius: 10px;
-   z-index: 1;
-   margin-top:50px;
-}
-
-.hide{
-   display:none;
-}
-
-
-.menu-category-item{
-   display: flex;
-   align-items: center;
-   font-size:16PX;
-   font-weight:600;
-   font-family: "Poppins", sans-serif;
-   color: #2A3440;
-   cursor: pointer;
-   position: relative;
-   transition: ease-in-out 0.12s;
-}
-
-.menu-category-item-icon{
-   position: absolute;
-   right: 10px;
-   opacity: 0;
-   transition: ease-in-out 0.12s;
-}
-
-.menu-category-item:hover .menu-category-item-icon {
-   opacity: 1;
-}
-
-.menu-category-item:hover, .menu-category-item-icon .MuiSvgIcon-root {
-   color: #F45656;
-}
-
-
-.menu-category-add-container{
-   display: flex;
-   align-items: center;
-   width: 130px;
-   height: 40px;
-}
-
-.menu-category-add-btn{
-   border: none;
-   outline: none;
-   background:#EBEFF2;
-   font-size:16px;
-   font-weight:600;
-   font-family:"Poppins", sans-serif;
-   color:#5B7E9A;
-   cursor: pointer;
-}
-
-.category-arrow p{
-   font-size:16px;
-   font-weight:600;
-   font-family:"Poppins", sans-serif;
-   color:#2A3440; 
-}
-
-.meal-ingredients{
-   padding-left:10px;
-}

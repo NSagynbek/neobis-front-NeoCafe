@@ -14,17 +14,17 @@ function AdminPage (){
     };
 
     return (
-        <main className="admin-page">
-        <aside>
-            <SideBar onSelct={handleMenuClick}/>
-        </aside>
+         <main className="admin-page">
+         <aside>
+             <SideBar onSelct={handleMenuClick}/>
+         </aside>
 
-        <section className="admin-page__content">
-            <Header selectedMenuItem={selectedMenuItem}/>
-            <Content selectedMenuItem={selectedMenuItem}/>
-        </section>
+         <section className="admin-page__content">
+             <Header selectedMenuItem={selectedMenuItem}/>
+             <Content selectedMenuItem={selectedMenuItem}/>
+         </section>
 
-        </main>
+         </main>
     )
 }
 
