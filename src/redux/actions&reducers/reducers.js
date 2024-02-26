@@ -3,12 +3,14 @@ import {
     SIGNUP_SUCCESS,
     OPEN_MODAL,
     CLOSE_MODAL,
+    MENU_CATEGORY,
   } from "./actionTypes";
   
   const initialState = {
     isAuthenticated: true,
     isOpen: false,
     modalData: {},
+    menuCategory:[]
   };
   
   const reducer = (state = initialState, action) => {
@@ -38,6 +40,12 @@ import {
           isOpen: false,
           modalData: {},
         }
+
+      case MENU_CATEGORY:
+        return {
+          ...state,
+           menuCategory:[...state.menuCategory,...action.payload],
+        }  
   
       default:
         return state;

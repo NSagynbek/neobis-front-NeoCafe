@@ -3,21 +3,49 @@ import { InputAdornment,IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
 import { closeModal } from "../../redux";
+import { addMenuCategory } from "../../api";
+import { toast } from 'react-toastify';
 import {useDispatch } from "react-redux";
+import { updateMenuCategory } from "../../redux";
+
 
 function NewMenuCategory (){
+
     const dispatch = useDispatch();
+    
+    const [newCategory,setNewCategory]=useState("");
     const [activeSection, setActiveSection] = useState(null);
+
     const handleButtonClick = (section) => {
       setActiveSection(section === activeSection ? null : section);
     };
-
+    
     const isActive = (section) => section === activeSection;
 
     const handleCloseModal = ()=>{
         dispatch(closeModal())   
     }
 
+    const handleChange = (e)=>{
+      setNewCategory(e.target.value)
+    }
+
+    const newMenuCategory = async ()=>{
+      try{
+        const payload = {
+          name:newCategory
+        }
+        const response = await addMenuCategory(payload);
+        dispatch(updateMenuCategory(response))
+        showToast(`Новая категория ${response.name} успешно добавлено!`)
+      }catch(error){
+        console.log(error)
+      }
+    }
+
+    const showToast = (msg) => {
+      toast.success(msg);
+    };
     return (
         <div 
         className="new-menu-category-modal"
@@ -53,6 +81,7 @@ function NewMenuCategory (){
             <input 
               type="text" 
               className="new-menu-category-modal__input-field" 
+              onChange={handleChange}
             />
           </div>
           <div className="new-menu-category-modal__button-container">
@@ -66,7 +95,10 @@ function NewMenuCategory (){
             <button 
               className={`new-menu-category-modal__add-button 
                    ${isActive("add")?"menu-category-btn-active":""}`}
-              onClick={()=>handleButtonClick("add")}
+              onClick={()=>{
+                handleButtonClick("add")
+                newMenuCategory()
+              }}
             >
               Добавить
             </button>

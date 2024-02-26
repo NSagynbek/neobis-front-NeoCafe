@@ -3,14 +3,31 @@ import {IconButton, InputAdornment } from "@mui/material";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import AddIcon from '@mui/icons-material/Add';
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {openModal} from "../../redux/index";
+import CategoryList from "../categoryList/CategoryList";
 
 function Category (){
+
     const [isActive,setIsActive] = useState(false);
+    
+    const dispatch = useDispatch();
     
     const handleClick = ()=>{
         setIsActive(!isActive);
     }
+
+    const handleOpenModal = (modalName,type) => {
+      dispatch(
+        openModal({
+          name: modalName,
+          type:type
+        })
+      );
+    };
+
     return (
       <div className={`menu ${isActive?"menu_active":""}`}>
          <div className="menu__category">
@@ -30,48 +47,20 @@ function Category (){
            </InputAdornment>
          </div>
          <ul className={`menu__list ${isActive ? "" : "menu__list_active" }`}>
+            {/* ***********Categori List Component is here********** */}
+            <CategoryList />
             <li className="menu__item">
-              Кофе
-              <InputAdornment position="end" className="menu__item_icon">
-                <IconButton>
-                  <DeleteOutlineIcon style={{color:"#F45656"}}/>
-                </IconButton>
-              </InputAdornment>
-            </li>
-            <li className="menu__item">
-                Десерты
-                <InputAdornment position="end" className="menu__item_icon">
-                <IconButton>
-                  <DeleteOutlineIcon style={{color:"#F45656"}}/>
-                </IconButton>
-              </InputAdornment>
-            </li>
-            <li className="menu__item">
-                Коктейли
-                <InputAdornment position="end" className="menu__item_icon">
-                <IconButton>
-                  <DeleteOutlineIcon style={{color:"#F45656"}}/>
-                </IconButton>
-              </InputAdornment>
-            </li>
-            <li className="menu__item">
-                Выпечка
-                <InputAdornment position="end" className="menu__item_icon">
-                <IconButton>
-                  <DeleteOutlineIcon style={{color:"#F45656"}}/>
-                </IconButton>
-              </InputAdornment>
-            </li>
-            <li className="menu__item">
-               Чай
-               <InputAdornment position="end" className="menu__item_icon">
-                <IconButton>
-                  <DeleteOutlineIcon style={{color:"#F45656"}}/>
-                </IconButton>
-              </InputAdornment>
-             </li>
-            <li className="menu__item">
-                <button class="menu__button">Добавить +</button>
+                <span 
+                  className="menu__button"
+                  onClick={()=>handleOpenModal("newMenuCategory")}
+                >
+                  Добавить 
+                  <InputAdornment position="end">
+                    <IconButton>
+                      <AddIcon style={{color:"#5B7E9A"}}/>
+                    </IconButton>
+                  </InputAdornment>
+                </span>
             </li>
          </ul>
       </div>

@@ -5,7 +5,14 @@ import { useState } from "react";
 import {useDispatch } from "react-redux";
 import { closeModal } from "../../redux";
 import { useSelector } from "react-redux";
+import { deleteMenuCategory } from "../../api";
+import { toast } from 'react-toastify';
+
 function DeleteMenuCategory(){
+
+    const showToast = (msg) => {
+      toast.error(msg);
+    };
 
     const dispatch = useDispatch();
     const modalData = useSelector((state) => state.modalData);
@@ -20,6 +27,19 @@ function DeleteMenuCategory(){
     const handleCloseModal = ()=>{
         dispatch(closeModal())   
     }
+
+    const deleteCategory = async ()=>{
+      console.log("test")
+      try{
+        const response = await deleteMenuCategory(modalData.details.id)
+        console.log(response)
+      }catch(error){
+        showToast(error.response.data.detail)  
+      }
+      
+
+  }  
+
 
   return (
     <div className="menu-category-delete-container">
@@ -45,14 +65,17 @@ function DeleteMenuCategory(){
         {modalData.type === "deleteCategory"&& 
         <p className="menu-category-delete-question">
           Вы действительно хотите удалить категорию
-          <span> "Чай"</span>?      
+          <span> "{modalData.details.name}"</span>?      
         </p>}
         
         <div className="new-menu-category-modal__button-container">
           <button 
             className={`new-menu-category-modal__cancel-button 
                    ${isActive("cancel")?"menu-category-btn-active":""}`}
-            onClick={()=>handleButtonClick("cancel")}
+            onClick={()=>{
+              handleButtonClick("cancel")
+              deleteCategory()
+            }}
             >
               Да
             </button>

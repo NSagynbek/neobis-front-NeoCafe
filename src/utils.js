@@ -10,25 +10,6 @@ function capitalizeFirstLetter(string) {
 }
 
 
-const stateMap = {
-    isOpen:"isOpen",
-    isOpenFirst:"isOpenFirst",
-    isOpenSecond:"isOpenSecond",
-    isOpenThird:"isOpenThird",
-    isOpenFourth:"isOpenFourth",
-    isOpenFifth:"isOpenFifth",
-    isOpenSixth:"isOpenSixth", 
-}
-
-const setState = {
-  isOpen:false,
-  isOpenFirst:false,
-  isOpenSecond:false,
-  isOpenThird:false,
-  isOpenFourth:false,
-  isOpenFifth:false,
-  isOpenSixth:false, 
-}
 
 const addIconStyles = { 
     color:"white", 
@@ -57,12 +38,10 @@ const addIconStyles = {
 
 export{
     capitalizeFirstLetter,
-    stateMap,
     addIconStyles,
     notificationIconStyles,
     editDeleteIconsStyles,
     sideBarIconsStyles,
     menuCategoryArrowIconStyles,
-    setState,
     menuItemDeleteIconStyle,
 }

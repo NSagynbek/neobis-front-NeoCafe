@@ -1,20 +1,10 @@
-.menu-mainContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 1171px;
-    height:560px;
-    border-radius: 20px;
-    overflow: hidden;
-    gap: 50px;
-    background: white;
-    margin-top: 10px;
-    position: relative;
+.testt{
+   width:700px;
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
-
-
-/* Menu Table */
-
 .menu-table{
    width: 1171px;
    border-radius:20px;
@@ -75,3 +65,10 @@ tbody tr td{
    right: 30px;
    z-index: 2;
 } 
+
+.pagination-container{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px;
+}

@@ -18,7 +18,7 @@ function Header ({selectedMenuItem}){
   const[isOpen,setIsOpen]=useState(false);
   const dispatch = useDispatch();
  
-  const handleNtfnMdl=()=>{
+  const handleClick=()=>{
     setIsOpen(!isOpen)
   }
 
@@ -33,7 +33,7 @@ function Header ({selectedMenuItem}){
 
     return(
         <header className="header">
-          {isOpen?<NotificationCenter handleNtfnMdl={handleNtfnMdl} />:null}
+          {isOpen?<NotificationCenter handleClick={handleClick} />:null}
             <section className='page-title'>
                 <p className='page-title__text'>{capitalizeFirstLetter(selectedMenuItem)}</p>
             </section>
@@ -77,7 +77,7 @@ function Header ({selectedMenuItem}){
                 <InputAdornment 
                   className='header-options__icon_notify' 
                   position="start" 
-                  onClick={handleNtfnMdl}
+                  onClick={handleClick}
                 >
                   <IconButton>
                     <NotificationsIcon 
@@ -86,11 +86,8 @@ function Header ({selectedMenuItem}){
                 </InputAdornment>       
                 <div 
                   className='notification-count-container'
-                  onClick={handleNtfnMdl}
+                  onClick={handleClick}
                 >
-                  <p className='notification-count-text'> 
-                    <span>10</span> <span>+</span>
-                  </p>
                 </div>        
             </section>
         </header>

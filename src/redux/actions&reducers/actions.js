@@ -2,6 +2,7 @@ import {
     LOGIN_SUCCESS, 
     SIGNUP_SUCCESS,
     OPEN_MODAL,
+    MENU_CATEGORY,
   } from "./actionTypes"
 
 export const loginSuccess = (jwt) => {
@@ -26,3 +27,8 @@ export const openModal = (modalData) => ({
 export const closeModal = () => ({
   type: "CLOSE_MODAL",
 });
+
+export const updateMenuCategory = (category)=>({
+  type:"MENU_CATEGORY",
+  payload:category,
+})

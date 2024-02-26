@@ -5,6 +5,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { editDeleteIconsStyles } from "../../utils";
 import {openModal} from "../../redux/index";
 import {useDispatch } from "react-redux";
+
 function MenuEditDelete (){
 
   const dispatch = useDispatch();
