@@ -2,17 +2,57 @@ import "./ingredients.css";
 import { InputAdornment, IconButton } from "@mui/material";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { selectIngredients } from "../../redux";
 
 function Ingrediens (){
 
-    const [measurement,setMeasurement]=useState(["ml","мл"]);
+    const dispatch = useDispatch();
+    //стейт для контроля сэлектором
     const [isMeasure,setIsMeasure]=useState(false);
+    // стейты для отправки
+    const [measurement,setMeasurement]=useState(["ml","мл"]);
+    const [ingredient,setIngredient] = useState("");
+    const [amount,setAmount]=useState(null)
 
     const handleMeasurement = (measure)=>{      
         setMeasurement(measure)
         setIsMeasure(!isMeasure);
     }
+
+    //Получение данных из инпутов
+
+    const ingredientTitle = (e)=>{
+      setIngredient(e.target.value)
+    }
+
+    const ingredientAmount = (e)=>{
+      setAmount(e.target.value)
+    }
+
+    useEffect(() => {
+      if (ingredient !== "" || amount !== null || (measurement && measurement[0])) {
+        const newData = [];
+    
+        if (ingredient !== "") {
+          newData.push(ingredient);
+        }
+    
+        if (amount !== null) {
+          newData.push(amount);
+        }
+    
+        if (measurement && measurement[1]) {
+          newData.push(measurement[1]);
+        }
+    
+        if (newData.length >= 3) {
+          dispatch(selectIngredients(newData));
+        }
+      }
+    }, [ingredient, amount, measurement, dispatch]);
+    
     
     return (
         <div className="add-menu-new-ingredients-subContainer">
@@ -23,7 +63,11 @@ function Ingrediens (){
             >  
               Наименование
             </label>
-            <input id="menu-ingredient-name" type="text"/>
+            <input 
+              id="menu-ingredient-name" 
+              type="text"
+              onChange={ingredientTitle}
+            />
           </div>
 
          <div className="menu-new-ingredients-container">
@@ -32,7 +76,11 @@ function Ingrediens (){
            >   
              Кол-во (в гр, мл, л, кг)
            </label>
-           <input id="menu-ingredient-amount" type="text" />
+           <input 
+             id="menu-ingredient-amount" 
+             type="text" 
+             onChange={ingredientAmount}
+            />
          </div>
 
          <div className={`menu-new-ingredients-subContainer 

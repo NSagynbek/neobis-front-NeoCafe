@@ -1,21 +1,28 @@
 import "./addNewMenuItem.css";
 import { InputAdornment, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../redux";
 import { cloudUpload } from "../../assets/index";
 import { useSelector } from "react-redux";
 import Ingredients from "../../components/ingredients/Ingredients";
 import MenuCategorySelector from "../../components/menuCategorySelector/MenuCategorySelector";
+import { addNewMenuItem } from "../../api";
 
 function AddNewMenuItem() {
+
   const modalData = useSelector((state) => state.modalData);
   const [activeSection, setActiveSection] = useState(null);
-  const [files, setFiles] = useState(null);
   const [isImageDrag, setIsImageDrag] = useState(false);
   const [ingredientsList, setIngredientsList] = useState([]);
-
+  // Стейты для отправки 
+  const [files, setFiles] = useState(null);
+  const [menuTitle,setMenuTitle]=useState("");
+  const [itemDescription,setItemDescription]=useState("");
+  const [itemPrice,setItemPrice]=useState(null);
+  const [test,setTest]=useState(null)
+  // Функции для функцианала модалки
   const dispatch = useDispatch();
 
   const handleButtonClick = (section) => {
@@ -49,6 +56,62 @@ function AddNewMenuItem() {
       <Ingredients key={ingredientsList.length} />
     ]);
   };
+
+  //Получение данных из инпутов
+  const getItemNAme = (e)=>{
+    setMenuTitle(e.target.value)
+  }
+
+  const getDescription = (e)=>{
+    setItemDescription(e.target.value)
+  }
+
+  const category = useSelector((state)=>state.category)
+  
+  const menuPrice = (e)=>{
+    setItemPrice(e.target.value)
+  }
+
+  const ingredients = useSelector((state)=>state.ingredients)
+ console.log(ingredients)
+// Отправка Данных
+
+let branch = 6
+const categoryy = "Чай"
+
+   useEffect(() => {
+     const data = {
+       name: menuTitle,
+       description: itemDescription,
+       item_image: files,
+       price_per_unit: parseInt(itemPrice),
+       branch:null,
+       category:categoryy,
+       ingredients: [
+         {
+           name: ingredients[0], 
+           quantity: parseInt(ingredients[1]),
+           measurement_unit: ingredients[2]
+         }
+       ]
+     };
+
+     setTest(data)
+
+     // Now you can use `data` for further processing or sending to the server
+   }, [menuTitle, itemDescription, files, itemPrice, category, ingredients]);
+
+
+  
+const submitData = async ()=>{
+  console.log(test)
+  try{
+    const response = await addNewMenuItem(test)
+    console.log(response)
+  }catch(error){
+    console.log(error)
+  }
+}
 
   return (
     <div className="add-menu-new-item-container">
@@ -104,7 +167,11 @@ function AddNewMenuItem() {
           className="item-name__label">
           Наименование
         </label>
-        <input id="item-name" type="text" />
+        <input 
+          id="item-name" 
+          type="text" 
+          onChange={getItemNAme}
+          />
         <div className="text-text">
           <label 
             htmlFor="item-description" 
@@ -115,7 +182,9 @@ function AddNewMenuItem() {
             id="item-description" 
             name="myTextArea" 
             rows="1" 
-            cols="50">
+            cols="50"
+            onChange={getDescription}
+            >
           </textarea>
         </div>
         <div className="add-menu-new-item-content-container">
@@ -130,6 +199,7 @@ function AddNewMenuItem() {
               <input 
                 id="add-menu-new-item-price-item" 
                 type="text" 
+                onChange={menuPrice}
               />
             </div>
           </div>
@@ -138,7 +208,7 @@ function AddNewMenuItem() {
               className="add-menu-new-item__name_price-text">
               Состав блюда и граммовка
             </p>
-            <Ingredients />
+            <Ingredients/>
             {ingredientsList.map((ingredient, index) => (
               <div key={index}>{ingredient}</div>
             ))}
@@ -156,7 +226,10 @@ function AddNewMenuItem() {
             <button
               className={`new-menu-category-modal__cancel-button 
               ${isActive("cancel") ? "menu-category-btn-active" : ""}`}
-              onClick={() => handleButtonClick("cancel")}
+              onClick={() => { 
+                handleButtonClick("cancel")
+                submitData()
+              }}
             >
               Сохранить
             </button>

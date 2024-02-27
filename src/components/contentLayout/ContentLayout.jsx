@@ -5,14 +5,13 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { InputAdornment,IconButton } from "@mui/material";
 import MenuEditDelete  from "../../modalwindows/menuEditDelete/MenuEditDelete";
 import { useState,useEffect } from "react";
-import { getMenuItems,getMenuCategories } from "../../api";
+import { getMenuItems} from "../../api";
 import Category from "../category/Category";
 import { Bars } from 'react-loader-spinner'
-import { updateMenuCategory } from "../../redux";
-import { useDispatch } from "react-redux";
+
  
 function ContentLayout() {
-  const dispatch = useDispatch();
+
 
   const [menuItems, setMenuItems] = useState([]);
   const [activeRowIndex, setActiveRowIndex] = useState(null);
@@ -23,8 +22,6 @@ function ContentLayout() {
       try {
         const response = await getMenuItems()
         setMenuItems(response);
-        const res = await getMenuCategories()
-        dispatch(updateMenuCategory(res))
         setLoading(false)
       } catch (error) {
         console.log(error);
@@ -65,7 +62,7 @@ function ContentLayout() {
             <tr key={index}>
               <td className="menu-table-id">{item.id}</td>
               <td>{item.name}</td>
-              <td>{item.category.name}</td>
+              <td>{item.category}</td>
               <td>
                 {item.ingredients.map((ingredient, idx) => (
                   <span key={idx}>

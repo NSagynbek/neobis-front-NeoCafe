@@ -7,6 +7,7 @@ import { closeModal } from "../../redux";
 import { useSelector } from "react-redux";
 import { deleteMenuCategory } from "../../api";
 import { toast } from 'react-toastify';
+import { updateMenuCategory } from "../../redux";
 
 function DeleteMenuCategory(){
 
@@ -32,9 +33,11 @@ function DeleteMenuCategory(){
       console.log("test")
       try{
         const response = await deleteMenuCategory(modalData.details.id)
+        dispatch(updateMenuCategory())
+        dispatch(closeModal())
         console.log(response)
       }catch(error){
-        showToast(error.response.data.detail)  
+        showToast("В этой категории есть товары, поменяйте категорию в этих товаров для удаления")  
       }
       
 

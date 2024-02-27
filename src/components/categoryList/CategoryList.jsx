@@ -1,14 +1,31 @@
 import "./categoryListStyles.css";
 import {IconButton, InputAdornment } from "@mui/material";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { useDispatch,useSelector } from "react-redux";
 import {openModal} from "../../redux/index";
+import {useState,useEffect} from "react";
+import { getMenuCategories } from "../../api";
+import {useSelector,useDispatch } from "react-redux";
 
 
-function CategoryList (){
-    const menuCategories = useSelector((state)=> state.menuCategory);
-    const dispatch = useDispatch();
+function CategoryList (){ 
     
+    const [menuCategories,setMenuCategories]=useState([]);
+    const newCategory = useSelector((state)=>state.menuCategory)
+     
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+      const menuCategory = async ()=>{
+        try{
+          const res = await getMenuCategories()
+          setMenuCategories(res)      
+        }catch(error){
+          console.log(error)
+        }
+      }
+      menuCategory()
+    },[newCategory])
+
     const handleOpenModal = (modalName,type,details) => {
         dispatch(
           openModal({
@@ -18,7 +35,7 @@ function CategoryList (){
           })
         );
       };
-
+    
 
     return (
         <>

@@ -18,6 +18,7 @@ export const getMenuItems = async ()=>{
     return res.data
 }
 
+// Категории Меню
 export const getMenuCategories = async ()=>{
   const res = await instance.get("menu/category/all/")
   return res.data
@@ -32,5 +33,15 @@ export const addMenuCategory = async (payload)=>{
   const res = await instance.post("menu/category/add/",payload)
   return res.data
 }
+
+// Добовление Позиции меню
+
+export const addNewMenuItem = async (payload) => {
+  const res = await instance.post("menu/item/add/", payload);
+  return res.data;
+};
+
+
+
 
 

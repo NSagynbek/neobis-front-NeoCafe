@@ -2,12 +2,24 @@ import "./menuCategorySelector.css";
 import { InputAdornment, IconButton } from "@mui/material";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useState } from "react";
+import { useState,useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { selectMenuCategory } from "../../redux/actions&reducers/actions";
+
 function MenuCategorySelector() {
 
     const [category,setCategory] = useState(null);
     const [isClicked,setIsClicked] = useState(false);
+    const dispatch = useDispatch();
 
+    useEffect(()=>{
+      if (category !== null) {
+        dispatch(selectMenuCategory(category[0]));
+      }
+    }, [category]);
+    
+    
+    
     const handleCategory = (category)=>{      
         setCategory(category)
         setIsClicked(!isClicked);

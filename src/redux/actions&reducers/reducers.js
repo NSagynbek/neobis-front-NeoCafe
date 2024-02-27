@@ -3,14 +3,18 @@ import {
     SIGNUP_SUCCESS,
     OPEN_MODAL,
     CLOSE_MODAL,
-    MENU_CATEGORY,
+    MENU_CATEGORY_REFRESH,
+    MENU_CATEGORY_SELECT,
+    INGREDIENTS,
   } from "./actionTypes";
   
   const initialState = {
     isAuthenticated: true,
     isOpen: false,
     modalData: {},
-    menuCategory:[]
+    rerender:0,
+    category:"",
+    ingredients:"",
   };
   
   const reducer = (state = initialState, action) => {
@@ -41,11 +45,24 @@ import {
           modalData: {},
         }
 
-      case MENU_CATEGORY:
+      case MENU_CATEGORY_REFRESH:
         return {
           ...state,
-           menuCategory:[...state.menuCategory,...action.payload],
+           rerender:state.rerender+1,
         }  
+      
+      case MENU_CATEGORY_SELECT:
+        return {
+          ...state,
+            category:action.payload,
+        }
+        
+      case INGREDIENTS:
+        return {
+          ...state,
+            ingredients:action.payload,
+        }    
+      
   
       default:
         return state;

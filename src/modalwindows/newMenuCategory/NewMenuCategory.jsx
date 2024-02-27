@@ -36,7 +36,8 @@ function NewMenuCategory (){
           name:newCategory
         }
         const response = await addMenuCategory(payload);
-        dispatch(updateMenuCategory(response))
+        dispatch(updateMenuCategory(1))
+        dispatch(closeModal())
         showToast(`Новая категория ${response.name} успешно добавлено!`)
       }catch(error){
         console.log(error)

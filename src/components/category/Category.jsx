@@ -1,6 +1,5 @@
 import "./categoryStyles.css"
 import {IconButton, InputAdornment } from "@mui/material";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import AddIcon from '@mui/icons-material/Add';
