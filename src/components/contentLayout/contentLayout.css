@@ -1,10 +1,18 @@
-.testt{
+.menu-table-container{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   height: 100vh;
+}
+
+.loader-container{
    width:700px;
    height: 100vh;
    display: flex;
    align-items: center;
    justify-content: center;
 }
+
 .menu-table{
    width: 1171px;
    border-radius:20px;

@@ -16,12 +16,13 @@ function ContentLayout() {
   const [menuItems, setMenuItems] = useState([]);
   const [activeRowIndex, setActiveRowIndex] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [page,setPage]=useState(1); 
 
   useEffect(() => {
     const getMenuData = async () => {
       try {
-        const response = await getMenuItems()
-        setMenuItems(response);
+        const response = await getMenuItems(page)
+        setMenuItems(response.results.results);
         setLoading(false)
       } catch (error) {
         console.log(error);
@@ -29,7 +30,11 @@ function ContentLayout() {
       }
     };
     getMenuData();
-  }, []);
+  }, [page]);
+
+  const pageControll = (event,p)=>{
+    setPage(p)
+  }
 
 
   const handleClick = (index) => {
@@ -39,10 +44,10 @@ function ContentLayout() {
   return (
     <div className="menu-table-container">
       {loading?(
-        <div className="testt">
+        <div className="loader-container">
          <Bars
-         height="100"
-         width="100"
+         height="60"
+         width="60"
          color="gray"
        />
        </div>
@@ -62,7 +67,7 @@ function ContentLayout() {
             <tr key={index}>
               <td className="menu-table-id">{item.id}</td>
               <td>{item.name}</td>
-              <td>{item.category}</td>
+              <td>{item.category.name}</td>
               <td>
                 {item.ingredients.map((ingredient, idx) => (
                   <span key={idx}>
@@ -94,7 +99,12 @@ function ContentLayout() {
       
       <div className="pagination-container">
         <Stack spacing={2}>
-          <Pagination count={5} variant="outlined" shape="rounded" />
+          <Pagination 
+            count={4} 
+            variant="outlined" 
+            shape="rounded" 
+            onChange={pageControll}
+          />
         </Stack>
       </div>
     </div>

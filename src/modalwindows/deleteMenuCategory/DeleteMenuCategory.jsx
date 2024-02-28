@@ -16,6 +16,7 @@ function DeleteMenuCategory(){
     };
 
     const dispatch = useDispatch();
+
     const modalData = useSelector((state) => state.modalData);
     const [activeSection, setActiveSection] = useState(null);
     
@@ -30,7 +31,6 @@ function DeleteMenuCategory(){
     }
 
     const deleteCategory = async ()=>{
-      console.log("test")
       try{
         const response = await deleteMenuCategory(modalData.details.id)
         dispatch(updateMenuCategory())
@@ -39,6 +39,7 @@ function DeleteMenuCategory(){
       }catch(error){
         showToast("В этой категории есть товары, поменяйте категорию в этих товаров для удаления")  
       }
+
       
 
   }  

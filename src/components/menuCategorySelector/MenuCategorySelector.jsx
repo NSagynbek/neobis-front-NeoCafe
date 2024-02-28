@@ -14,7 +14,7 @@ function MenuCategorySelector() {
 
     useEffect(()=>{
       if (category !== null) {
-        dispatch(selectMenuCategory(category[0]));
+        dispatch(selectMenuCategory(category[1]));
       }
     }, [category]);
     

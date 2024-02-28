@@ -2,6 +2,7 @@ import {
     LOGIN_SUCCESS, 
     SIGNUP_SUCCESS,
     OPEN_MODAL,
+    CLOSE_MODAL,
     MENU_CATEGORY_REFRESH,
     MENU_CATEGORY_SELECT,
     INGREDIENTS,
@@ -22,24 +23,24 @@ export const signupSuccess = (message) => {
 };
 
 export const openModal = (modalData) => ({
-  type: "OPEN_MODAL",
+  type: OPEN_MODAL,
   payload: modalData,
 });
 
 export const closeModal = () => ({
-  type: "CLOSE_MODAL",
+  type: CLOSE_MODAL,
 });
 
 export const updateMenuCategory = ()=>({
-  type:"MENU_CATEGORY_REFRESH",
+  type:MENU_CATEGORY_REFRESH,
 })
 
 export const selectMenuCategory = (category)=>({
-  type:"MENU_CATEGORY_SELECT",
+  type:MENU_CATEGORY_SELECT,
   payload:category,
 })
 
 export const selectIngredients = (ingredient)=>({
-  type:"INGREDIENTS",
+  type:INGREDIENTS,
   payload:ingredient,
 })

@@ -9,10 +9,12 @@ import { useSelector } from "react-redux";
 import Ingredients from "../../components/ingredients/Ingredients";
 import MenuCategorySelector from "../../components/menuCategorySelector/MenuCategorySelector";
 import { addNewMenuItem } from "../../api";
+import { toast } from 'react-toastify';
 
 function AddNewMenuItem() {
 
   const modalData = useSelector((state) => state.modalData);
+
   const [activeSection, setActiveSection] = useState(null);
   const [isImageDrag, setIsImageDrag] = useState(false);
   const [ingredientsList, setIngredientsList] = useState([]);
@@ -21,7 +23,8 @@ function AddNewMenuItem() {
   const [menuTitle,setMenuTitle]=useState("");
   const [itemDescription,setItemDescription]=useState("");
   const [itemPrice,setItemPrice]=useState(null);
-  const [test,setTest]=useState(null)
+  const [formData,setFormData]=useState(null)
+
   // Функции для функцианала модалки
   const dispatch = useDispatch();
 
@@ -56,8 +59,12 @@ function AddNewMenuItem() {
       <Ingredients key={ingredientsList.length} />
     ]);
   };
+  //Тостифай для уведомлений
+  const showToast = (msg) => {
+    toast.success(msg);
+  };
 
-  //Получение данных из инпутов
+  //Получение данных из инпутов и компонентов
   const getItemNAme = (e)=>{
     setMenuTitle(e.target.value)
   }
@@ -67,46 +74,44 @@ function AddNewMenuItem() {
   }
 
   const category = useSelector((state)=>state.category)
+  console.log(category)
   
   const menuPrice = (e)=>{
     setItemPrice(e.target.value)
   }
 
   const ingredients = useSelector((state)=>state.ingredients)
- console.log(ingredients)
+ 
 // Отправка Данных
+useEffect(() => {
+  const data = new FormData();
 
-let branch = 6
-const categoryy = "Чай"
-
-   useEffect(() => {
-     const data = {
-       name: menuTitle,
-       description: itemDescription,
-       item_image: files,
-       price_per_unit: parseInt(itemPrice),
-       branch:null,
-       category:categoryy,
-       ingredients: [
-         {
-           name: ingredients[0], 
-           quantity: parseInt(ingredients[1]),
-           measurement_unit: ingredients[2]
-         }
-       ]
-     };
-
-     setTest(data)
-
-     // Now you can use `data` for further processing or sending to the server
-   }, [menuTitle, itemDescription, files, itemPrice, category, ingredients]);
-
+  data.append('name', menuTitle);
+  data.append('description', itemDescription);
+  data.append('item_image', files);
+  data.append('price_per_unit', parseInt(itemPrice));
+  data.append('category',category);
 
   
+  const ingredientsData = {
+    name: ingredients[0],
+    quantity: parseInt(ingredients[1]),
+    measurement_unit: ingredients[2]
+  };
+  data.append('ingredients', JSON.stringify([ingredientsData]));
+
+ 
+  setFormData(data);
+
+}, [menuTitle, itemDescription, files, itemPrice, category, ingredients]);
+
+
+ //Запрос на добовление новой пазиции меню
 const submitData = async ()=>{
-  console.log(test)
+ 
   try{
-    const response = await addNewMenuItem(test)
+    const response = await addNewMenuItem(formData)
+    showToast(`Добавили новую позицию ${response.name}`);
     console.log(response)
   }catch(error){
     console.log(error)
