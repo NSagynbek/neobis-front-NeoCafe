@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import { getStock } from "../../api";
 import { useState,useEffect } from "react";
 import { Bars } from 'react-loader-spinner'
+import BranchSelector from "../branchSelector/BranchSelector";
 
 function WareHouseContent (){
 
@@ -14,7 +15,7 @@ function WareHouseContent (){
     const [loading, setLoading] = useState(true);
     const [activeRowIndex, setActiveRowIndex] = useState(null);
     const [page,setPage]=useState(1); 
-    console.log(page)
+    
 
     useEffect(()=>{
         const stock = async ()=>{
@@ -55,11 +56,11 @@ function WareHouseContent (){
         <thead>
           <tr>
             <th className="menu-table-id">№</th>
-            <th className="menu-table-title">Наименование</th>
-            <th className="menu-table-category">Количество</th>
-            <th >Лимит</th>
+            <th className="menu-table-title stock_title">Наименование</th>
+            <th className="menu-table-category stock_qty">Количество</th>
+            <th className="stock_limit" >Лимит</th>
             <th >Дата прихода</th>
-            <th >Филиал</th>
+            <th> <BranchSelector/> </th>
           </tr>
         </thead>
         <tbody>
@@ -69,9 +70,9 @@ function WareHouseContent (){
               <td>{item.stock_item}</td>
               <td>{item.current_quantity}</td>
               <td>{item.minimum_limit}</td>
-              <td>{item.restock_date}</td>
+              <td>{new Date(item.restock_date).toLocaleString()}</td>
               <td className="menu-table-price">
-                {/* {item.branch} */}
+                {/* {item.branch}             */}
                 NeoCafe Ala-Too Square
                 <InputAdornment
                   position="end"
@@ -94,7 +95,7 @@ function WareHouseContent (){
       <div className="pagination-container">
         <Stack spacing={2}>
           <Pagination 
-            count={2} 
+            count={100} 
             variant="outlined" 
             shape="rounded" 
             onChange={pageControll}

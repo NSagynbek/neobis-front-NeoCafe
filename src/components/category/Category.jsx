@@ -48,7 +48,7 @@ function Category (){
          <ul className={`menu__list ${isActive ? "" : "menu__list_active" }`}>
             {/* ***********Categori List Component is here********** */}
             <CategoryList />
-            <li className="menu__item menu__button_absalute">
+            <li className="menu__item">
                 <span 
                   className="menu__button"
                   onClick={()=>handleOpenModal("newMenuCategory")}

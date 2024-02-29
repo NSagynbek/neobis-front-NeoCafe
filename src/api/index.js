@@ -54,6 +54,13 @@ export const getStock = async (page)=>{
   return res.data
 }
 
+export const getBranches = async ()=>{
+  const res = await instance.get("branch/all/")
+  return res.data
+}
+
+
+
 
 
 

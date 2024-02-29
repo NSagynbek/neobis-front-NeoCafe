@@ -12,7 +12,7 @@
 }
 
 .menu__category-title_active{
-    padding-left: 20px;
+    padding-left:10px;
 }
 
 .menu_active{
@@ -32,11 +32,11 @@
 .menu__list{
     width: 100%;
     min-height:100px;
+    max-height:250px;
     display:flex;
     flex-direction: column;
     gap:5px;
     padding-top:10px;
-    padding-left: 20px;
     position:absolute;
     background:#EBEFF2;
     border-bottom-left-radius:10px;
@@ -54,6 +54,10 @@
 }
 
 .menu__item{
+    display: flex;
+    align-items: center;
+    height:40px;
+    padding: 10px;
     list-style:none;
     cursor:pointer;
     position: relative;
@@ -61,9 +65,10 @@
 
 .menu__item:hover{
     color:#F45656;
+    background:rgb(223, 228, 231)
 }
 
-.menu__item:hover .menu__item_icon{
+.menu__item:hover #menu__item_icon{
     opacity: 1;
 }
 
@@ -81,16 +86,8 @@
     cursor: pointer;
 }
 
-.menu__button_absalute{
-    position: absolute;
-    bottom: 20px;
-}
 
-.menu__item_icon{
-    position: absolute;
-    right: 0;
-    top: 10px;
-    opacity: 0;
-}
+
+
 
 

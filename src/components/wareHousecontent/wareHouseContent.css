@@ -1,0 +1,12 @@
+.stock_qty{
+    width: 150px;
+}
+
+.stock_title{
+    min-width:100px;
+    max-width: 180px;
+}
+
+.stock_limit{
+    width: 150px;
+}

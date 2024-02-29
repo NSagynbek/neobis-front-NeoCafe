@@ -31,7 +31,8 @@ function MenuCategorySelector() {
     
     return (
       <div 
-        className="add-menu-new-item-category-subContainer-container">
+        className="add-menu-new-item-category-subContainer-container"
+      >
         <p className="item-name__label">Категория</p>
         <div className="add-menu-new-item-dropdown-container">
           <div 

@@ -10,7 +10,7 @@ import {useSelector,useDispatch } from "react-redux";
 function CategoryList (){ 
     
     const [menuCategories,setMenuCategories]=useState([]);
-    console.log(menuCategories)
+    
     const rerender = useSelector((state)=>state.rerender)
 
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ function CategoryList (){
                 {category.name}
                 <InputAdornment 
                   position="end" 
-                  className="menu__item_icon"
+                  id="menu__item_icon"
                   onClick={() => handleOpenModal("deleteMenuCategory", "deleteCategory",{name:category.name,id:category.id})}
                 >
                   <IconButton>

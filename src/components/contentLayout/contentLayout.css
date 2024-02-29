@@ -6,8 +6,8 @@
 }
 
 .loader-container{
-   width:700px;
-   height: 100vh;
+   width:100%;
+   height: 70vh;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -79,4 +79,11 @@ tbody tr td{
    align-items: center;
    justify-content: center;
    padding: 10px;
+}
+
+.menu-table-subContainer{
+   height: 480px;
+   width: 1171px;
+   background: white;
+   border-radius: 10px;
 }
