@@ -1,3 +1,11 @@
+.branch-header{
+    border-bottom: 1px solid #EAEAEA; 
+    padding-left:15px;
+    cursor: pointer;
+}
+
+
+
 .stock_qty{
     width: 150px;
 }

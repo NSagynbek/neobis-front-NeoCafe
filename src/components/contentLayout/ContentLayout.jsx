@@ -72,14 +72,14 @@ const ContentLayout = () => {
                     ))}
                   </td>
                   <td className="menu-table-price">
-                    {item.price_per_unit}
+                    {item.price_per_unit} сом
                     <InputAdornment
                       position="end"
                       className="menu-more-icon"
                       onClick={() => handleClick(index)}
                     >
                       <IconButton>
-                        <MoreVertIcon />
+                        <MoreVertIcon style={{color:"#5B7E9A"}}/>
                       </IconButton>
                     </InputAdornment>
                     {activeRowIndex === index && <MenuEditDelete />}

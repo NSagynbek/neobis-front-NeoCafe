@@ -15,7 +15,7 @@ function WareHouseContent (){
     const [loading, setLoading] = useState(true);
     const [activeRowIndex, setActiveRowIndex] = useState(null);
     const [page,setPage]=useState(1); 
-    
+    console.log(allStock)
 
     useEffect(()=>{
         const stock = async ()=>{
@@ -36,10 +36,19 @@ function WareHouseContent (){
         setPage(p)
       }
 
-      const handleClick = (index) => {
-        setActiveRowIndex(activeRowIndex === index ? null : index);
-      };  
- 
+    const handleClick = (index) => {
+      setActiveRowIndex(activeRowIndex === index ? null : index);
+    };  
+
+    const measurementConverter = (unit, measurementUnit) => {
+      switch (measurementUnit) {
+        case "гр":
+        case "мл":
+          return unit / 1000
+        default:
+          return unit;
+      }
+    };
 
     return (
         <div className="menu-table-container">
@@ -55,6 +64,11 @@ function WareHouseContent (){
         <table className="menu-table">
         <thead>
           <tr>
+            <th className="branch-header" colSpan={2}> Готовая продукция</th>
+            <th className="branch-header" colSpan={2}> Сырье</th>
+            <th className="branch-header" colSpan={2}> Заканчивающиеся продукты</th>
+          </tr>
+          <tr>
             <th className="menu-table-id">№</th>
             <th className="menu-table-title stock_title">Наименование</th>
             <th className="menu-table-category stock_qty">Количество</th>
@@ -68,19 +82,23 @@ function WareHouseContent (){
             <tr key={index}>
               <td className="menu-table-id">{item.id}</td>
               <td>{item.stock_item}</td>
-              <td>{item.current_quantity}</td>
-              <td>{item.minimum_limit}</td>
+              <td>
+                {measurementConverter(item.current_quantity,item.measurement_unit)}&nbsp;
+                {item.measurement_unit==="гр"?"кг":"л"}
+              </td>
+              <td>{measurementConverter(item.minimum_limit,item.measurement_unit)}&nbsp;
+                  {item.measurement_unit === "гр"? "кг":"л"}
+              </td>
               <td>{new Date(item.restock_date).toLocaleString()}</td>
               <td className="menu-table-price">
-                {/* {item.branch}             */}
-                NeoCafe Ala-Too Square
+                {item.branch_name}                          
                 <InputAdornment
                   position="end"
                   className="menu-more-icon"
                   onClick={() => handleClick(index)}
                 >
                   <IconButton>
-                    <MoreVertIcon />
+                    <MoreVertIcon style={{color:"#5B7E9A"}}/>
                   </IconButton>
                 </InputAdornment>
                 {activeRowIndex === index && <MenuEditDelete />}

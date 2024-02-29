@@ -205,6 +205,7 @@ const submitData = async ()=>{
                 id="add-menu-new-item-price-item" 
                 type="text" 
                 onChange={menuPrice}
+                placeholder="сом"
               />
             </div>
           </div>

@@ -25,7 +25,6 @@ function BranchSelector() {
         try{
           const response = await getBranches()
           setAllBranches(response)
-          console.log(response)
         }catch(error){
           console.log(error)
         }
