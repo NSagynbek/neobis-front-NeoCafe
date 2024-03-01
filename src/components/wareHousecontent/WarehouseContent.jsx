@@ -15,7 +15,7 @@ function WareHouseContent (){
     const [loading, setLoading] = useState(true);
     const [activeRowIndex, setActiveRowIndex] = useState(null);
     const [page,setPage]=useState(1); 
-    console.log(allStock)
+
 
     useEffect(()=>{
         const stock = async ()=>{

@@ -7,12 +7,7 @@ const instance = axios.create({
     },
   });
 
-const multipartFormData= axios.create({
-  baseURL: 'https://tokyo-backender.org.kg/',
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-});  
+
 
 
 export const login = async (data)=>{
@@ -44,7 +39,11 @@ export const addMenuCategory = async (payload)=>{
 // Добовление Позиции меню
 
 export const addNewMenuItem = async (payload) => {
-  const res = await multipartFormData.post("menu/item/add/", payload);
+  const res = await instance.post("menu/item/add/", payload,{
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    }
+  });
   return res.data;
 };
 
@@ -54,10 +53,13 @@ export const getStock = async (page)=>{
   return res.data
 }
 
+// Запросы по разделу филиалы
 export const getBranches = async ()=>{
   const res = await instance.get("branch/all/")
   return res.data
 }
+
+
 
 
 
