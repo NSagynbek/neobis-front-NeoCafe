@@ -6,6 +6,7 @@ import {
     MENU_CATEGORY_REFRESH,
     MENU_CATEGORY_SELECT,
     INGREDIENTS,
+    EMPLOYEE_CONTENT_TOGGLE,
   } from "./actionTypes"
 
 export const loginSuccess = (jwt) => {
@@ -43,4 +44,8 @@ export const selectMenuCategory = (category)=>({
 export const selectIngredients = (ingredient)=>({
   type:INGREDIENTS,
   payload:ingredient,
+})
+
+export const employeeContentToggle = ()=>({
+  type:EMPLOYEE_CONTENT_TOGGLE,
 })

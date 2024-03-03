@@ -21,7 +21,6 @@ function WareHouseContent (){
         const stock = async ()=>{
             try{
                 const response = await getStock(page);
-                console.log(response)
                 setAllStock(response.results)
                 setLoading(false)
             }catch(error){

@@ -1,0 +1,74 @@
+.employee-more-icon{
+    position: absolute;
+    right: 0;
+    top: 25px;
+}
+
+.employee-name{
+    padding-left: 10px;
+}
+
+.employee-password-table-data{
+   padding-left: 10px;
+}
+
+.employee-schedule-table-data{
+    position: relative;
+    padding-left: 10px;
+}
+
+.employees-email{
+    position: relative;
+}
+
+.employee-navigate-icon{
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
+
+.employees-branch{
+    width: 120px;
+}
+
+.employee-schedule{
+    border-collapse: collapse;
+}
+
+.employee-schedule-btn{
+    border: none;
+    outline: none;
+    font-family: "Poppins",sans-serif;
+    font-weight:600;
+    font-size: 16px;
+    color: #2A3440;
+    background: white;
+    cursor: pointer;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    padding-left:15px;
+    padding-right:15px;
+    border-radius:5px;
+}
+
+.employee-email-btn{
+    border: none;
+    outline: none;
+    font-family: "Poppins",sans-serif;
+    font-weight:600;
+    font-size: 16px;
+    color: #2A3440;
+    background: white;
+    cursor: pointer;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    padding-left:15px;
+    padding-right:15px;
+    border-radius:5px;
+}
+
+
+
+.activeBtn{
+    background: #EBEFF2;
+}

@@ -59,6 +59,12 @@ export const getBranches = async ()=>{
   return res.data
 }
 
+// Запросы по разделу сотрудники
+export const getEmployees = async (page)=>{
+  const res = await instance.get(`employee/all/?page=${page}`)
+  return res.data
+}
+
 
 
 

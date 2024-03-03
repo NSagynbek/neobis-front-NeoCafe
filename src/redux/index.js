@@ -4,5 +4,6 @@ export {
     openModal,
     closeModal,
     updateMenuCategory,
-    selectIngredients
+    selectIngredients,
+    employeeContentToggle,
 } from "./actions&reducers/actions"

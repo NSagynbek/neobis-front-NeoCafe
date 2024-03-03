@@ -6,6 +6,7 @@ import {
     MENU_CATEGORY_REFRESH,
     MENU_CATEGORY_SELECT,
     INGREDIENTS,
+    EMPLOYEE_CONTENT_TOGGLE,
   } from "./actionTypes";
   
   const initialState = {
@@ -15,6 +16,7 @@ import {
     rerender:0,
     category:"",
     ingredients:"",
+    isSchedule:false,
   };
   
   const reducer = (state = initialState, action) => {
@@ -61,9 +63,13 @@ import {
         return {
           ...state,
             ingredients:action.payload,
-        }    
+        }  
+      case EMPLOYEE_CONTENT_TOGGLE:
+        return {
+          ...state,
+            isSchedule:!state.isSchedule,
+        }     
       
-  
       default:
         return state;
     }

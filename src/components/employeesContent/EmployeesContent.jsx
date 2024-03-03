@@ -1,11 +1,16 @@
 import "./employeesContent.css";
+import Employees from "./Employees";
+import { useSelector } from "react-redux";
 
-function EmployeesContent (){
+
+function EmployeesContent () {
+    const isSchedule = useSelector((state)=>state.isSchedule)
+   
     return (
-        <main>
-<h1>employees</h1>
-        </main>
-    )
+        <>
+          {isSchedule?<EmployeesSchedule/>:<Employees/>}
+        </>       
+    );
 }
 
 export default EmployeesContent;
