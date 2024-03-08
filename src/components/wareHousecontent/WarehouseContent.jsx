@@ -63,8 +63,8 @@ function WareHouseContent (){
         <table className="menu-table">
         <thead>
           <tr>
-            <th className="branch-header" colSpan={2}> Готовая продукция</th>
-            <th className="branch-header" colSpan={2}> Сырье</th>
+            <th className="branch-header ready-products" colSpan={2}> Готовая продукция</th>
+            <th className="branch-header raw-products" colSpan={2}> Сырье</th>
             <th className="branch-header" colSpan={2}> Заканчивающиеся продукты</th>
           </tr>
           <tr>

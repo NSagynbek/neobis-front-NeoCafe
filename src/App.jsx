@@ -9,6 +9,7 @@ import AdminPage from "./pages/adminPage/AdminPage";
 import Login from "./pages/login/Login"
 import Content from "./components/content/Content";
 import ContentLayout from "./components/contentLayout/ContentLayout";
+import AddNewproduct from "./modalwindows/addNewProduct/AddNewProduct";
 
   
 function App() {
@@ -27,6 +28,7 @@ function App() {
       </Route>
 
        <Route path="/" element={<Login/>}/>
+       <Route path="new-product" element={<AddNewproduct/>}/>
       
       </Route>
 

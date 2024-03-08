@@ -6,7 +6,7 @@ import { useState,useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { selectMenuCategory } from "../../redux/actions&reducers/actions";
 
-function MenuCategorySelector() {
+function MenuCategorySelector({menuItemCategory}) {
 
     const [category,setCategory] = useState(null);
     const [isClicked,setIsClicked] = useState(false);
@@ -39,7 +39,7 @@ function MenuCategorySelector() {
             className={`add-menu-new-item-dropdown-subContainer 
                       ${isClicked ? "transform" : ""}`}>
             <p className="add-menu-new-item-dropdown-title">
-              {category ? category[1] : "Выберите категорию"}
+              {category ? category[1] : (menuItemCategory?menuItemCategory:"Выберите категорию")}
             </p>
             <InputAdornment 
               position="end" 

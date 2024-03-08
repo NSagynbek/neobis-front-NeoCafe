@@ -6,7 +6,7 @@ import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { selectIngredients } from "../../redux";
 
-function Ingrediens (){
+function Ingredients (){
 
     const dispatch = useDispatch();
     //стейт для контроля сэлектором
@@ -138,4 +138,4 @@ function Ingrediens (){
     )
 }
 
-export default Ingrediens;
+export default Ingredients;

@@ -1,4 +1,5 @@
 // import instance from "./axiosConfig"
+import { imageListClasses } from "@mui/material";
 import axios from "axios";
 const instance = axios.create({
     baseURL: 'https://tokyo-backender.org.kg/',
@@ -31,6 +32,11 @@ export const deleteMenuCategory = async (id)=>{
   return res.data
 }
 
+export const deleteMenuItem = async (id)=>{
+  const res = await instance.delete(`menu/item/${id}/`)
+  return res.data
+}
+
 export const addMenuCategory = async (payload)=>{
   const res = await instance.post("menu/category/add/",payload)
   return res.data
@@ -46,6 +52,18 @@ export const addNewMenuItem = async (payload) => {
   });
   return res.data;
 };
+//Запрос для редоктирования меню позиции
+export const editMenuItem = async (id)=>{
+  const response = await instance.patch(`menu/item/${id}/`)
+  return response.data
+}
+
+//Запрос для получение данных одной меню позиции по id
+
+export const getMenuItemDetails = async (id)=>{
+  const responce = await instance.get(`menu/item/${id}/`)
+  return responce.data
+}
 
 // Запросы по разделу склад
 export const getStock = async (page)=>{

@@ -8,9 +8,13 @@ import { useState,useEffect } from "react";
 import { getMenuItems} from "../../api";
 import Category from "../category/Category";
 import { Bars } from 'react-loader-spinner'
+import { useSelector } from "react-redux";
 
  
 const ContentLayout = () => {
+
+  const rerender = useSelector((state)=>state.rerender);
+console.log(rerender)
   const [menuItems, setMenuItems] = useState([]);
   const [activeRowIndex, setActiveRowIndex] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -28,7 +32,7 @@ const ContentLayout = () => {
       }
     };
     getMenuData();
-  }, [page]);
+  }, [page,rerender]);
 
   const pageControl = (event, p) => {
     setPage(p);
@@ -82,7 +86,7 @@ const ContentLayout = () => {
                         <MoreVertIcon style={{color:"#5B7E9A"}}/>
                       </IconButton>
                     </InputAdornment>
-                    {activeRowIndex === index && <MenuEditDelete />}
+                    {activeRowIndex === index && <MenuEditDelete id={item.id} name={item.name} />}
                   </td>
                 </tr>
               ))}

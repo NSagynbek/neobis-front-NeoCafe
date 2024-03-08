@@ -21,8 +21,9 @@ function SideBar({onSelct}) {
   const isActive = (section) => section === activeSection;
 
   const handleClick = ()=>{
-    console.log("click")
+    
   }
+ 
 
   return (
     <main className="sideBar">
