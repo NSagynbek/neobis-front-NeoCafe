@@ -1,10 +1,18 @@
 .add-new-product{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 30px;
     width:600px;
-    height:697px;
+    height:690px;
     border-radius:30px;
-    border: 1px solid black;
+    background: white;
+    overflow-y: scroll;
+    padding-top:20px;
+}
+
+.add-new-product::-webkit-scrollbar{
+    display:none;
 }
 
 .stock-header-section{
@@ -12,8 +20,7 @@
     align-items: center;
     height: 50px;
     width: 100%;
-    border: 1px solid black;
-    padding-left: 25px;
+    padding-left:30px;
     position: relative;
 }
 
@@ -32,7 +39,7 @@
 .stock-content-section{
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    gap: 10px;
 }
 
 .stock-section-title{
@@ -67,7 +74,6 @@
     display: flex;
     flex-direction: column;
     width: 171px;
-    border: 1px solid red;
 }
 
 .stock-measurement-section{
@@ -75,6 +81,8 @@
     width:536px ;
     justify-content:space-between;
     align-items: center;
+    margin-top:10px;
+    margin-bottom: 10px;
 }
 
 
@@ -92,30 +100,6 @@
     padding-left: 15px; 
 }
 
-.stock-category-section-container{
-    display: flex;
-    flex-direction: column;
-}
-
-.stock-category-header{
-    display: flex;
-    align-items: center;
-    width: 253px;
-    height: 66px;
-    border-radius: 10px;
-    background:#EBEFF2;
-    position: relative;
-}
-
-.stock-category-header-active{
-    border: 1px solid #CDD3DD;
-    border-bottom:none;
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
-    border-bottom-left-radius:0px;
-    border-bottom-right-radius:0px;
-}
-
 .stock-category-header p{
     font-size:18px;
     background: #EBEFF2;
@@ -125,54 +109,48 @@
     padding-left:5px; 
 }
 
-.stock-icon-button{
-   position: absolute;
-   right: 0;
-   top: 33px;
+.stock-minLimitDate-container{
+    width: 536px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.stock-category-list{
+
+.stock-input-container{
     display: flex;
     flex-direction: column;
+}
+
+.minLimit-input-field,
+.stock-date-input-field{
     width: 252px;
-    background:#EBEFF2;
-    position: absolute;
-    display: none;
-    overflow: hidden;
-}
-
-.stock-category-list:nth-child(2){
-    border-bottom: none;
-}
-
-.active-stock-category{
-    border: 1px solid #CDD3DD;
-    border-bottom-left-radius:10px;
-    border-bottom-right-radius:10px;
-    display: block;
-}
-
-.stock-category-item{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 66px;
-    padding-left:5px;
-    border-bottom: 1px solid #CDD3DD;
-    background:#EBEFF2;
+    height: 64px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 24px 16px 24px 16px;
+    background: #EBEFF2;
+    font-family: "Poppins",sans-serif;
     font-size:16px;
-    font-family: 'Poppins',sans-serif;
     font-weight:400;
     color:#2A3440;
-    position: relative;
-    cursor: pointer;
 }
 
-.stock-category-item:hover{
-    background:#e1e5ec ;
+.tes{
+    display: flex;
+    align-items: center;
+    width:536px;
 }
 
-.stock-icon-done-button{
-  position: absolute;
-  right:5px;
+.stock-sub-section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tes{
+    padding-top:100px;
+    height:200px;
 }

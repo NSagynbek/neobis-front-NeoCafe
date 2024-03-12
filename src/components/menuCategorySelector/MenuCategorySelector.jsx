@@ -6,7 +6,7 @@ import { useState,useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { selectMenuCategory } from "../../redux/actions&reducers/actions";
 
-function MenuCategorySelector({menuItemCategory}) {
+function MenuCategorySelector({menuItemCategory,setMenuItem}) {
 
     const [category,setCategory] = useState(null);
     const [isClicked,setIsClicked] = useState(false);
@@ -20,9 +20,16 @@ function MenuCategorySelector({menuItemCategory}) {
     
     
     
-    const handleCategory = (category)=>{      
-        setCategory(category)
+    const handleCategory = (categoryName)=>{      
+        setCategory(categoryName)
         setIsClicked(!isClicked);
+        if(setMenuItem){
+          setMenuItem((prev)=>({
+            ...prev,
+            category:{...prev.category,name:categoryName[1]}
+          }))
+        }
+        
     }
 
     const handleToggle = () => {
@@ -39,7 +46,7 @@ function MenuCategorySelector({menuItemCategory}) {
             className={`add-menu-new-item-dropdown-subContainer 
                       ${isClicked ? "transform" : ""}`}>
             <p className="add-menu-new-item-dropdown-title">
-              {category ? category[1] : (menuItemCategory?menuItemCategory:"Выберите категорию")}
+              {category ? category[1] : (menuItemCategory?.name||"Выберите категорию")}
             </p>
             <InputAdornment 
               position="end" 

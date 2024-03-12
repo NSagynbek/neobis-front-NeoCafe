@@ -15,7 +15,7 @@ import {
     modalData: {},
     rerender:0,
     category:"",
-    ingredients:"",
+    ingredients:[],
     isSchedule:false,
   };
   
@@ -62,7 +62,7 @@ import {
       case INGREDIENTS:
         return {
           ...state,
-            ingredients:action.payload,
+            ingredients:[...state.ingredients,action.payload],
         }  
       case EMPLOYEE_CONTENT_TOGGLE:
         return {

@@ -1,57 +1,68 @@
 import "./ingredients.css";
-import { InputAdornment, IconButton } from "@mui/material";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { selectIngredients } from "../../redux";
+import MeasurementSelector from "../measurementSelector/MeasurementSelector";
 
-function Ingredients (){
+function Ingredients ({el,setMenuItem}){
 
     const dispatch = useDispatch();
-    //стейт для контроля сэлектором
-    const [isMeasure,setIsMeasure]=useState(false);
-    // стейты для отправки
-    const [measurement,setMeasurement]=useState(["ml","мл"]);
+    
     const [ingredient,setIngredient] = useState("");
     const [amount,setAmount]=useState(null)
+    const [measurement,setMeasurement]=useState(["ml","мл"]);
 
-    const handleMeasurement = (measure)=>{      
-        setMeasurement(measure)
-        setIsMeasure(!isMeasure);
-    }
+    const [ingredientsCollection, setIngredientsCollection] = useState([]);
+    console.log(ingredientsCollection)
+
+
+
 
     //Получение данных из инпутов
+    const ingredientTitle = (e) => {
+      const updatedTitle = e.target.value;
+      setIngredient(e.target.value);
+       if(setMenuItem){
+         setMenuItem(prev => {
+           // Find the index of the item you want to update
+           const index = prev.ingredients.findIndex(item => item.id === el.id);
+           if (index !== -1) {
+             // If the item exists in the array, update it
+             const updatedIngredients = [...prev.ingredients];
+             updatedIngredients[index] = { ...updatedIngredients[index], name: updatedTitle };
+             return { ...prev, ingredients: updatedIngredients };
+           }
+           // If the item does not exist in the array, return the previous state unchanged
+           return prev;
+         });
 
-    const ingredientTitle = (e)=>{
-      setIngredient(e.target.value)
-    }
+       }
+      
+    };
+    
 
     const ingredientAmount = (e)=>{
-      setAmount(e.target.value)
+      const updatedAmount = e.target.value
+      setAmount(updatedAmount)
+      if(setMenuItem){
+        setMenuItem(prev => {
+          // Find the index of the item you want to update
+          const index = prev.ingredients.findIndex(item => item.id === el.id);
+          if (index !== -1) {
+            // If the item exists in the array, update it
+            const updatedIngredients = [...prev.ingredients];
+            updatedIngredients[index] = { ...updatedIngredients[index], quantity: updatedAmount};
+            return { ...prev, ingredients: updatedIngredients };
+          }
+          // If the item does not exist in the array, return the previous state unchanged
+          return prev;
+        });
+      }
+    
+
     }
 
-    useEffect(() => {
-      if (ingredient !== "" || amount !== null || (measurement && measurement[0])) {
-        const newData = [];
-    
-        if (ingredient !== "") {
-          newData.push(ingredient);
-        }
-    
-        if (amount !== null) {
-          newData.push(amount);
-        }
-    
-        if (measurement && measurement[1]) {
-          newData.push(measurement[1]);
-        }
-    
-        if (newData.length >= 3) {
-          dispatch(selectIngredients(newData));
-        }
-      }
-    }, [ingredient, amount, measurement, dispatch]);
+
     
     
     return (
@@ -67,6 +78,7 @@ function Ingredients (){
               id="menu-ingredient-name" 
               type="text"
               onChange={ingredientTitle}
+              value={el?.name || ingredient}
             />
           </div>
 
@@ -80,60 +92,15 @@ function Ingredients (){
              id="menu-ingredient-amount" 
              type="text" 
              onChange={ingredientAmount}
+             value={el?.quantity || amount}
             />
          </div>
 
-         <div className={`menu-new-ingredients-subContainer 
-           ${isMeasure ? 
-          ("menu-new-ingredients-subContainer-transform") : ("")}`}
-         >
-           <div>
-             <p className="measurement-text">
-               {measurement[1]||measurement[1]}
-             </p>
-           </div>
-
-           <InputAdornment
-             position="end"
-             className="menu-new-ingredients-dropdown-icons"
-             onClick={handleMeasurement} 
-           >
-             <IconButton>
-               {isMeasure ?
-                 (<KeyboardArrowUpIcon style={{ color: "#5B7E9A" }} />):                 
-                 (<KeyboardArrowDownIcon style={{ color: "#5B7E9A" }} />)
-               }
-             </IconButton>
-           </InputAdornment>
-            <ul className={`menu-new-ingredients-list 
-                ${isMeasure ? "" : "toggleMeasurement"}`}
-            >
-              <li  
-                className="menu-new-ingredients-item"
-                onClick={()=>handleMeasurement(["gr","гр"])}
-              >
-                гр
-              </li>
-              <li 
-                className="menu-new-ingredients-item" 
-                onClick={()=>handleMeasurement(["ml","мл"])}
-              >
-                мл
-              </li>
-              <li 
-                  className="menu-new-ingredients-item" 
-                  onClick={()=>handleMeasurement(["l","л"])}
-              >
-                л
-              </li >
-              <li 
-                className="menu-new-ingredients-item"
-                onClick={()=>handleMeasurement(["kg","кг"])}
-              >
-                кг
-              </li>
-            </ul>
-          </div>
+         <MeasurementSelector 
+           el={el} 
+           setMenuItem={setMenuItem}
+           setMeasurement={setMeasurement}
+         />
         </div>
     )
 }

@@ -7,9 +7,10 @@ import { useDispatch } from "react-redux";
 import { selectMenuCategory } from "../../redux/actions&reducers/actions";
 import { getBranches } from "../../api";
 
-function BranchSelector() {
+function BranchSelector({color}) {
 
     const [branch,setBranch] = useState(null);
+    const [backgroundColor,setbackgroundColor]=useState(color)
     const [allBranches,setAllBranches]=useState(null)
     const [isClicked,setIsClicked] = useState(false);
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ function BranchSelector() {
     };
     
     return (
-      <div className="add-menu-new-item-category-subContainer-container branch">
+      <div className={`add-menu-new-item-category-subContainer-container branch ${backgroundColor?"stock":""}`}>
         <div className="add-menu-new-item-dropdown-container">
           <div className={`add-menu-new-item-dropdown-subContainer branchSubcontainer ${isClicked ? "transform branchTransform" : ""}`}>
             <p className="add-menu-new-item-dropdown-title branch-title">

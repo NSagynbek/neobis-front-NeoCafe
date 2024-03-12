@@ -53,13 +53,16 @@ export const addNewMenuItem = async (payload) => {
   return res.data;
 };
 //Запрос для редоктирования меню позиции
-export const editMenuItem = async (id)=>{
-  const response = await instance.patch(`menu/item/${id}/`)
+export const editMenuItem = async (id,payload)=>{
+  const response = await instance.patch(`menu/item/${id}/`,payload,{
+    headers:{
+      'Content-Type': 'multipart/form-data',
+    }
+  })
   return response.data
 }
 
 //Запрос для получение данных одной меню позиции по id
-
 export const getMenuItemDetails = async (id)=>{
   const responce = await instance.get(`menu/item/${id}/`)
   return responce.data

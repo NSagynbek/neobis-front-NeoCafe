@@ -15,6 +15,7 @@ import {openModal} from "../../redux/index";
 import {useDispatch } from "react-redux";
 
 function Header ({selectedMenuItem}){
+
   const[isOpen,setIsOpen]=useState(false);
   const dispatch = useDispatch();
  
@@ -55,17 +56,44 @@ function Header ({selectedMenuItem}){
                   </InputAdornment>  
                 </div>
                 <div className='header-options__btn_container'>
-                  <button
-                  className="header-options__btn_create"
-                  onClick={()=>handleOpenModal("addNewMenuItem","createMenu")}
-                  >
-                    <span>Создать</span>
-                  </button>
+                <button
+                 className="header-options__btn_create"
+                 onClick={() => {
+                   switch (capitalizeFirstLetter(selectedMenuItem)) {
+                     case "Меню":
+                       handleOpenModal("addNewMenuItem", "createMenu");
+                       break;
+                     case "Склад":
+                       handleOpenModal("addNewProduct", "createMenu");
+                       break;
+                     default:
+                     
+                       console.error("Unexpected selectedMenuItem value:", selectedMenuItem);
+                       break;
+                   }
+                 }}
+               >
+                  <span>Создать</span>
+                </button>
+
 
                   <InputAdornment 
                     className='header-options__icon_add' 
                     position="start"
-                    onClick={()=>handleOpenModal("addNewMenuItem","createMenu")}
+                    onClick={() => {
+                      switch (capitalizeFirstLetter(selectedMenuItem)) {
+                        case "Меню":
+                          handleOpenModal("addNewMenuItem", "createMenu");
+                          break;
+                        case "Склад":
+                          handleOpenModal("addNewProduct", "createMenu");
+                          break;
+                        default:
+                        
+                          console.error("Unexpected selectedMenuItem value:", selectedMenuItem);
+                          break;
+                      }
+                    }}
                   >
                       <IconButton>
                         <AddIcon

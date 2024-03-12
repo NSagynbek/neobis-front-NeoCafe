@@ -4,6 +4,7 @@ import {
   DeleteMenuCategory,
   AddNewMenuItem,
   EditMenuItem,
+  AddNewproduct,
 } from "./index";
 
 const modalsMap = {
@@ -12,6 +13,7 @@ const modalsMap = {
     deleteMenuCategory:DeleteMenuCategory,
     addNewMenuItem:AddNewMenuItem,
     edditMenuItem:EditMenuItem,
+    addNewProduct:AddNewproduct,
   };
   
   export default modalsMap;

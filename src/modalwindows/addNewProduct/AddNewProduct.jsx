@@ -1,123 +1,126 @@
 import "./addNewProductStyles.css";
 import { InputAdornment, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import DoneIcon from '@mui/icons-material/Done';
-import { useState, useEffect } from "react";
+import BranchSelector from "../../components/branchSelector/BranchSelector";
+import MeasurementSelector from "../../components/measurementSelector/MeasurementSelector";
+import StockCategorySelector from "../../components/stockCategory/StockCategorySelector";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../redux";
-import BranchSelector from "../../components/branchSelector/BranchSelector";
+import { useState } from "react";
+
 
 function AddNewproduct() {
+  const dispatch = useDispatch();
 
-  const [isActive,setIsActive] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
 
-  const handleClick = ()=>{
-    setIsActive(!isActive);
-  }
+  const handleButtonClick = (section) => {
+    setActiveSection(section === activeSection ? null : section);
+  };
+
+  const isActive = (section) => section === activeSection;
+
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
+
+  
 return(
-    <main className="add-new-product">
-      <div className="stock-header-section">
-        <p className="stock-header-section-title">Новая продукция</p>
-        <InputAdornment position="end" className="stock-icon-close-button">
-          <IconButton>
-            <CloseIcon style={{color:"#2A3440"}}/>
-          </IconButton>
-        </InputAdornment>
-      </div>
+  <main className="add-new-product">
+  <div className="stock-header-section">
+    <p className="stock-header-section-title">Новая продукция</p>
+    <InputAdornment 
+      position="end" 
+      className="stock-icon-close-button"
+      onClick={handleCloseModal}
+    >
+      <IconButton>
+        <CloseIcon style={{ color: "#2A3440" }} />
+      </IconButton>
+    </InputAdornment>
+  </div>
 
-      <div className="stock-content-section">
-        <p className="stock-section-title">Наименование, категория и стоимость</p>
+  <div className="stock-content-section">
+    <p className="stock-section-title">Наименование, категория и стоимость</p>
 
-        <label htmlFor="newStock" className="newStock">
-          Наименование
+    <label htmlFor="newStock" className="newStock">
+      Наименование
+    </label>
+    <input 
+      type="text" 
+      id="newStok"
+      className="stock-title-input-field"
+    />
+
+    <div className="stock-measurement-section">
+      <div className="stock-measurement-container">
+        <label htmlFor="newStock-measurement" className="newStock">
+          Кол-во (в гр, мл, л, кг)
         </label>
         <input 
           type="text" 
-          id="newStok"
-          className="stock-title-input-field"
+          id="newStock-measurement"
+          className="stock-measurement-input-field"
         />
+      </div>
 
-        <div className="stock-measurement-section">
-          <div className="stock-measurement-container">
-            <label htmlFor="newStock-measurement" className="newStock">
-              Кол-во (в гр, мл, л, кг)
-            </label>
-            <input 
-              type="text" 
-              id="newStock-measurement"
-              className="stock-measurement-input-field"
-            />
-          </div>
+      <MeasurementSelector />
+      <StockCategorySelector />
+    </div>
 
-          <div className="stock-category-section-container">
-            <label htmlFor="" className="newStock">
-              Категория
-            </label>
-            <div className="stock-category-selector">
-              <div className={`stock-category-header ${isActive?"stock-category-header-active":""}`}>
-                <p>Выберите категорию</p>
-                <InputAdornment 
-                  position="end" 
-                  className="stock-icon-button"
-                  onClick={handleClick}
-                >
-                  <IconButton>
-                    {isActive?(<KeyboardArrowUpIcon style={{color:"#2A3440"}}/>):(
-                       <KeyboardArrowDownIcon style={{color:"#2A3440"}}/>
-                    )}                   
-                  </IconButton>
-                </InputAdornment>
-              </div>
-
-              <ul className={`stock-category-list ${isActive?"active-stock-category":""}`}>
-                <li className="stock-category-item">
-                  Готовая продукция
-                  <InputAdornment position="end" className="stock-icon-done-button">
-                    <IconButton>
-                      <DoneIcon style={{color:"#2A3440"}}/>
-                    </IconButton>
-                  </InputAdornment>
-                </li>
-                <li className="stock-category-item">
-                  Сырье
-                  <InputAdornment position="end" className="stock-icon-done-button">
-                    <IconButton>
-                      <DoneIcon style={{color:"#2A3440"}}/>
-                    </IconButton>
-                  </InputAdornment>
-                </li>
-              </ul>
-            </div>
-          </div>
+    <div className="stock-sub-section">
+      <div className="stock-minLimitDate-container">
+        <div className="stock-input-container">
+          <label htmlFor="minLimit" className="newStock">
+            Минимальный лимит
+          </label>
+          <input 
+            type="text" 
+            id="minLimit"
+            className="minLimit-input-field"
+          />
         </div>
-
-        <div className="stock-sub-section">
-          <div className="stock-input-container">
-            <label htmlFor="minLimit" className="input-label">
-              Минимальный лимит
-            </label>
-            <input 
-              type="text" 
-              id="minLimit"
-              className="minLimit-input-field"
-            />
-          </div>
-          <div className="stock-input-container">
-            <label htmlFor="incomeDate" className="input-label">
-              Дата прихода
-            </label>
-            <input 
-              type="text" 
-              id="incomeDate"
-              className="stock-date-input-field"
-            />
-          </div>
-          <BranchSelector />
+        <div className="stock-input-container">
+          <label htmlFor="incomeDate" className="newStock">
+            Дата прихода
+          </label>
+          <input 
+            type="text" 
+            id="incomeDate"
+            className="stock-date-input-field"
+          />
         </div>
       </div>
-    </main>
+      <BranchSelector color={"#EBEFF2"} />
+
+      <div className="tes">
+        <div className="menu-add-new-item-btns-container">
+          <button
+            className={`new-menu-category-modal__cancel-button 
+            ${isActive("cancel") ? "menu-category-btn-active" : ""}`}
+            onClick={() => { 
+              handleButtonClick("cancel")
+              submitData()
+            }}
+          >
+            Сохранить
+          </button>
+          <button
+            className={`new-menu-category-modal__add-button 
+            ${isActive("add") ? "menu-category-btn-active" : ""}`}
+            onClick={() => {
+              handleButtonClick("add");
+              handleCloseModal();
+            }}
+          >
+            Отмена
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
   )
 }
 

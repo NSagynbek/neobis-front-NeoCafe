@@ -29,7 +29,6 @@ function AddNewMenuItemContent(){
   const [formData,setFormData]=useState(null)
 
 
-
   const dispatch = useDispatch();
 
   const handleButtonClick = (section) => {
@@ -85,6 +84,8 @@ function AddNewMenuItemContent(){
   }
 
   const ingredients = useSelector((state)=>state.ingredients)
+
+ console.log("**************",ingredients)
  
 // Отправка Данных
 useEffect(() => {
@@ -95,19 +96,25 @@ useEffect(() => {
   data.append('item_image', files);
   data.append('price_per_unit', parseInt(itemPrice));
   data.append('category',category);
-
   
-  const ingredientsData = {
-    name: ingredients[0],
-    quantity: parseInt(ingredients[1]),
-    measurement_unit: ingredients[2]
-  };
-  data.append('ingredients', JSON.stringify([ingredientsData]));
+  data.append(`ingredients[${0}]name`,ingredients[0]);
+  data.append(`ingredients[${0}]quantity`, parseInt(ingredients[1]));
+  data.append(`ingredients[${0}]measurement_unit`, ingredients[2]);
+ 
 
  
   setFormData(data);
+  data.forEach(function(value, key) {
+    console.log(key + ': ' + value);
+});
 
-}, [menuTitle, itemDescription, files, itemPrice, category, ingredients]);
+}, [menuTitle, 
+    itemDescription, 
+    files, 
+    itemPrice, 
+    category, 
+    ingredients
+  ]);
 
 
  //Запрос на добовление новой пазиции меню

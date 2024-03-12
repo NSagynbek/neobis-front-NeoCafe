@@ -1,5 +1,14 @@
 .branch{
-    width:255px;
+    width:250px;
+}
+
+
+
+.stock{
+    background: #EBEFF2;
+    border-radius:10px;
+    position: relative;
+
 }
 
 .branchSubcontainer{
@@ -11,8 +20,8 @@
 
 .branchTransform{
     background: #EBEFF2;
-    border: none;
     padding-left:25px;
+    border: none;
 }
 
 .branch-title{
@@ -24,9 +33,10 @@
 
 .branch-list{
     min-height:200px;
-    max-height: 250px;
+    max-height:100px;
     overflow-y: scroll;
     z-index: 2;
+    position: absolute;
     border: none;
 }
 
@@ -39,3 +49,4 @@
     padding-left:25px;
     border: none;
 }
+
