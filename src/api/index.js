@@ -74,6 +74,12 @@ export const getStock = async (page)=>{
   return res.data
 }
 
+export const addStock = async (newStock)=>{
+
+  const responce = await instance.post("stock/items/add/",newStock,)
+  return responce.data
+}
+
 // Запросы по разделу филиалы
 export const getBranches = async ()=>{
   const res = await instance.get("branch/all/")

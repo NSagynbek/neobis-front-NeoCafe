@@ -138,10 +138,11 @@
     color:#2A3440;
 }
 
-.tes{
+.stock-btns-container{
     display: flex;
     align-items: center;
     width:536px;
+    height:200px;
 }
 
 .stock-sub-section{
@@ -150,7 +151,3 @@
     gap: 10px;
 }
 
-.tes{
-    padding-top:100px;
-    height:200px;
-}

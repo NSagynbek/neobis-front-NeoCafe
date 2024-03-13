@@ -5,13 +5,26 @@ import BranchSelector from "../../components/branchSelector/BranchSelector";
 import MeasurementSelector from "../../components/measurementSelector/MeasurementSelector";
 import StockCategorySelector from "../../components/stockCategory/StockCategorySelector";
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../redux";
+import { closeModal,refreshStockItems } from "../../redux";
 import { useState } from "react";
-
+import { addStock } from "../../api";
+import { toast } from 'react-toastify';
 
 function AddNewproduct() {
+
   const dispatch = useDispatch();
 
+  const [stockItems,setStockItems] = useState({
+    stock_item:"",
+    current_quantity:null,
+    measurement_unit:"",
+    type:"",
+    minimum_limit:"",
+    branch:"",
+    date:""
+  })
+
+  console.log(stockItems)
   const [activeSection, setActiveSection] = useState(null);
 
   const handleButtonClick = (section) => {
@@ -24,6 +37,44 @@ function AddNewproduct() {
     dispatch(closeModal());
   };
 
+
+
+  const handleChange = (e) => {
+    setStockItems((prev) => {
+      const updatedStockItems = { ...prev }; // Make a copy of the previous state
+  
+      // Check if the target name is "current_quantity" or "minimum_limit"
+      if (e.target.name === "current_quantity" || e.target.name === "minimum_limit") {
+        // Parse the value to an integer before setting it
+        updatedStockItems[e.target.name] = parseInt(e.target.value);
+      } else {
+        // For other fields, simply set the value as it is
+        updatedStockItems[e.target.name] = e.target.value;
+      }
+  
+      return updatedStockItems; // Return the updated state
+    });
+  };
+  
+
+
+
+  const addNewStock = async ()=>{
+    
+    
+    try{
+      const response = await addStock(stockItems)
+      showToast(`Добавили новое сырье ${response.stock_item}`);
+      dispatch(closeModal());
+      dispatch(refreshStockItems());
+    }catch(error){
+      console.log(error)
+    } 
+  }
+
+  const showToast = (msg) => {
+    toast.success(msg);
+  };
   
 return(
   <main className="add-new-product">
@@ -50,6 +101,8 @@ return(
       type="text" 
       id="newStok"
       className="stock-title-input-field"
+      onChange={(e)=>handleChange(e)}
+      name="stock_item"
     />
 
     <div className="stock-measurement-section">
@@ -61,11 +114,13 @@ return(
           type="text" 
           id="newStock-measurement"
           className="stock-measurement-input-field"
+          onChange={(e)=>handleChange(e)}
+          name="current_quantity"
         />
       </div>
 
-      <MeasurementSelector />
-      <StockCategorySelector />
+      <MeasurementSelector setStockItems={setStockItems} />
+      <StockCategorySelector setStockItems={setStockItems} />
     </div>
 
     <div className="stock-sub-section">
@@ -78,6 +133,8 @@ return(
             type="text" 
             id="minLimit"
             className="minLimit-input-field"
+            onChange={(e)=>handleChange(e)}
+            name="minimum_limit"
           />
         </div>
         <div className="stock-input-container">
@@ -88,19 +145,24 @@ return(
             type="text" 
             id="incomeDate"
             className="stock-date-input-field"
+            onChange={(e)=>handleChange(e)}
+            name="date"
           />
         </div>
       </div>
-      <BranchSelector color={"#EBEFF2"} />
+      <BranchSelector 
+        color={"#EBEFF2"} 
+        setStockItems={setStockItems} 
+      />
 
-      <div className="tes">
+      <div className="stock-btns-container">
         <div className="menu-add-new-item-btns-container">
           <button
             className={`new-menu-category-modal__cancel-button 
             ${isActive("cancel") ? "menu-category-btn-active" : ""}`}
             onClick={() => { 
               handleButtonClick("cancel")
-              submitData()
+              addNewStock()
             }}
           >
             Сохранить

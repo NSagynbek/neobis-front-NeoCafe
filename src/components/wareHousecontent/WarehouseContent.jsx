@@ -8,8 +8,11 @@ import { getStock } from "../../api";
 import { useState,useEffect } from "react";
 import { Bars } from 'react-loader-spinner'
 import BranchSelector from "../branchSelector/BranchSelector";
+import { useSelector } from "react-redux";
 
 function WareHouseContent (){
+
+  const refreshStock = useSelector((state)=>state.refreshStock);
 
     const[allStock,setAllStock]=useState(null)
     const [loading, setLoading] = useState(true);
@@ -29,7 +32,7 @@ function WareHouseContent (){
             
         }
         stock()
-    },[page])
+    },[page,refreshStock])
 
     const pageControll = (event,p)=>{
         setPage(p)

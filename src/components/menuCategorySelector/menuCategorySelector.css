@@ -43,6 +43,11 @@
     position:absolute;
     transition: ease-in-out 0.25s;
     display: none;
+    overflow-y: scroll;
+}
+
+.add-menu-new-item-dropdown-categries::-webkit-scrollbar{
+    width: 0;
 }
 
 .add-menu-new-item-dropdown-toggle{

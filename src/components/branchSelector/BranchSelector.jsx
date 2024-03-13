@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { selectMenuCategory } from "../../redux/actions&reducers/actions";
 import { getBranches } from "../../api";
 
-function BranchSelector({color}) {
+function BranchSelector({color,setStockItems}) {
 
     const [branch,setBranch] = useState(null);
     const [backgroundColor,setbackgroundColor]=useState(color)
@@ -35,8 +35,9 @@ function BranchSelector({color}) {
     
     
     
-    const handleCategory = (branch)=>{      
+    const handleCategory = (branch,id)=>{      
         setBranch(branch)
+        if(setStockItems){setStockItems((prev)=>({...prev,["branch"]:id}))}
         setIsClicked(!isClicked);
     }
 
@@ -45,13 +46,27 @@ function BranchSelector({color}) {
     };
     
     return (
-      <div className={`add-menu-new-item-category-subContainer-container branch ${backgroundColor?"stock":""}`}>
+      <div 
+        className={
+          `add-menu-new-item-category-subContainer-container branch 
+          ${backgroundColor?"stock":""}`
+        }
+      >
         <div className="add-menu-new-item-dropdown-container">
-          <div className={`add-menu-new-item-dropdown-subContainer branchSubcontainer ${isClicked ? "transform branchTransform" : ""}`}>
+          <div 
+            className={
+              `add-menu-new-item-dropdown-subContainer branchSubcontainer 
+              ${isClicked ? "transform branchTransform" : ""}`
+            }
+          >
             <p className="add-menu-new-item-dropdown-title branch-title">
               {branch ? branch : "Филиал"}
             </p>
-            <InputAdornment position="end" className="add-menu-new-item-dropdown-icons" onClick={handleToggle}>
+            <InputAdornment 
+              position="end" 
+              className="add-menu-new-item-dropdown-icons" 
+              onClick={handleToggle}
+            >
               <IconButton>
                 {isClicked ? (
                   <KeyboardArrowUpIcon style={{ color: "#5B7E9A" }} />
@@ -61,10 +76,19 @@ function BranchSelector({color}) {
               </IconButton>
             </InputAdornment>
           </div>
-          <ul className={`add-menu-new-item-dropdown-categries branch-list ${isClicked ? "add-menu-new-item-dropdown-toggle" : ""}`}>
+          <ul 
+            className={
+              `add-menu-new-item-dropdown-categries branch-list 
+              ${isClicked ? "add-menu-new-item-dropdown-toggle" : ""}`
+            }
+          >
             {allBranches && allBranches.length > 0 ? (
               allBranches.map((item, index) => (
-                <li key={index} className="add-menu-new-item-dropdown-item branch-item" onClick={() => handleCategory(item.branch_name)}>
+                <li 
+                  key={index} 
+                  className="add-menu-new-item-dropdown-item branch-item" 
+                  onClick={() => handleCategory(item.branch_name,item.id)}
+                >
                   {item.branch_name}
                 </li>
               ))

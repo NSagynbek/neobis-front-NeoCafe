@@ -7,6 +7,8 @@ import {
     MENU_CATEGORY_SELECT,
     INGREDIENTS,
     EMPLOYEE_CONTENT_TOGGLE,
+    INGREDIENTS_REFRESH,
+    REFRESH_STOCK_ITEMS,
   } from "./actionTypes"
 
 export const loginSuccess = (jwt) => {
@@ -36,6 +38,10 @@ export const updateMenuCategory = ()=>({
   type:MENU_CATEGORY_REFRESH,
 })
 
+export const refreshStockItems = ()=>({
+  type:REFRESH_STOCK_ITEMS,
+})
+
 export const selectMenuCategory = (category)=>({
   type:MENU_CATEGORY_SELECT,
   payload:category,
@@ -48,4 +54,8 @@ export const selectIngredients = (ingredient)=>({
 
 export const employeeContentToggle = ()=>({
   type:EMPLOYEE_CONTENT_TOGGLE,
+})
+
+export const ingredientsRefresh = ()=>({
+  type:INGREDIENTS_REFRESH,
 })

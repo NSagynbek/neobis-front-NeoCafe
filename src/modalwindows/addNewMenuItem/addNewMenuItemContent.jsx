@@ -10,7 +10,8 @@ import Ingredients from "../../components/ingredients/Ingredients";
 import MenuCategorySelector from "../../components/menuCategorySelector/MenuCategorySelector";
 import { addNewMenuItem } from "../../api";
 import { toast } from 'react-toastify';
-import { updateMenuCategory } from "../../redux";
+import { updateMenuCategory,ingredientsRefresh} from "../../redux";
+
 
 
 function AddNewMenuItemContent(){
@@ -77,7 +78,7 @@ function AddNewMenuItemContent(){
   }
 
   const category = useSelector((state)=>state.category)
-  console.log(category)
+  
   
   const menuPrice = (e)=>{
     setItemPrice(e.target.value)
@@ -85,7 +86,7 @@ function AddNewMenuItemContent(){
 
   const ingredients = useSelector((state)=>state.ingredients)
 
- console.log("**************",ingredients)
+
  
 // Отправка Данных
 useEffect(() => {
@@ -96,17 +97,17 @@ useEffect(() => {
   data.append('item_image', files);
   data.append('price_per_unit', parseInt(itemPrice));
   data.append('category',category);
-  
-  data.append(`ingredients[${0}]name`,ingredients[0]);
-  data.append(`ingredients[${0}]quantity`, parseInt(ingredients[1]));
-  data.append(`ingredients[${0}]measurement_unit`, ingredients[2]);
- 
 
- 
+  for (let i = 0; i < ingredients.length; i++) {
+    const currentIngredient = ingredients[i];
+    data.append(`ingredients[${i}]name`, currentIngredient.name);
+    data.append(`ingredients[${i}]quantity`, parseInt(currentIngredient.amount));
+    data.append(`ingredients[${i}]measurement_unit`, currentIngredient.measurement);
+  }
+  
+
   setFormData(data);
-  data.forEach(function(value, key) {
-    console.log(key + ': ' + value);
-});
+
 
 }, [menuTitle, 
     itemDescription, 
@@ -125,6 +126,7 @@ const submitData = async ()=>{
     showToast(`Добавили новую позицию ${response.name}`);
     dispatch(updateMenuCategory())
     dispatch(closeModal());
+    dispatch(ingredientsRefresh());
   }catch(error){
     console.log(error)
   }

@@ -12,8 +12,15 @@ function Ingredients ({el,setMenuItem}){
     const [amount,setAmount]=useState(null)
     const [measurement,setMeasurement]=useState(["ml","мл"]);
 
-    const [ingredientsCollection, setIngredientsCollection] = useState([]);
-    console.log(ingredientsCollection)
+    useEffect(() => {
+      if (ingredient && amount) {
+        dispatch(selectIngredients({ name: ingredient, amount, measurement: measurement[1] }));
+      }
+    }, [measurement, dispatch]);
+    
+
+   
+   
 
 
 

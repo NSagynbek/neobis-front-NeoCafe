@@ -5,7 +5,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useState } from "react";
 
 function MeasurementSelector (
-  {el,setMenuItem,setMeasurement}
+  {el,setMenuItem,setMeasurement,setStockItems}
   ){
 
 
@@ -13,9 +13,11 @@ function MeasurementSelector (
     const [measureUnit,setMeasureUnit]=useState(["ml","мл"]);
     
     const handleMeasurement = (measure)=>{      
+      
         setMeasureUnit(measure);
         setIsMeasure(!isMeasure);
         if(setMeasurement){setMeasurement(measure)};
+        if(setStockItems){setStockItems((prev)=>({...prev,["measurement_unit"]:measure[1]}))};
 
         if(setMenuItem){
           setMenuItem(prev => {
@@ -70,24 +72,28 @@ function MeasurementSelector (
               <li  
                 className="menu-new-ingredients-item"
                 onClick={()=>handleMeasurement(["gr","гр"])}
+                name="measurement_unit"
               >
                 гр
               </li>
               <li 
                 className="menu-new-ingredients-item" 
                 onClick={()=>handleMeasurement(["ml","мл"])}
+                name="measurement_unit"
               >
                 мл
               </li>
               <li 
                   className="menu-new-ingredients-item" 
                   onClick={()=>handleMeasurement(["l","л"])}
+                  name="measurement_unit"
               >
                 л
               </li >
               <li 
                 className="menu-new-ingredients-item"
                 onClick={()=>handleMeasurement(["kg","кг"])}
+                name="measurement_unit"
               >
                 кг
               </li>

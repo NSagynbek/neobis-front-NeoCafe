@@ -5,7 +5,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import DoneIcon from '@mui/icons-material/Done';
 import { useState} from "react";
 
-function StockCategorySelector (){
+function StockCategorySelector ({setStockItems}){
 
     const [isActive,setIsActive] = useState(false);
     const [selection,setSelection]=useState("");
@@ -19,6 +19,7 @@ function StockCategorySelector (){
 
     const handleSelection=(productType,section)=>{
       setSelection(productType);
+      if(setStockItems){setStockItems((prev)=>({...prev,["type"]:productType==="Готовая продукция"?"Готовое":productType}))}
       setActiveSection(section === activeSection ? null : section);
     }
 

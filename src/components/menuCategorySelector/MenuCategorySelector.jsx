@@ -5,18 +5,34 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useState,useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { selectMenuCategory } from "../../redux/actions&reducers/actions";
+import { getMenuCategories } from "../../api";
 
 function MenuCategorySelector({menuItemCategory,setMenuItem}) {
 
     const [category,setCategory] = useState(null);
     const [isClicked,setIsClicked] = useState(false);
+    const [menuCategories,setMenuCategories]=useState([]);
+
+  
     const dispatch = useDispatch();
 
     useEffect(()=>{
       if (category !== null) {
-        dispatch(selectMenuCategory(category[1]));
+        dispatch(selectMenuCategory(category));
       }
     }, [category]);
+
+    useEffect(()=>{
+      const menuCategory = async ()=>{
+        try{
+          const res = await getMenuCategories()
+          setMenuCategories(res)      
+        }catch(error){
+          console.log(error)
+        }
+      }
+      menuCategory()
+    },[])
     
     
     
@@ -26,7 +42,7 @@ function MenuCategorySelector({menuItemCategory,setMenuItem}) {
         if(setMenuItem){
           setMenuItem((prev)=>({
             ...prev,
-            category:{...prev.category,name:categoryName[1]}
+            category:{...prev.category,name:categoryName}
           }))
         }
         
@@ -46,7 +62,7 @@ function MenuCategorySelector({menuItemCategory,setMenuItem}) {
             className={`add-menu-new-item-dropdown-subContainer 
                       ${isClicked ? "transform" : ""}`}>
             <p className="add-menu-new-item-dropdown-title">
-              {category ? category[1] : (menuItemCategory?.name||"Выберите категорию")}
+              {category ? category : (menuItemCategory?.name||"Выберите категорию")}
             </p>
             <InputAdornment 
               position="end" 
@@ -64,32 +80,21 @@ function MenuCategorySelector({menuItemCategory,setMenuItem}) {
           <ul 
             className=
               {`add-menu-new-item-dropdown-categries 
-              ${isClicked ? "add-menu-new-item-dropdown-toggle" : ""}`}>
-            <li 
-              className="add-menu-new-item-dropdown-item" 
-              onClick={() => handleCategory(["coffee", "Кофе"])}>
-              Кофе
-            </li>
-            <li 
-              className="add-menu-new-item-dropdown-item" 
-              onClick={() => handleCategory(["desserts", "Десерты"])}>
-              Десерты
-            </li>
-            <li 
-              className="add-menu-new-item-dropdown-item" 
-              onClick={() => handleCategory(["bakery", "Выпечка"])}>
-              Выпечка
-            </li>
-            <li 
-              className="add-menu-new-item-dropdown-item" 
-              onClick={() => handleCategory(["coktail", "Коктейли"])}>
-              Коктейли
-            </li>
-            <li 
-              className="add-menu-new-item-dropdown-item" 
-              onClick={() => handleCategory(["tea", "Чай"])}>
-              Чай
-            </li>
+              ${isClicked ? "add-menu-new-item-dropdown-toggle" : ""}`}
+          >
+            {menuCategories && menuCategories.length > 0 ? (
+            menuCategories.map((category, index) => (
+              <li 
+                className="add-menu-new-item-dropdown-item" key={index}
+                onClick={()=>handleCategory(category.name)}
+              >
+                {category.name}     
+              </li>
+            ))
+            ) : (
+              <></> 
+            )}
+           
           </ul>
         </div>
       </div>
