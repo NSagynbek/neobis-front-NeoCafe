@@ -13,7 +13,7 @@ function BranchesContent() {
   const [loading, setLoading] = useState(true);
   const [activeRowIndex, setActiveRowIndex] = useState(null);
   const [page, setPage] = useState(1);
-
+console.log(allBranches)
   useEffect(() => {
     const branch = async () => {
       try {
@@ -35,43 +35,35 @@ function BranchesContent() {
     setActiveRowIndex(activeRowIndex === index ? null : index);
   };
 
+
+  
   const formatSchedule = (schedules) => {
-    let currentStartTime = null;
-    let currentEndTime = null;
-    let currentDay = null;
-    let groupedSchedule = [];
-
-    schedules.forEach((schedule, index) => {
-      if (
-        schedule.start_time !== currentStartTime ||
-        schedule.end_time !== currentEndTime
-      ) {
-        if (currentDay !== null) {
-          groupedSchedule.push({
-            days: currentDay,
-            start_time: currentStartTime,
-            end_time: currentEndTime,
-          });
-        }
-        currentDay = schedule.day;
-        currentStartTime = schedule.start_time;
-        currentEndTime = schedule.end_time;
-      } else {
-        currentDay += `-${schedule.day}`;
-      }
-
-      if (index === schedules.length - 1) {
-        groupedSchedule.push({
-          days: currentDay,
-          start_time: currentStartTime,
-          end_time: currentEndTime,
-        });
-      }
+    let weekdays = '';
+    let weekend = '';
+    
+    schedules.forEach((schedule) => {
+      const startTime = schedule.start_time.substring(0, 5);
+      const endTime = schedule.end_time.substring(0, 5);
+      if (schedule.day === 'Пн') weekdays = 'Пн';
+      if (schedule.day === 'Пт') weekdays += '-Чт';
+      if (schedule.day === 'Сб') weekend = 'Сб';
+      if (schedule.day === 'Вс') weekend = 'Сб-Вс';
     });
-
-    return groupedSchedule;
+  
+    return [
+      {
+        days: weekdays,
+        start_time: '08:00',
+        end_time: '20:00',
+      },
+      {
+        days: weekend,
+        start_time: '10:00',
+        end_time: '20:00',
+      },
+    ];
   };
-
+  
   return (
     <div className="menu-table-container">
       <div className="menu-table-subContainer">
@@ -102,11 +94,11 @@ function BranchesContent() {
                     <td className="branch-table-address">{item.address}</td>
                     <td className="branch-table-schedule">
                       {formatSchedule(item.schedules).map((schedule, index) => (
-                        <td key={index}>
+                        <span key={index}>
                           {schedule.days}&nbsp;
                           с {schedule.start_time}&nbsp;
-                          до {schedule.end_time}
-                        </td>
+                          до {schedule.end_time}&nbsp;&nbsp;
+                        </span>
                       ))}
                       <InputAdornment
                         position="end"
