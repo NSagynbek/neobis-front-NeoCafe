@@ -67,23 +67,26 @@ function Employees() {
                             <tr>
                                 <th className="employee-name">Имя</th>
                                 <th>Должность</th>
-                                <th>Логин</th>
-                                <th>Пароль</th>
-                                <th className="employees-branch"><BranchSelector/></th>
+                                {/* <th>Логин</th>
+                                <th>Пароль</th> */}
+
                                 <th className="employees-email">
-                                    <button
-                                        className={`employee-email-btn ${isActive("email") ? "activeBtn" : ""}`}
-                                        onClick={() => handleButtonClick("email")}
-                                    >
-                                        Эл почта
-                                    </button>
-                                    <button
-                                        className={`employee-schedule-btn ${isActive("schedule") ? "activeBtn" : ""}`}
-                                        onClick={() => handleButtonClick("schedule")}
-                                    >
-                                        График работы
-                                    </button>
+                                  <button
+                                    className={`employee-email-btn ${isActive("email") ? "activeBtn" : ""} ${isSchedule?"":"activeBtn"}`}
+                                    onClick={() => handleButtonClick("email")}
+                                  >
+                                    Логин
+                                  </button>
+
+                                  <button
+                                    className={`employee-schedule-btn ${isActive("schedule") ? "activeBtn" : ""}`}
+                                    onClick={() => handleButtonClick("schedule")}
+                                  >
+                                    Пароль
+                                  </button>
                                 </th>
+                                <th className="employees-branch"><BranchSelector/></th>
+                                <th className="employees-email">График работы</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,20 +95,24 @@ function Employees() {
                                     <tr key={index}>
                                         <td className="employee-name"><p>{item.first_name}</p></td>
                                         <td>{item.user_type}</td>
-                                        <td>{item.username}</td>
-                                        <td><p>{item.password}</p></td>
+                                        <td>
+                                          {isSchedule ? (
+                                            item.password 
+                                           ) : (                  
+                                            item.username 
+                                          )}
+                                        </td>
+
                                         <td><p>Project Management</p></td>
                                         <td>
-                                            {isSchedule ? (
+                                            {
                                                 item.employee_schedules.map((schedule, scheduleIndex) => (
                                                     <td colspan={6} className="employee-schedule" key={scheduleIndex}>
                                                         {schedule.day},&nbsp;
                                                     </td>
                                                 ))
 
-                                            ) : (
-                                                item.email
-                                            )}
+                                            }
                                         </td>
                                         <td className="employee-schedule-table-data">
                                             <InputAdornment
