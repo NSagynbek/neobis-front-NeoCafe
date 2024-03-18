@@ -6,7 +6,7 @@ import { editDeleteIconsStyles } from "../../utils";
 import {openModal} from "../../redux/index";
 import {useDispatch } from "react-redux";
 
-function MenuEditDelete ({id,name}){
+function MenuEditDelete ({id,name,section}){
 
   const dispatch = useDispatch();
 
@@ -42,10 +42,16 @@ function MenuEditDelete ({id,name}){
                </InputAdornment>
                <button 
                  className="menu-delete__btn"
-                 onClick={()=>handleOpenModal("deleteMenuCategory","deleteMenu",{id:id,name:name,deleteType:"menu"})}
-               >
-                Удалить
-               </button>
+                 onClick={() => {
+                     if (section === "menu") {
+                         handleOpenModal("deleteMenuCategory", "deleteMenu", { id: id, name: name, deleteType: "menu" });
+                     } else if (section === "stock") {
+                         handleOpenModal("deleteMenuCategory", "deleteStock", { id: id, name: name, deleteType: "stock" });
+                     } 
+                 }}
+                >
+                    Удалить
+                </button>
             </div>
         </div>
     )

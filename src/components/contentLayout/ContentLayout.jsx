@@ -86,7 +86,13 @@ console.log(rerender)
                         <MoreVertIcon style={{color:"#5B7E9A"}}/>
                       </IconButton>
                     </InputAdornment>
-                    {activeRowIndex === index && <MenuEditDelete id={item.id} name={item.name} />}
+                    {activeRowIndex === index && 
+                    <MenuEditDelete 
+                      id={item.id} 
+                      name={item.name} 
+                      section={"menu"} 
+                    />
+                    }
                   </td>
                 </tr>
               ))}

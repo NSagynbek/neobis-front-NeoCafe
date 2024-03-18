@@ -8,9 +8,7 @@ const instance = axios.create({
     },
   });
 
-
-
-
+  
 export const login = async (data)=>{
     const res = await instance.post("cafe/admin/login/",data)
     return res
@@ -78,6 +76,11 @@ export const addStock = async (newStock)=>{
 
   const responce = await instance.post("stock/items/add/",newStock,)
   return responce.data
+}
+
+export const deleteStock = async (id)=>{
+  const response = await instance.delete(`stock/items/${id}/`)
+  return response.data
 }
 
 // Запросы по разделу филиалы

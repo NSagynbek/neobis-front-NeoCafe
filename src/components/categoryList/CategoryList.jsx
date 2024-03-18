@@ -48,7 +48,11 @@ function CategoryList (){
                   position="end" 
                   id="menu__item_icon"
                   onClick={() => 
-                    handleOpenModal("deleteMenuCategory", "deleteCategory",{name:category.name,id:category.id,deleteType:"category"})}
+                    handleOpenModal(
+                      "deleteMenuCategory", 
+                      "deleteCategory",
+                      {name:category.name,id:category.id,deleteType:"category"}
+                    )}
                 >
                   <IconButton>
                     <DeleteOutlineIcon style={{ color: "#F45656" }} />

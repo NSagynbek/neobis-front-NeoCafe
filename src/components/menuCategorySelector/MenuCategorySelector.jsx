@@ -12,13 +12,14 @@ function MenuCategorySelector({menuItemCategory,setMenuItem}) {
     const [category,setCategory] = useState(null);
     const [isClicked,setIsClicked] = useState(false);
     const [menuCategories,setMenuCategories]=useState([]);
-
+    
+   
   
     const dispatch = useDispatch();
 
     useEffect(()=>{
       if (category !== null) {
-        dispatch(selectMenuCategory(category));
+        dispatch(selectMenuCategory(category.id));
       }
     }, [category]);
 
@@ -36,8 +37,8 @@ function MenuCategorySelector({menuItemCategory,setMenuItem}) {
     
     
     
-    const handleCategory = (categoryName)=>{      
-        setCategory(categoryName)
+    const handleCategory = (categoryDetails)=>{      
+        setCategory(categoryDetails)
         setIsClicked(!isClicked);
         if(setMenuItem){
           setMenuItem((prev)=>({
@@ -62,7 +63,7 @@ function MenuCategorySelector({menuItemCategory,setMenuItem}) {
             className={`add-menu-new-item-dropdown-subContainer 
                       ${isClicked ? "transform" : ""}`}>
             <p className="add-menu-new-item-dropdown-title">
-              {category ? category : (menuItemCategory?.name||"Выберите категорию")}
+              {category ? category.name : (menuItemCategory?.name||"Выберите категорию")}
             </p>
             <InputAdornment 
               position="end" 
@@ -86,7 +87,7 @@ function MenuCategorySelector({menuItemCategory,setMenuItem}) {
             menuCategories.map((category, index) => (
               <li 
                 className="add-menu-new-item-dropdown-item" key={index}
-                onClick={()=>handleCategory(category.name)}
+                onClick={()=>handleCategory(category)}
               >
                 {category.name}     
               </li>

@@ -103,7 +103,13 @@ function WareHouseContent (){
                     <MoreVertIcon style={{color:"#5B7E9A"}}/>
                   </IconButton>
                 </InputAdornment>
-                {activeRowIndex === index && <MenuEditDelete />}
+                {activeRowIndex === index && 
+                <MenuEditDelete 
+                  id={item.id} 
+                  name={item.stock_item} 
+                  section={"stock"} 
+                />
+                }
               </td>
             </tr>
           ))}

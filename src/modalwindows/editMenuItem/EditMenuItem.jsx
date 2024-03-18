@@ -3,14 +3,16 @@ import { InputAdornment, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../redux";
 import { cloudUpload } from "../../assets/index";
 import { useSelector} from "react-redux";
 import Ingredients from "../../components/ingredients/Ingredients";
 import MenuCategorySelector from "../../components/menuCategorySelector/MenuCategorySelector";
 import {editMenuItem,getMenuItemDetails} from "../../api";
 import { toast } from 'react-toastify';
-import { updateMenuCategory } from "../../redux";
+import { 
+  updateMenuCategory,
+  ingredientsRefresh,
+  closeModal  } from "../../redux";
 
 
 function EditMenuItem(){
@@ -119,7 +121,7 @@ function EditMenuItem(){
   }
 
   const ingredients = useSelector((state)=>state.ingredients)
- 
+ console.log(ingredients)
 // Отправка Данных
 useEffect(() => {
   const data = new FormData();
@@ -131,12 +133,12 @@ useEffect(() => {
   data.append('category',category);
 
   
-  const ingredientsData = {
-    name: ingredients[0],
-    quantity: parseInt(ingredients[1]),
-    measurement_unit: ingredients[2]
-  };
-  data.append('ingredients', JSON.stringify([ingredientsData]));
+ for(let i =0; i<ingredients.length; i++){
+  const currentIngredient = ingredients[i]
+  data.append(`ingredients[${i}]name`, currentIngredient.name);
+  data.append(`ingredients[${i}]quantity`, parseInt(currentIngredient.amount));
+  data.append(`ingredients[${i}]measurement_unit`, currentIngredient.measurement);
+ }
 
  
   setFormData(data);
@@ -152,9 +154,10 @@ const submitData = async ()=>{
  
   try{
     const response = await editMenuItem(menuItem.id,formData)
-    showToast(`Добавили новую позицию ${response.name}`);
+    showToast(`Обновили позицию ${response.name}`);
     dispatch(updateMenuCategory())
     dispatch(closeModal());
+    dispatch(ingredientsRefresh());
   }catch(error){
     console.log(error)
   }

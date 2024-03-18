@@ -3,11 +3,17 @@ import { InputAdornment, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../redux";
 import { useSelector } from "react-redux";
-import { deleteMenuCategory, deleteMenuItem } from "../../api";
+import { 
+  deleteMenuCategory, 
+  deleteMenuItem,
+  deleteStock,
+ } from "../../api";
 import { toast } from 'react-toastify';
-import { updateMenuCategory } from "../../redux";
+import { updateMenuCategory,
+         refreshStockItems,
+         closeModal,
+ } from "../../redux";
 
 function DeleteMenuCategory() {
 
@@ -31,25 +37,41 @@ function DeleteMenuCategory() {
   }
 
   const deleteCategory = async (type) => {
-    if (type === "category") {
-      try {
-        const response = await deleteMenuCategory(modalData.details.id);
-        dispatch(updateMenuCategory());
-        dispatch(closeModal());
-      } catch (error) {
-        showToast("В этой категории есть товары, поменяйте категорию в этих товаров для удаления");
-      }
+    switch(type){
+      case "deleteCategory":
+        try {
+          const response = await deleteMenuCategory(modalData.details.id);
+          dispatch(updateMenuCategory());
+          dispatch(closeModal());
+        } catch (error) {
+          showToast("В этой категории есть товары, поменяйте категорию в этих товаров для удаления");
+        }
+        break;
 
-    } else {
-      try {
-        const res = await deleteMenuItem(modalData.details.id);
-        dispatch(updateMenuCategory());
-        dispatch(closeModal());
-      } catch (error) {
-        console.log(error);
-      }
+      case "deleteMenu":
+        try {
+          const res = await deleteMenuItem(modalData.details.id);
+          dispatch(updateMenuCategory());
+          dispatch(closeModal());
+        } catch (error) {
+          console.log(error);
+        }
+        break;
+      
+      case "deleteStock":
+        try {
+          const res = await deleteStock(modalData.details.id);
+          dispatch(closeModal());
+          dispatch(refreshStockItems());
+        } catch (error) {
+          console.log(error);
+        }
+        break;  
+
+      default:
+        console.log("Invalid option selected");
+
     }
-
   }
 
   return (
@@ -79,13 +101,19 @@ function DeleteMenuCategory() {
           <span> "{modalData.details.name}"</span>?
         </p>}
 
+      {modalData.type === "deleteStock" &&
+      <p className="menu-category-delete-question">
+        Вы действительно хотите удалить сырье
+        <span> "{modalData.details.name}"</span>?
+      </p>}  
+
       <div className="new-menu-category-modal__button-container">
         <button
           className={`new-menu-category-modal__cancel-button 
                    ${isActive("cancel") ? "menu-category-btn-active" : ""}`}
           onClick={() => {
             handleButtonClick("cancel");
-            deleteCategory(modalData.type === "deleteCategory" ? "category" : null);
+            deleteCategory(modalData.type);
           }}
         >
           Да
