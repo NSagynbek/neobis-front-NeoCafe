@@ -13,6 +13,7 @@ import {
   updateMenuCategory,
   ingredientsRefresh,
   closeModal  } from "../../redux";
+import { Bars } from 'react-loader-spinner'
 
 
 function EditMenuItem(){
@@ -21,7 +22,15 @@ function EditMenuItem(){
     const modalData = useSelector((state) => state.modalData);
 
     const [menuItem,setMenuItem] = useState(null);
-    
+    const [activeSection, setActiveSection] = useState(null);
+    const [isImageDrag, setIsImageDrag] = useState(false);
+    const [ingredientsList, setIngredientsList] = useState([]);
+    const [files, setFiles] = useState(null);
+    const category = useSelector((state)=>state.category);
+    const [formData,setFormData]=useState(null)
+    const [loading,setLoading] = useState(false);
+   
+   
     console.log(menuItem)
 
       useEffect(()=>{
@@ -33,19 +42,6 @@ function EditMenuItem(){
     
       },[])
    
-
-  
-
-  const [activeSection, setActiveSection] = useState(null);
-  const [isImageDrag, setIsImageDrag] = useState(false);
-  const [ingredientsList, setIngredientsList] = useState([]);
-  // Стейты для отправки 
-  const [files, setFiles] = useState(null);
-  const [menuTitle,setMenuTitle]=useState("");
-  const [itemDescription,setItemDescription]=useState("");
-  const [itemPrice,setItemPrice]=useState(null);
-  const [formData,setFormData]=useState(null)
-
 
   const handleButtonClick = (section) => {
     setActiveSection(section === activeSection ? null : section);
@@ -64,7 +60,6 @@ function EditMenuItem(){
 
   const handleDrop = (e) => {
     e.preventDefault();
-    setFiles(e.dataTransfer.files[0]);
     setMenuItem((prev)=>({
       ...prev,
       item_image:e.dataTransfer.files[0]
@@ -72,8 +67,12 @@ function EditMenuItem(){
     setIsImageDrag(false);
   };
 
-  const handleFileInputChange = async (e) => {
+  const handleFileInputChange = (e) => {
     setFiles(e.target.files[0]);
+    setMenuItem((prev) => ({
+      ...prev,
+      item_image: e.target.files[0],
+    }));
   };
 
   const addIngredients = () => {
@@ -91,7 +90,6 @@ function EditMenuItem(){
   //Получение данных из инпутов и компонентов
   const getItemName = (e)=>{
     const updatedName = e.target.value
-    setMenuTitle(updatedName)
     setMenuItem((prev)=>({
       ...prev,
       name:updatedName
@@ -100,69 +98,69 @@ function EditMenuItem(){
 
   const getDescription = (e)=>{
     const updatedDescription = e.target.value;
-    setItemDescription(updatedDescription)
     setMenuItem((prev)=>({
       ...prev,
       description:updatedDescription
     }))
   }
 
-  const category = useSelector((state)=>state.category);
   
-  
+
   
   const menuPrice = (e)=>{
     const updatedPrice = e.target.value
-    setItemPrice(updatedPrice)
     setMenuItem((prev)=>({
       ...prev,
       price_per_unit:updatedPrice
     }))
   }
 
-  const ingredients = useSelector((state)=>state.ingredients)
- console.log(ingredients)
+  
 // Отправка Данных
 useEffect(() => {
-  const data = new FormData();
+  if (menuItem) {
+    const data = new FormData();
+    data.append('name', menuItem.name || '');
+    data.append('description', menuItem.description || '');
+    if (menuItem.item_image instanceof File) {
+      data.append('item_image', menuItem.item_image);
+    } else {
+      fetch(menuItem.item_image)
+        .then(response => response.blob())
+        .then(blob => data.append('item_image', blob, 'image.jpg'));
+    }
+    data.append('price_per_unit', parseInt(menuItem.price_per_unit));
+    data.append('category', category);
 
-  data.append('name', menuTitle);
-  data.append('description', itemDescription);
-  data.append('item_image', files);
-  data.append('price_per_unit', parseInt(itemPrice));
-  data.append('category',category);
+    for (let i = 0; i < menuItem.ingredients.length; i++) {
+      const currentIngredient = menuItem.ingredients[i];
+      data.append(`ingredients[${i}]name`, currentIngredient.name);
+      data.append(`ingredients[${i}]quantity`, parseInt(currentIngredient.quantity));
+      data.append(`ingredients[${i}]measurement_unit`, currentIngredient.measurement_unit);
+    }
+
+    setFormData(data);
+    
+    
+  }
 
   
- for(let i =0; i<ingredients.length; i++){
-  const currentIngredient = ingredients[i]
-  data.append(`ingredients[${i}]name`, currentIngredient.name);
-  data.append(`ingredients[${i}]quantity`, parseInt(currentIngredient.amount));
-  data.append(`ingredients[${i}]measurement_unit`, currentIngredient.measurement);
- }
-
- 
-  setFormData(data);
-  data.forEach(function(value, key) {
-    console.log(key + ': ' + value);
-});
-
-}, [menuTitle, itemDescription, files, itemPrice, category, ingredients]);
-
+}, [menuItem, category]);
 
  //Запрос на добовление новой пазиции меню
 const submitData = async ()=>{
- 
+ setLoading(true)
   try{
     const response = await editMenuItem(menuItem.id,formData)
     showToast(`Обновили позицию ${response.name}`);
     dispatch(updateMenuCategory())
     dispatch(closeModal());
     dispatch(ingredientsRefresh());
+    setLoading(false)
   }catch(error){
     console.log(error)
   }
 }
-
 return (
   <>
     {menuItem && menuItem.category ? (
@@ -293,8 +291,17 @@ return (
                   handleButtonClick("cancel");
                   submitData();
                 }}
-              >
-                Сохранить
+              > 
+                {loading?(
+                  <Bars
+                  height="30"
+                  width="30"
+                  color="white"
+                />
+                ):(
+                  "Сохранить"
+                )}
+                
               </button>
               <button
                 className={`new-menu-category-modal__add-button ${

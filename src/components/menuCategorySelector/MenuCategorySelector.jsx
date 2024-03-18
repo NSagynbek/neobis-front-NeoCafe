@@ -43,7 +43,7 @@ function MenuCategorySelector({menuItemCategory,setMenuItem}) {
         if(setMenuItem){
           setMenuItem((prev)=>({
             ...prev,
-            category:{...prev.category,name:categoryName}
+            category:{...prev.category,name:categoryDetails.name}
           }))
         }
         

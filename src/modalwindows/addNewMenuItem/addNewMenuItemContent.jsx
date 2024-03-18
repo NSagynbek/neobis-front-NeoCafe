@@ -11,7 +11,7 @@ import MenuCategorySelector from "../../components/menuCategorySelector/MenuCate
 import { addNewMenuItem } from "../../api";
 import { toast } from 'react-toastify';
 import { updateMenuCategory,ingredientsRefresh} from "../../redux";
-
+import { Bars } from 'react-loader-spinner'
 
 
 function AddNewMenuItemContent(){
@@ -28,6 +28,7 @@ function AddNewMenuItemContent(){
   const [itemDescription,setItemDescription]=useState("");
   const [itemPrice,setItemPrice]=useState(null);
   const [formData,setFormData]=useState(null)
+  const [loading,setLoading] = useState(false);
 
 
   const dispatch = useDispatch();
@@ -120,13 +121,14 @@ useEffect(() => {
 
  //Запрос на добовление новой пазиции меню
 const submitData = async ()=>{
- 
+  setLoading(true)
   try{
     const response = await addNewMenuItem(formData)
     showToast(`Добавили новую позицию ${response.name}`);
     dispatch(updateMenuCategory())
     dispatch(closeModal());
     dispatch(ingredientsRefresh());
+    setLoading(false);
   }catch(error){
     console.log(error)
   }
@@ -252,7 +254,15 @@ const submitData = async ()=>{
                     submitData()
                   }}
                 >
-                  Сохранить
+                  {loading?(
+                    <Bars
+                      height="30"
+                      width="30"
+                      color="white"
+                    />
+                  ):(
+                   "Сохранить"
+                  )}
                 </button>
                 <button
                   className={`new-menu-category-modal__add-button 

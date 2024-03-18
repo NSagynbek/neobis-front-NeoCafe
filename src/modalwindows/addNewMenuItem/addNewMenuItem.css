@@ -260,3 +260,9 @@ background:#e1e5e8b7;
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.new-menu-category-modal__cancel-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
