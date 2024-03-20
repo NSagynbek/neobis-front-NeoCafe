@@ -4,7 +4,12 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { InputAdornment,IconButton } from "@mui/material";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { getStock } from "../../api";
+import 
+{ getStock,
+  readyStockItems,
+  rawStockItems,
+  finishingStockItems,
+} from "../../api";
 import { useState,useEffect } from "react";
 import { Bars } from 'react-loader-spinner'
 import BranchSelector from "../branchSelector/BranchSelector";
@@ -13,29 +18,36 @@ import { useSelector } from "react-redux";
 function WareHouseContent (){
 
   const refreshStock = useSelector((state)=>state.refreshStock);
-
-    const[allStock,setAllStock]=useState(null)
+    const[isActive,setIsActive] = useState("")
+    const[stock,setStock]=useState(null)
     const [loading, setLoading] = useState(true);
     const [activeRowIndex, setActiveRowIndex] = useState(null);
-    const [page,setPage]=useState(1); 
-
-
-    useEffect(()=>{
-        const stock = async ()=>{
-            try{
-                const response = await getStock(page);
-                setAllStock(response.results)
-                setLoading(false)
-            }catch(error){
-                setLoading(false)
-            }
-            
-        }
-        stock()
-    },[page,refreshStock])
+    const[type,setType]=useState("all")
+    const[pageCount,setPageCount]=useState(1)
+    const [page,setPage]=useState(
+      {all:1,
+       ready:1,
+       raw:1,
+       finishing:1}
+       );
+  
 
     const pageControll = (event,p)=>{
-        setPage(p)
+        if(type==="all"){
+          setPage((prev)=>({...prev,all:p}))
+        }
+        else if(type==="ready"){
+          setPage((prev)=>({...prev,ready:p}))
+        }
+        else if(type==="raw"){
+          setPage((prev)=>({...prev,raw:p}))
+        }
+
+        else if(type==="finishing"){
+          setPage((prev)=>({...prev,finishing:p}))
+        }else{
+          setPage((prev)=>({...prev,all:p}))
+        }
       }
 
     const handleClick = (index) => {
@@ -52,8 +64,53 @@ function WareHouseContent (){
       }
     };
 
+    const handleSwitch =(section,sectionType)=>{
+      setIsActive((prev)=>(section=== prev ? null : section))
+      setType(sectionType)
+    }
+
+    const isSectionActive = (currentSection)=>{
+      return currentSection===isActive
+    }
+    useEffect(() => {
+      const fetchStock = async () => {
+          try {
+              let response;
+              switch (type) {
+                  case "all":
+                      response = await getStock(page.all);
+                      break;
+                  case "ready":
+                      response = await readyStockItems(page.ready);
+                      break;
+                  case "raw":
+                      response = await rawStockItems(page.raw);
+                      break;
+                  case "finishing":
+                      response = await finishingStockItems(page.finishing);
+                      break;
+                  default:
+                      break;
+              }
+              setStock(response.results);
+              setPageCount(Math.ceil(response.count /6))
+              setLoading(false);
+          } catch (error) {
+              setLoading(false);
+          }
+      };
+
+      fetchStock();
+  }, [page, refreshStock, type]);
+
+  
+  
+
+  
+
     return (
         <div className="menu-table-container">
+          <div className="menu-table-subContainer">
       {loading?(
         <div className="loader-container">
          <Bars
@@ -66,9 +123,33 @@ function WareHouseContent (){
         <table className="menu-table">
         <thead>
           <tr>
-            <th className="branch-header ready-products" colSpan={2}> Готовая продукция</th>
-            <th className="branch-header raw-products" colSpan={2}> Сырье</th>
-            <th className="branch-header" colSpan={2}> Заканчивающиеся продукты</th>
+            <th 
+              className={`branch-header  ${isSectionActive("Готовая продукция")?"active-section":""}`} 
+              colSpan={2}
+              onClick={()=>{
+                handleSwitch("Готовая продукция","ready")
+              }}
+            > 
+              Готовая продукция
+            </th>
+            <th 
+              className={`branch-header ${isSectionActive("Сырье")?"active-section":""}`}
+              colSpan={2}
+              onClick={()=>{
+                handleSwitch("Сырье","raw")
+              }}
+            > 
+              Сырье
+            </th>
+            <th 
+              className={`branch-header finishing-product ${isSectionActive("Заканчивающиеся продукты")?"finishing-product__active":""}`}  
+              colSpan={2}
+              onClick={()=>{
+                handleSwitch("Заканчивающиеся продукты","finishing")
+              }}
+            > 
+              Заканчивающиеся продукты
+            </th>
           </tr>
           <tr>
             <th className="menu-table-id">№</th>
@@ -80,7 +161,7 @@ function WareHouseContent (){
           </tr>
         </thead>
         <tbody>
-          {allStock.map((item, index) => (
+          {stock.map((item, index) => (
             <tr key={index}>
               <td className="menu-table-id">{item.id}</td>
               <td>{item.stock_item}</td>
@@ -117,11 +198,11 @@ function WareHouseContent (){
       </table>
 
       )}
-      
+      </div>
       <div className="pagination-container">
         <Stack spacing={2}>
           <Pagination 
-            count={100} 
+            count={pageCount} 
             variant="outlined" 
             shape="rounded" 
             onChange={pageControll}

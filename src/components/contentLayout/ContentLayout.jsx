@@ -19,12 +19,15 @@ console.log(rerender)
   const [activeRowIndex, setActiveRowIndex] = useState(null);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-
+  const [pageCount,setPageCount]=useState(1)
+  
   useEffect(() => {
     const getMenuData = async () => {
       try {
         const response = await getMenuItems(page);
         setMenuItems(response.results.results);
+        setPageCount(Math.ceil(response.results.count / 7))
+        console.log(response)
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -104,7 +107,7 @@ console.log(rerender)
       <div className="pagination-container">
         <Stack spacing={2}>
           <Pagination 
-            count={10} 
+            count={pageCount} 
             variant="outlined" 
             shape="rounded" 
             onChange={pageControl}

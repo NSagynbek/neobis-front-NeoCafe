@@ -5,12 +5,13 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useState } from "react";
 
 function MeasurementSelector (
-  {el,setMenuItem,setMeasurement,setStockItems}
+  {el,setMenuItem,setMeasurement,setStockItems,stockItems}
   ){
 
-
+    const defaultMeasureUnit = ["ml", "мл"]; 
     const [isMeasure,setIsMeasure]=useState(false);
-    const [measureUnit,setMeasureUnit]=useState(["ml","мл"]);
+    const [measureUnit, setMeasureUnit] = useState(stockItems && stockItems.measurement_unit ? stockItems.measurement_unit : defaultMeasureUnit);
+    
     
     const handleMeasurement = (measure)=>{      
       
@@ -49,7 +50,7 @@ function MeasurementSelector (
          >
            <div>
              <p className="measurement-text">
-             {el?.measurement_unit || measureUnit[1]}
+             {el?.measurement_unit || (stockItems?stockItems.measurement_unit:measureUnit[1])}
              </p>
            </div>
 

@@ -29,7 +29,18 @@ function MenuEditDelete ({id,name,section}){
                 </InputAdornment>
                 <button 
                   className="menu-edit__btn"
-                  onClick={()=>handleOpenModal("edditMenuItem","editMenu",{id:id})}
+                  onClick={()=>{
+                    if(section === "menu"){
+                      handleOpenModal("edditMenuItem","editMenu",{id:id})
+                    } 
+                    else if(section === "stock"){
+                      handleOpenModal(
+                        "editStockItem", 
+                        "editStock", 
+                        { id: id, name: name, editType: "stock" }
+                      );
+                    }
+                  }}
                 >
                   Редактировать
                 </button>
@@ -44,9 +55,17 @@ function MenuEditDelete ({id,name,section}){
                  className="menu-delete__btn"
                  onClick={() => {
                      if (section === "menu") {
-                         handleOpenModal("deleteMenuCategory", "deleteMenu", { id: id, name: name, deleteType: "menu" });
+                         handleOpenModal(
+                          "deleteMenuCategory", 
+                          "deleteMenu", 
+                          { id: id, name: name, deleteType: "menu" }
+                         );
                      } else if (section === "stock") {
-                         handleOpenModal("deleteMenuCategory", "deleteStock", { id: id, name: name, deleteType: "stock" });
+                         handleOpenModal(
+                          "deleteMenuCategory", 
+                          "deleteStock", 
+                          { id: id, name: name, deleteType: "stock" }
+                        );
                      } 
                  }}
                 >

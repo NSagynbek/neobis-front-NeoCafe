@@ -72,8 +72,22 @@ export const getStock = async (page)=>{
   return res.data
 }
 
-export const addStock = async (newStock)=>{
+export const readyStockItems = async (page)=>{
+  const response = await instance.get(`stock/items/enough/?page=${page}`)
+  return response.data
+}
 
+export const rawStockItems = async (page)=>{
+  const response = await instance.get(`stock/items/raw_enough/?page=${page}`)
+  return response.data
+}
+
+export const finishingStockItems = async (page)=>{
+  const response = await instance.get(`stock/items/not_much/?page=${page}`)
+  return response.data
+}
+
+export const addStock = async (newStock)=>{
   const responce = await instance.post("stock/items/add/",newStock,)
   return responce.data
 }
@@ -82,6 +96,20 @@ export const deleteStock = async (id)=>{
   const response = await instance.delete(`stock/items/${id}/`)
   return response.data
 }
+
+export const getstockItem = async (id)=>{
+  const response = await instance.get(`stock/items/${id}/`)
+  return response.data
+}
+
+export const editStock = async (id,payload)=>{
+  const response = await instance.patch(`stock/items/${id}/`,payload)
+  return response.data
+}
+
+
+
+
 
 // Запросы по разделу филиалы
 export const getBranches = async ()=>{

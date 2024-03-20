@@ -4,15 +4,32 @@ import CloseIcon from '@mui/icons-material/Close';
 import BranchSelector from "../../components/branchSelector/BranchSelector";
 import MeasurementSelector from "../../components/measurementSelector/MeasurementSelector";
 import StockCategorySelector from "../../components/stockCategory/StockCategorySelector";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { closeModal,refreshStockItems } from "../../redux";
-import { useState } from "react";
-import { addStock } from "../../api";
+import { useState,useEffect } from "react";
+import { addStock,getstockItem } from "../../api";
 import { toast } from 'react-toastify';
 
 function AddNewproduct() {
 
   const dispatch = useDispatch();
+  
+  const modalData =  useSelector((state)=>state.modalData)
+  const [stockItem,setStockItem]=useState(null);
+
+  console.log(stockItem)
+ 
+  
+  if(modalData.type==="editStock"){
+    useEffect(()=>{
+      const getSingleStockItem = async ()=>{
+        const response = await getstockItem(modalData.details.id)
+        setStockItem(response)
+      }
+
+      getSingleStockItem()
+    },[])
+  }
 
   const [stockItems,setStockItems] = useState({
     stock_item:"",
@@ -24,7 +41,7 @@ function AddNewproduct() {
     date:""
   })
 
-  console.log(stockItems)
+  
   const [activeSection, setActiveSection] = useState(null);
 
   const handleButtonClick = (section) => {
@@ -41,18 +58,15 @@ function AddNewproduct() {
 
   const handleChange = (e) => {
     setStockItems((prev) => {
-      const updatedStockItems = { ...prev }; // Make a copy of the previous state
+      const updatedStockItems = { ...prev };
   
-      // Check if the target name is "current_quantity" or "minimum_limit"
       if (e.target.name === "current_quantity" || e.target.name === "minimum_limit") {
-        // Parse the value to an integer before setting it
         updatedStockItems[e.target.name] = parseInt(e.target.value);
       } else {
-        // For other fields, simply set the value as it is
         updatedStockItems[e.target.name] = e.target.value;
       }
   
-      return updatedStockItems; // Return the updated state
+      return updatedStockItems; 
     });
   };
   
@@ -60,8 +74,6 @@ function AddNewproduct() {
 
 
   const addNewStock = async ()=>{
-    
-    
     try{
       const response = await addStock(stockItems)
       showToast(`Добавили новое сырье ${response.stock_item}`);
@@ -187,4 +199,5 @@ return(
 }
 
 export default AddNewproduct;
+
 

@@ -5,6 +5,7 @@ import DeleteMenuCategory from "./deleteMenuCategory/DeleteMenuCategory";
 import AddNewMenuItem from "./addNewMenuItem/AddNewMenuItem";
 import EditMenuItem from "./editMenuItem/EditMenuItem";
 import AddNewproduct from "./addNewProduct/AddNewProduct";
+import EditStockItem from "./addNewProduct/editStockItem";
 export { 
     MenuEditDelete,
     NewMenuCategory,
@@ -12,6 +13,7 @@ export {
     AddNewMenuItem,
     EditMenuItem,
     AddNewproduct,
+    EditStockItem,
  };
 
 
