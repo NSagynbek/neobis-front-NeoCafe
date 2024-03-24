@@ -24,6 +24,13 @@
     border: none;
 }
 
+.newEmployeeTransform{
+    background: #EBEFF2;
+    padding-left:25px;
+    border: none; 
+    width: 100%;
+}
+
 .branch-title{
     font-size:16px;
     font-weight:600;
@@ -50,3 +57,10 @@
     border: none;
 }
 
+.newEmploye{
+    width: 100%;
+}
+
+.newEmployeUl{
+    width: 100%;
+}

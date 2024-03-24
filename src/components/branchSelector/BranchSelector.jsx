@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { selectMenuCategory } from "../../redux/actions&reducers/actions";
 import { getBranches } from "../../api";
 
-function BranchSelector({color,setStockItems}) {
+function BranchSelector({color,setStockItems,type}) {
 
     const [branch,setBranch] = useState(null);
     const [backgroundColor,setbackgroundColor]=useState(color)
@@ -25,7 +25,7 @@ function BranchSelector({color,setStockItems}) {
       const getBranch = async ()=>{
         try{
           const response = await getBranches()
-          setAllBranches(response)
+          setAllBranches(response.results)
         }catch(error){
           console.log(error)
         }
@@ -49,6 +49,7 @@ function BranchSelector({color,setStockItems}) {
       <div 
         className={
           `add-menu-new-item-category-subContainer-container branch 
+          ${type==="newEmploye"?"newEmploye":""}
           ${backgroundColor?"stock":""}`
         }
       >
@@ -56,7 +57,8 @@ function BranchSelector({color,setStockItems}) {
           <div 
             className={
               `add-menu-new-item-dropdown-subContainer branchSubcontainer 
-              ${isClicked ? "transform branchTransform" : ""}`
+              ${isClicked ? "transform branchTransform" : ""} 
+              ${type==="newEmploye"?"newEmployeeTransform":""}`
             }
           >
             <p className="add-menu-new-item-dropdown-title branch-title">
@@ -78,7 +80,7 @@ function BranchSelector({color,setStockItems}) {
           </div>
           <ul 
             className={
-              `add-menu-new-item-dropdown-categries branch-list 
+              `add-menu-new-item-dropdown-categries branch-list ${type==="newEmploye"?"newEmployeUl":""}
               ${isClicked ? "add-menu-new-item-dropdown-toggle" : ""}`
             }
           >
@@ -101,4 +103,4 @@ function BranchSelector({color,setStockItems}) {
     );
  }    
 
-  export default BranchSelector;
+export default BranchSelector;

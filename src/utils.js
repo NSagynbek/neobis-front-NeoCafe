@@ -54,6 +54,12 @@ const addIconStyles = {
     position2:"Сырье"
   }
 
+  const branchSelectirTypes = {
+    stock:"stock",
+    employees:"employees",
+    newEmploye:"newEmploye",
+  }
+
 export{
     capitalizeFirstLetter,
     addIconStyles,
@@ -65,4 +71,5 @@ export{
     days,
     employeePositions,
     stockPositions,
+    branchSelectirTypes,
 }

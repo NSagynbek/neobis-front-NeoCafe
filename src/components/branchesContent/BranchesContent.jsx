@@ -17,13 +17,14 @@ function BranchesContent() {
   const [loading, setLoading] = useState(true);
   const [activeRowIndex, setActiveRowIndex] = useState(null);
   const [page, setPage] = useState(1);
-console.log(allBranches)
+  const [pageCount,setPageCount]=useState(1)
 
   useEffect(() => {
     const branch = async () => {
       try {
         const response = await getBranches();
-        setAllBranches(response);
+        setAllBranches(response.results);
+        setPageCount(Math.ceil(response.count / 7))
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -134,7 +135,7 @@ console.log(allBranches)
       <div className="pagination-container">
         <Stack spacing={2}>
           <Pagination
-            count={2}
+            count={pageCount}
             variant="outlined"
             shape="rounded"
             onChange={pageControll}

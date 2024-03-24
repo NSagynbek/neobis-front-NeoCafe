@@ -10,6 +10,7 @@ import { getEmployees } from "../../api";
 import { employeeContentToggle } from "../../redux";
 import { useDispatch } from "react-redux";
 import BranchSelector from "../branchSelector/BranchSelector";
+import { branchSelectirTypes } from "../../utils";
 
 function Employees() {
     const [employees, setEmployees] = useState([]);
@@ -18,6 +19,7 @@ function Employees() {
     const [page, setPage] = useState(1);
     const [isSchedule, setIsSchedule] = useState(false);
     const [activeSection, setActiveSection] = useState(null);
+    const [pageCount,setPageCount]=useState(1)
 
     const dispatch = useDispatch();
 
@@ -26,6 +28,7 @@ function Employees() {
             try {
                 const response = await getEmployees(page);
                 setEmployees(response.results);
+                setPageCount(Math.ceil(response.count / 7))
                 setLoading(false);
             } catch (error) {
                 console.log(error);
@@ -85,7 +88,11 @@ function Employees() {
                                     Пароль
                                   </button>
                                 </th>
-                                <th className="employees-branch"><BranchSelector/></th>
+                                <th className="employees-branch">
+                                    <BranchSelector 
+                                      type={branchSelectirTypes.employees}
+                                    />
+                                </th>
                                 <th className="employees-email">График работы</th>
                             </tr>
                         </thead>
@@ -139,7 +146,7 @@ function Employees() {
             <div className="pagination-container">
                 <Stack spacing={2}>
                     <Pagination 
-                        count={5} 
+                        count={pageCount} 
                         variant="outlined" 
                         shape="rounded" 
                         onChange={pageControl}

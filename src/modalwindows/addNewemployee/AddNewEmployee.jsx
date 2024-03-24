@@ -1,4 +1,3 @@
-import BranchSelector from "../../components/branchSelector/BranchSelector";
 import "./addNewEmployeeStyles.css";
 import { InputAdornment, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
@@ -11,8 +10,8 @@ import { toast } from 'react-toastify';
 import { Bars } from 'react-loader-spinner'
 import TimeTable from "../../components/timeTable/TimeTable";
 import StockCategorySelector from "../../components/stockCategory/StockCategorySelector";
-import { employeePositions } from "../../utils";
-
+import { employeePositions,branchSelectirTypes } from "../../utils";
+import BranchSelector from "../../components/branchSelector/BranchSelector";
 
 
 function AddNewEmployee(){
@@ -197,10 +196,13 @@ return (
           placeholder="Введите номер телефона" 
         />
       </label>
-<div>
-<BranchSelector/>
-</div>
-      
+
+      <div className="employee-branch-selector">
+        <BranchSelector
+          type={branchSelectirTypes.newEmploye}
+        />
+      </div>
+
     </div>
 
     <div className="branch-schedule-container">

@@ -14,6 +14,7 @@ import { useState,useEffect } from "react";
 import { Bars } from 'react-loader-spinner'
 import BranchSelector from "../branchSelector/BranchSelector";
 import { useSelector } from "react-redux";
+import { branchSelectirTypes } from "../../utils";
 
 function WareHouseContent (){
 
@@ -157,7 +158,11 @@ function WareHouseContent (){
             <th className="menu-table-category stock_qty">Количество</th>
             <th className="stock_limit" >Лимит</th>
             <th >Дата прихода</th>
-            <th> <BranchSelector/> </th>
+            <th> 
+              <BranchSelector
+               type={branchSelectirTypes.stock}
+              /> 
+            </th>
           </tr>
         </thead>
         <tbody>
