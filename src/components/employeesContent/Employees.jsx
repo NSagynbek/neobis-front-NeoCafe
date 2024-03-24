@@ -110,7 +110,7 @@ function Employees() {
                                           )}
                                         </td>
 
-                                        <td><p>Project Management</p></td>
+                                        <td>{item.branch_name}</td>
                                         <td>
                                             {
                                                 item.employee_schedules.map((schedule, scheduleIndex) => (
