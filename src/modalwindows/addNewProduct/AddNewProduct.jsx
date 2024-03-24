@@ -9,7 +9,10 @@ import { closeModal,refreshStockItems } from "../../redux";
 import { useState,useEffect } from "react";
 import { addStock,getstockItem } from "../../api";
 import { toast } from 'react-toastify';
-import { stockPositions } from "../../utils";
+import { 
+  stockPositions,
+  stockCategoryTypes,
+ } from "../../utils";
 
 function AddNewproduct() {
 
@@ -138,6 +141,7 @@ return(
         select={"Категория"}
         name={"Выберите категорию"}
         categories={stockPositions}
+        type={stockCategoryTypes.stock}
       />
     </div>
 

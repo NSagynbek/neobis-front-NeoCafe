@@ -16,6 +16,10 @@
     background:#EBEFF2;
 }
 
+.employeePosition{
+    width: 100%;
+}
+
 .stock-category-header-active{
     border: 1px solid #CDD3DD;
     border-bottom:none;

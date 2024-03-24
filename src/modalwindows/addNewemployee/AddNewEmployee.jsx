@@ -10,7 +10,11 @@ import { toast } from 'react-toastify';
 import { Bars } from 'react-loader-spinner'
 import TimeTable from "../../components/timeTable/TimeTable";
 import StockCategorySelector from "../../components/stockCategory/StockCategorySelector";
-import { employeePositions,branchSelectirTypes } from "../../utils";
+import { 
+  employeePositions,
+  branchSelectirTypes,
+  stockCategoryTypes,
+} from "../../utils";
 import BranchSelector from "../../components/branchSelector/BranchSelector";
 
 
@@ -169,6 +173,7 @@ return (
        select={"Должность"}
        name={"Выберите должность"}
        categories={employeePositions}
+       type={stockCategoryTypes.newEmploye}
      />
    </div>
       

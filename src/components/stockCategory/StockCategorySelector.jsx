@@ -5,7 +5,13 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import DoneIcon from '@mui/icons-material/Done';
 import { useState} from "react";
 
-function StockCategorySelector ({setStockItems,select,name,categories}){
+function StockCategorySelector ({
+  setStockItems,
+  select,
+  name,
+  categories,
+  type
+}){
 
     const [isActive,setIsActive] = useState(false);
     const [selection,setSelection]=useState("");
@@ -30,8 +36,11 @@ function StockCategorySelector ({setStockItems,select,name,categories}){
           {select}
         </label>
       <div className="stock-category-selector">
-        <div className={`stock-category-header ${isActive ? 
-                       ("stock-category-header-active") : ("")}`}>
+        <div className={`stock-category-header 
+          ${isActive ? ("stock-category-header-active") : ("")}
+          ${type==="newEmployee"?"employeePosition":""}`
+        }
+        >
           <p>
             {activeSection&&selection!==""?selection:name}
           </p>
@@ -51,8 +60,10 @@ function StockCategorySelector ({setStockItems,select,name,categories}){
         </div>
     
         <ul 
-          className={`stock-category-list ${isActive ? 
-                    "active-stock-category" : ""}`}
+          className={`stock-category-list 
+          ${isActive ? "active-stock-category" : ""}`
+         }
+         style={{width:type==="newEmployee"?"100%":""}}
         >
           <li 
             className="stock-category-item"
