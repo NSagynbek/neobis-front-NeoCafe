@@ -1,0 +1,54 @@
+.branch-table{
+    border-collapse: collapse;
+}
+
+.time{
+    border: none;
+    outline: none;
+    height:36px;
+    width: 85px;
+    border: 1px solid #C1C1C3;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "poppins",sans-serif;
+    color: #2A3440;
+    text-align: center;
+}
+
+
+.monday-td{
+    height: 36px;
+    text-align: center;
+    border-bottom: none;
+}
+
+.day-td{
+    text-align: left;
+    border-bottom: none;
+    
+}
+.day{
+    height: 36px;
+    width: 150px;
+    border-bottom: none;
+    font-size: 20px;
+    font-family: "Poppins",sans-serif;
+    font-weight: 400;
+    color: #2A3440;
+}
+.start-time-td{
+    height: 36px;
+    width:250px;
+    text-align: end;
+    border-bottom: none;
+}
+
+.checkbox-td{
+    width: 50px;
+    border-bottom: none;
+}
+
+.dayLabel{
+    cursor: pointer;
+}

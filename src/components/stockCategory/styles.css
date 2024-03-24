@@ -39,6 +39,7 @@
     position: absolute;
     display: none;
     overflow: hidden;
+    z-index: 2;
 }
 
 .active-stock-category{

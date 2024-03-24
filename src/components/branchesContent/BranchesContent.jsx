@@ -7,13 +7,18 @@ import Stack from '@mui/material/Stack';
 import { useState, useEffect } from "react";
 import { Bars } from 'react-loader-spinner';
 import { getBranches } from "../../api";
+import { useSelector } from "react-redux";
 
 function BranchesContent() {
+  
+  const refreshStock = useSelector((state)=>state.refreshStock)
+
   const [allBranches, setAllBranches] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeRowIndex, setActiveRowIndex] = useState(null);
   const [page, setPage] = useState(1);
 console.log(allBranches)
+
   useEffect(() => {
     const branch = async () => {
       try {
@@ -25,7 +30,7 @@ console.log(allBranches)
       }
     };
     branch();
-  }, [page]);
+  }, [page,refreshStock]);
 
   const pageControll = (event, p) => {
     setPage(p);
@@ -109,7 +114,13 @@ console.log(allBranches)
                           <MoreVertIcon style={{ color: "#5B7E9A" }} />
                         </IconButton>
                       </InputAdornment>
-                      {activeRowIndex === index && <MenuEditDelete />}
+                      {activeRowIndex === index && 
+                      <MenuEditDelete 
+                        id={item.id} 
+                        name={item.branch_name} 
+                        section={"branch"}
+                      />
+                      }
                     </td>
                   </tr>
                 ))

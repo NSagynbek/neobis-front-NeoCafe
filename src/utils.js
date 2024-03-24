@@ -34,7 +34,25 @@ const addIconStyles = {
   const sideBarIconsStyles = { color: "white" }
   const menuCategoryArrowIconStyles = {color:"#5B7E9A"}
 
+  const days = [
+    'Пн',
+    'Вт',
+    'Ср',
+    'Чт',
+    'Пт',
+    'Сб',
+    'Вс',
+  ];
 
+  const employeePositions = {
+    position1:"Бармен",
+    position2:"Официант"
+  }
+
+  const stockPositions = {
+    position1:"Готовая продукция",
+    position2:"Сырье"
+  }
 
 export{
     capitalizeFirstLetter,
@@ -44,4 +62,7 @@ export{
     sideBarIconsStyles,
     menuCategoryArrowIconStyles,
     menuItemDeleteIconStyle,
+    days,
+    employeePositions,
+    stockPositions,
 }

@@ -5,12 +5,11 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import DoneIcon from '@mui/icons-material/Done';
 import { useState} from "react";
 
-function StockCategorySelector ({setStockItems}){
+function StockCategorySelector ({setStockItems,select,name,categories}){
 
     const [isActive,setIsActive] = useState(false);
     const [selection,setSelection]=useState("");
     const [activeSection, setActiveSection] = useState(null);
-
 
 
     const handleClick = ()=>{
@@ -28,14 +27,13 @@ function StockCategorySelector ({setStockItems}){
     return (
       <div className="stock-category-section-container">
         <label htmlFor="" className="newStock">
-          Категория
+          {select}
         </label>
       <div className="stock-category-selector">
         <div className={`stock-category-header ${isActive ? 
                        ("stock-category-header-active") : ("")}`}>
-          <p>{activeSection?
-            (selection!==""?selection:"Выберите категорию"):
-            ("Выберите категорию")}
+          <p>
+            {activeSection&&selection!==""?selection:name}
           </p>
           <InputAdornment 
             position="end" 
@@ -58,9 +56,9 @@ function StockCategorySelector ({setStockItems}){
         >
           <li 
             className="stock-category-item"
-            onClick={()=>handleSelection("Готовая продукция","redyProduct")}
+            onClick={()=>handleSelection(categories.position1,"redyProduct")}
           >
-            Готовая продукция
+            {categories.position1}
 
             {isActiveSection("redyProduct")?(
               <InputAdornment 
@@ -78,9 +76,9 @@ function StockCategorySelector ({setStockItems}){
           </li>
           <li 
             className="stock-category-item"
-            onClick={()=>handleSelection("Сырье","rawProduct")}
+            onClick={()=>handleSelection(categories.position2,"rawProduct")}
           >
-            Сырье
+            {categories.position2}
             {isActiveSection("rawProduct")?(
               <InputAdornment 
               position="end" className="stock-icon-done-button"

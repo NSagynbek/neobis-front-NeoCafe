@@ -117,6 +117,36 @@ export const getBranches = async ()=>{
   return res.data
 }
 
+
+export const addNewBranch = async (payload) => {
+  const res = await instance.post("branch/add/", payload,{
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    }
+  });
+  return res.data;
+};
+
+
+export const deleteBranch = async (id)=>{
+  const res = await instance.delete(`branch/${id}/`)
+  return res.data
+}
+
+export const getBranchById = async (id)=>{
+  const res = await instance.get(`branch/${id}/`)
+  return res.data
+}
+
+export const editBranch = async (id,payload)=>{
+  const res = await instance.patch(`branch/${id}/`,payload,{
+    headers:{
+      'Content-Type': 'multipart/form-data',
+    }
+  })
+  return res.data
+}
+
 // Запросы по разделу сотрудники
 export const getEmployees = async (page)=>{
   const res = await instance.get(`employee/all/?page=${page}`)

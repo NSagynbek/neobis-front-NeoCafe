@@ -6,6 +6,9 @@ import {
   EditMenuItem,
   AddNewproduct,
   EditStockItem,
+  AddNewBranch,
+  EditBranch,
+  AddNewEmployee,
 } from "./index";
 
 const modalsMap = {
@@ -16,6 +19,9 @@ const modalsMap = {
     edditMenuItem:EditMenuItem,
     addNewProduct:AddNewproduct,
     editStockItem:EditStockItem,
+    addNewBranch:AddNewBranch,
+    editBranch:EditBranch,
+    addNewEmployee:AddNewEmployee,
   };
   
   export default modalsMap;

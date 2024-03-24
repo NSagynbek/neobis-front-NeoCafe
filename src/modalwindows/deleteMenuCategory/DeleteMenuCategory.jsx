@@ -8,7 +8,9 @@ import {
   deleteMenuCategory, 
   deleteMenuItem,
   deleteStock,
+  deleteBranch,
  } from "../../api";
+
 import { toast } from 'react-toastify';
 import { updateMenuCategory,
          refreshStockItems,
@@ -24,6 +26,7 @@ function DeleteMenuCategory() {
   const dispatch = useDispatch();
 
   const modalData = useSelector((state) => state.modalData);
+
   const [activeSection, setActiveSection] = useState(null);
 
   const handleButtonClick = (section) => {
@@ -68,6 +71,16 @@ function DeleteMenuCategory() {
         }
         break;  
 
+      case "deleteBranch":
+        try {
+          const res = await deleteBranch(modalData.details.id);
+          dispatch(closeModal());
+          dispatch(refreshStockItems());
+        } catch (error) {
+          console.log(error);
+        }
+        break;   
+
       default:
         console.log("Invalid option selected");
 
@@ -106,6 +119,12 @@ function DeleteMenuCategory() {
         Вы действительно хотите удалить сырье
         <span> "{modalData.details.name}"</span>?
       </p>}  
+
+     {modalData.type === "deleteBranch" &&
+     <p className="menu-category-delete-question">
+        Вы действительно хотите удалить Филиал
+       <span> "{modalData.details.name}"</span>?
+     </p>}
 
       <div className="new-menu-category-modal__button-container">
         <button

@@ -40,6 +40,16 @@ function MenuEditDelete ({id,name,section}){
                         { id: id, name: name, editType: "stock" }
                       );
                     }
+
+                    else if(section === "branch"){
+                      handleOpenModal(
+                        "editBranch", 
+                        "editBranch", 
+                        { id: id, name: name, editType: "branch" }
+                      );
+                    }
+
+
                   }}
                 >
                   Редактировать
@@ -67,6 +77,14 @@ function MenuEditDelete ({id,name,section}){
                           { id: id, name: name, deleteType: "stock" }
                         );
                      } 
+
+                     else if (section === "branch") {
+                      handleOpenModal(
+                       "deleteMenuCategory", 
+                       "deleteBranch", 
+                       { id: id, name: name, deleteType: "branch" }
+                     );
+                  }
                  }}
                 >
                     Удалить

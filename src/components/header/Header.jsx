@@ -66,6 +66,14 @@ function Header ({selectedMenuItem}){
                      case "Склад":
                        handleOpenModal("addNewProduct", "createMenu");
                        break;
+                     case "Филиалы":
+                       handleOpenModal("addNewBranch", "createBranch");
+                       break;  
+
+                    case "Сотрудники":
+                      handleOpenModal("addNewEmployee", "newEmployee");
+                      break;  
+
                      default:
                      
                        console.error("Unexpected selectedMenuItem value:", selectedMenuItem);
@@ -88,6 +96,14 @@ function Header ({selectedMenuItem}){
                         case "Склад":
                           handleOpenModal("addNewProduct", "createMenu");
                           break;
+                        
+                        case "Филиалы":
+                          handleOpenModal("addNewBranch", "createBranch");
+                          break;  
+                        case "Сотрудники":
+                          handleOpenModal("addNewEmployee", "newEmployee");
+                          break;  
+                          
                         default:
                         
                           console.error("Unexpected selectedMenuItem value:", selectedMenuItem);

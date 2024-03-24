@@ -6,6 +6,9 @@ import AddNewMenuItem from "./addNewMenuItem/AddNewMenuItem";
 import EditMenuItem from "./editMenuItem/EditMenuItem";
 import AddNewproduct from "./addNewProduct/AddNewProduct";
 import EditStockItem from "./addNewProduct/editStockItem";
+import AddNewBranch from "./addNewBranch/AddNewBranch";
+import EditBranch from "./editBranch/EditBranch";
+import AddNewEmployee from "./addNewemployee/AddNewEmployee";
 export { 
     MenuEditDelete,
     NewMenuCategory,
@@ -14,6 +17,9 @@ export {
     EditMenuItem,
     AddNewproduct,
     EditStockItem,
+    AddNewBranch,
+    EditBranch,
+    AddNewEmployee,
  };
 
 

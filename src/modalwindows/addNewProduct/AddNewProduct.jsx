@@ -9,6 +9,7 @@ import { closeModal,refreshStockItems } from "../../redux";
 import { useState,useEffect } from "react";
 import { addStock,getstockItem } from "../../api";
 import { toast } from 'react-toastify';
+import { stockPositions } from "../../utils";
 
 function AddNewproduct() {
 
@@ -132,7 +133,12 @@ return(
       </div>
 
       <MeasurementSelector setStockItems={setStockItems} />
-      <StockCategorySelector setStockItems={setStockItems} />
+      <StockCategorySelector 
+        setStockItems={setStockItems} 
+        select={"Категория"}
+        name={"Выберите категорию"}
+        categories={stockPositions}
+      />
     </div>
 
     <div className="stock-sub-section">
@@ -149,23 +155,17 @@ return(
             name="minimum_limit"
           />
         </div>
+        
         <div className="stock-input-container">
-          <label htmlFor="incomeDate" className="newStock">
-            Дата прихода
-          </label>
-          <input 
-            type="text" 
-            id="incomeDate"
-            className="stock-date-input-field"
-            onChange={(e)=>handleChange(e)}
-            name="date"
-          />
+          <p className="newStock">Филиал</p>
+          <BranchSelector 
+            color={"#EBEFF2"} 
+            setStockItems={setStockItems} 
+         /> 
         </div>
+          
       </div>
-      <BranchSelector 
-        color={"#EBEFF2"} 
-        setStockItems={setStockItems} 
-      />
+      
 
       <div className="stock-btns-container">
         <div className="menu-add-new-item-btns-container">

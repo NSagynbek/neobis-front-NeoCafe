@@ -1,0 +1,78 @@
+.add-new-branch-content-container{
+    display: flex;
+    width:540px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.branch{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+.add-branch-btns-container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height:100px;
+    justify-content: space-evenly;
+}
+
+input::placeholder{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    color: #5F6366;
+}
+
+.branch-schedule-container{
+    display: flex;
+    width:540px;
+    gap:10px;
+    flex-direction: column;
+}
+
+.schedule-header{
+    width: 100%;
+    height: 36px;
+    display: flex;
+    gap:43%;
+    border-bottom: 1px solid #2A3440;
+    padding-bottom:30px;
+}
+
+.schedule-header-title{
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    font-weight:600;
+    color: #2A3440;
+}
+
+
+.branch-text-input{
+width: 535px;
+height: 66px;
+border-radius:10px;
+border:none;
+outline:none;
+background:#EBEFF2;
+padding:24px 16px 24px 16px;
+font-size:18px;
+font-family:"Poppins",sans-serif;
+font-weight:400;
+color:#2A3440; 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
